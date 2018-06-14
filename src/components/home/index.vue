@@ -1,38 +1,79 @@
+
 <template>
-    <div class="page">
-        <div class="header">
-            <div class="menu">
-                <img src="../../assets/img/logo.png" class="logo">
-                <ul>
-                    <li>终身学习</li>
-                    <li>终身学习</li>
-                    <li>终身学习</li>
-                    <li>终身学习</li>
-                    <li>终身学习</li>
-                </ul>
-            </div>
-            <div class="option"></div>
-        </div>
-        <div class="content "></div>
-        <div class="footer"></div>
+    <div class="layout">
+        <Layout>
+            <Header :style="{position: 'fixed', width: '100%'}" class="top">
+                <Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
+                    <div class="layout-nav">
+                        <Menu-item name="/home/index">
+                            <img src="../../assets/img/logo.png" class="logo">
+                        </Menu-item>
+                        <Menu-item name="/home/career">
+                            职业发展
+                        </Menu-item>
+                        <Menu-item name="/home/experience">
+                            行业经验
+                        </Menu-item>
+                        <Menu-item name="/home/internet">
+                            互联网+
+                        </Menu-item>
+                        <Menu-item name="/home/invest">
+                            创业投资
+                        </Menu-item>
+                        <Menu-item name="/home/life">
+                            生活服务
+                        </Menu-item>
+                        <Menu-item name="/home/login">
+                            登录
+                        </Menu-item>
+                        <Menu-item name="/home/register">
+                            注册
+                        </Menu-item>
+                    </div>
+                </Menu>
+            </Header>
+            <Content :style="{margin: '64px 0 0 0'}">
+                <router-view></router-view>
+            </Content>
+            <Footer class="layout-footer-center">2018-2019 &copy; 亿万毫米有限公司</Footer>
+        </Layout>
     </div>
 </template>
 <script>
-    
+export default {
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        switchPage(name) {
+            this.$router.push(name)
+        }
+    }
+};
 </script>
 <style scoped>
-    .header {
-        width: 100%;
-        height: 60px;
-        display: flex;
-        justify-content: space-around;
-        background: #5C5C5C;
-    }
-    .menu {
-        line-height: 60px;
-    }
-    .logo {
-        width: 75px;
-        height: 50px;
-    }
+.layout {
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.top {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+.logo {
+    width: 100px;
+    height: 60px;
+}
+.layout-nav {
+  margin: 0 auto;
+}
+.layout-footer-center {
+  text-align: center;
+}
 </style>
