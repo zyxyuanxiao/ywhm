@@ -8,7 +8,7 @@ const devConfig = merge(baseConfig, {
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname,'../dist'),
-        port: 80,
+        port: 8080,
         open: true,
         hot: true,
         inline: true,

@@ -2,7 +2,7 @@
     <div class="page">
         <div class="header">
             <div class="menu">
-                <img src="../../../sassets/logo.png" class="logo">
+                <img src="../../assets/img/logo.png" class="logo">
                 <ul>
                     <li>终身学习</li>
                     <li>终身学习</li>
