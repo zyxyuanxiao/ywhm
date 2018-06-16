@@ -35,7 +35,7 @@
             <Content :style="{margin: '64px 0 0 0'}">
                 <router-view></router-view>
             </Content>
-            <Footer class="layout-footer-center">2018-2019 &copy; 亿万毫米有限公司</Footer>
+            <Footer class="layout-footer-center footer">2018-2019 &copy; 亿万毫米有限责任公司</Footer>
         </Layout>
     </div>
 </template>
@@ -73,7 +73,13 @@ export default {
 .layout-nav {
   margin: 0 auto;
 }
-.layout-footer-center {
-  text-align: center;
+.footer {
+  height: 100px;
+  background-color: #495060;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 </style>

@@ -59,12 +59,12 @@
     border-radius: 5px;
 }
 .feat {
-    padding: 20px 0;
+    padding: 40px 0;
     display: flex;
     justify-content: center;
 }
 .li {
-    margin: 0 20px;
+    margin: 0 30px;
     display: flex;
     align-items: center;
 }
