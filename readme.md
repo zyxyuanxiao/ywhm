@@ -14,5 +14,6 @@
 
 ##### 每天开发完成后：
 1. git add 所有你更改过的文件
-2. git commit -m “msg”
-3. git push origin master  //Push到远程仓库
+2. git commit -m “msg”  //mag是简要说明你更改了说明
+3. git pull //push之前必须pull
+4. git push origin master  //Push到远程仓库
