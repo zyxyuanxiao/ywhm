@@ -41,21 +41,21 @@
                                     <li><a href="">价格</a></li>
                               </ul>
                         </div> 
-                        <div class="tutor" style="margin-top:100px;">
-                              <ul class="topics">
+                        <div class="tutor">
+                              <ul class="topic-list topics">
                                     <li class="a-topic" v-for="item in tutor">
                                           <a href="" target="_blank" class="topic-tutor-link">
-                                                <img class="top-tutor-pic" :src="item.imgUrl" />
+                                                <img class="topic-tutor-pic" :src="item.imgUrl" />
                                                 <div class="topic-info">
                                                       <h3 class="topic-title">
-                                                            <span class="top-title-txt">{{item.titleTxt}} </span>
+                                                            <span class="topic-title-txt">{{item.titleTxt}} </span>
                                                             <div class="topic-title-info">
                                                                   <div class="rating">{{item.rate}}
                                                                         <span class="unit">分</span>
-                                                                        <span class="icon"></span>
-                                                                        </div>
+                                                                        <img src="../../assets/img/i.png" class="icon" />
+                                                                    </div>
                                                                   <div class="price">
-                                                                        <em>{{item.price}}</em>
+                                                                        <em>{{item.price}}</em>元/次
                                                                   </div>
                                                             </div>
                                                       </h3>
@@ -64,13 +64,16 @@
                                                             <span class="topic-tutor-intro">{{item.intro}} </span>
                                                       </div>
                                                        <p class="topic-tutor-count">
-                                                             <span>{{item.count}}</span>
+                                                             <span>{{item.count}}</span>人见过
                                                       </p>
                                                 </div>
                                           </a>
                                     </li>
                               </ul>
-                         </div> 
+                        </div> 
+                        <template>
+                               <Page :total="100" show-elevator></Page>
+                        </template>
                   </div> 
             </div>
       </div>
@@ -123,10 +126,10 @@ export default {
                       {name: '宠物', sourceUrl: ''}
                 ],
                 tutor: [
-                     { imgUrl: '../../assets/life/train.jpg', titleTxt: '医学背景健身导师，解决你所有问题  ', rate: 9.3,  name: '原李峰', intro: '「原来健身工作室」创始人', count: 100, price: 499},
-                     { imgUrl: '../../assets/life/fasionSkin.jpg', titleTxt: '按肤色身型穿衣，学搭配，有风格 ', rate: 9.2,  name: '查博', intro: 'C+色彩公司创始人，资深形象设计师', count: 276 , price: 500},
-                     { imgUrl: '../../assets/life/hair.jpg', titleTxt: '别纠结，给你发型修剪搭配全攻略', rate: 9.3,  name: '崔璐璐', intro: 'TUE STUDIO创始人', count: 112, price: 368},
-                     { imgUrl: '../../assets/life/cleanup.jpg', titleTxt: '怎样成为整理收纳咨询师', rate: 9.5,  name: '左小熙', intro: '整理规划咨询师，简一整理创始人', count: 21, price: 499 },
+                     { imgUrl: '../../assets/img/train.jpg', titleTxt: '医学背景健身导师，解决你所有问题!', rate: 9.3,  name: '原李峰', intro: '「原来健身工作室」创始人', count: 100, price: 499},
+                     { imgUrl: '../../assets/img/fasionSkin.jpg', titleTxt: '按肤色身型穿衣，学搭配，有风格 ', rate: 9.2,  name: '查博', intro: 'C+色彩公司创始人，资深形象设计师', count: 276 , price: 500},
+                     { imgUrl: '../../assets/img/hair.jpg', titleTxt: '别纠结，给你发型修剪搭配全攻略', rate: 9.3,  name: '崔璐璐', intro: 'TUE STUDIO创始人', count: 112, price: 368},
+                     { imgUrl: '../../assets/img/cleanup.jpg', titleTxt: '怎样成为整理收纳咨询师', rate: 9.5,  name: '左小熙', intro: '整理规划咨询师，简一整理创始人', count: 21, price: 499 },
                 ]
           }
     },
@@ -241,12 +244,22 @@ export default {
             height: 0;
             opacity: 0;
       }
+      .content {
+            padding-top: 0;
+            padding-bottom: 30px;
+            width: 1000px;
+            margin: 0 auto;
+      }
       .button {
-            margin: 28px;
+            position: relative;
+            padding: 0 0 0 22px;
+            margin-top: 20px;
+            min-height: 30px;
+            /* margin: 28px;
             border: 0;
             font-size: 100%;
-            font-weight: 400;
-            vertical-align: baseline;
+            font-weight: 400; */
+            /* vertical-align: baseline; */
       }
       .ul {
             margin: 0;
@@ -273,7 +286,10 @@ export default {
             border-color: #23acf1;
             color: #23acf1;
       }
-      .top-list .topic-tutor-link{
+      ul {
+            list-style-type: none;
+      }
+      .topic-list .topic-tutor-link{
             display: block;
             background-color: #fff;
             border-radius: 8px;
@@ -284,11 +300,97 @@ export default {
              margin-bottom: 10px;
       }
       .topic-list {
-            margin: 12px -10px 0;
-            padding: 0; 
+            margin-top: 20px;
+            padding: 0 20px;
       }
       .topic-tutor-link {
             display: block;
             padding: 24px;
+            background-color: #fff;
+            border-radius: 8px;
+            color:#343434;
+            overflow: hidden;
       }
+      a { 
+          text-decoration: none;
+      }
+      .topic-tutor-pic {
+            display: block;
+            width: 110px;
+            height: 110px;
+            float: left;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-color: #ededed;
+      }
+      span, h3, div, body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font-weight: 400;
+            vertical-align: baseline;
+            background: 0 0;
+      }
+      h3 {
+          font-size: 20px;
+          font-weight: 700;
+          overflow: hidden;
+      }
+      .topic-list .topic-title-txt {
+            float: left;
+            display: block;
+            max-width: 525px;
+            margin-right: 5px;
+      }
+      .topic-list .topic-tutor-link:hover .topic-title-txt {
+            color: #23acf1;
+      }
+      .rating {
+            line-height: 25px;
+            font-size: 20px;
+            color: #975050;
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 10px;
+      }
+      .rating .unit {
+            font-size: 12px;
+            vertical-align: baseline;
+      }
+      .rating .icon {
+            line-height: 25px;
+            color: #b3b3b3;
+            vertical-align: bottom;
+            font-size: 16px;
+            cursor: pointer;
+      }
+      .topic-list .price {
+            font-size: 14px;
+            float: right;
+      }
+      .topic-list .price em {
+              font-size: 20px;
+              font-style: normal;
+      }
+      .topic-list .topic-tutor-info {
+            margin-bottom: 12px;
+      }
+      .topic-list .topic-tutor-name {
+          font-weight: 700;
+      }
+      .topic-list .topic-tutor-intro {
+          padding-left:10px;
+      }
+      .topic-list .topic-info p {
+          color: #666;
+      }
+      .topic-list .topic-tutor-count span {
+          color: #23acf1;
+      }
+      .topic-list .topic-tutor-link:hover{
+          box-shadow: 0 0 8px rgba(0,0,0,.3);
+      }
+      
 </style>
