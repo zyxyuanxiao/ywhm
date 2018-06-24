@@ -2,7 +2,7 @@
 <template>
     <div class="layout">
         <Layout>
-            <Header :style="{position: 'fixed', width: '100%'}" class="top">
+            <Header :style="{position: 'fixed', width: '100%',}" class="top">
                 <Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
                     <div class="layout-nav">
                         <Menu-item name="/home/index">
@@ -65,6 +65,8 @@ export default {
     padding: 0;
     display: flex;
     justify-content: center;
+    left:0;
+    top:0;
 }
 .logo {
     width: 100px;
@@ -80,6 +82,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 
 }
 </style>

@@ -9,6 +9,7 @@ import invest from '@/invest'
 import life from '@/life'
 import register from '@/register'
 import index from '@/home/children/info'
+import detail from '@/detail'
 Vue.use(vueRouter)
 const router = new vueRouter({
     mode: 'history',
@@ -52,6 +53,10 @@ const router = new vueRouter({
                 {
                     path: 'login',
                     component: login
+                },
+                {
+                    path: 'detail',
+                    component: detail
                 }
             ]
         }
