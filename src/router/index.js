@@ -10,6 +10,7 @@ import life from '@/life'
 import register from '@/register'
 import index from '@/home/children/info'
 import detail from '@/detail'
+import download from '@/app/download'
 Vue.use(vueRouter)
 const router = new vueRouter({
     mode: 'history',
@@ -57,6 +58,10 @@ const router = new vueRouter({
                 {
                     path: 'detail',
                     component: detail
+                },
+                {
+                    path: 'app',
+                    component: download
                 }
             ]
         }

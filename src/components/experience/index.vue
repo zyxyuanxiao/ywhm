@@ -7,10 +7,15 @@
         <div class="page-content">
             <div class="gd" v-for="item in total" @click="goDetail(item.id)" >
                 <div class="gd-avator">{{item.avator}}</div>
-                <div class="gd-info">
+                <div class="gd-info" >
                     <div class="info-top">
-                        <div>{{item.title}}</div>
-                        <div>{{item.price}} <span>元/次</span></div>
+                        <div class="tutor-info">
+                            <span class="tutor-title">{{item.title}}</span>
+                            {{item.score}}
+                            <span class="unit">分</span>
+                            <img src="../../assets/img/i.png" title="话题转有行系统算法综合学员的匿名评分以及多级因素得出，每增加三个评分，更新一次" class="icon" />
+                        </div>
+                            <div>{{item.price}} <span>元/次</span></div>
                     </div>
                     <div class="info-mid">
                         <div class="info-tutor">{{item.tutor}}</div>
@@ -32,6 +37,7 @@
                         "id": "1",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目市场",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -39,9 +45,10 @@
                         "type": "市场"
                     },
                     {
-                        "id": "1",
+                        "id": "2",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目人力",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -49,9 +56,10 @@
                         "type": "人力"
                     },
                     {
-                        "id": "1",
+                        "id": "3",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目销售",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -59,9 +67,10 @@
                         "type": "销售"
                     },
                     {
-                        "id": "1",
+                        "id": "4",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目金融",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -69,9 +78,10 @@
                         "type": "金融"
                     },
                     {
-                        "id": "1",
+                        "id": "5",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目销售",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -79,9 +89,10 @@
                         "type": "销售"
                     },
                     {
-                        "id": "1",
+                        "id": "6",
                         "avator": "",
                         "title": "用思维导图管理生活、工作和项目金融",
+                        "score": 9.8,
                         "tutor": "高雁鹏",
                         "intro": "项目管理&思维导图讲师，小能熊布道师",
                         "count": 112,
@@ -142,17 +153,21 @@
     .gd:hover {
         cursor: pointer;
         box-shadow: 0 0 10px rgba(35,172,241, 0.5);
+        box-shadow: 0 0 8px rgba(0,0,0,.3);
+    }
+    .gd:hover .gd-info .info-top .tutor-title {
+        color: #23acf1;
     }
     .gd-avator {
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
         background: url("../../assets/img/cleanup.jpg") no-repeat;
         background-size: contain;
         border-radius: 50%; 
         float: left;
     }
     .gd-info {
-        height: 100px;
+        height: 110px;
         padding-left: 15px;
         overflow: hidden;
     }
@@ -160,20 +175,23 @@
         display: flex;
         justify-content: space-between;
         font-size: 20px;
+    }  
+    .unit {
+        font-size: 12px;
     }
-    .info-top span {
-        font-size: 14px;
+    .tutor-title{
+        font-size:20px;
+        max-width: 525px;
+        margin-right: 15px;
     }
     .info-mid {
         display: flex;
         margin: 2px 0 10px 0;
     }
+
     .info-tutor {
-        font-weight: bold;
+        font-weight: 700;
         margin-right: 10px;
-    }
-    .info-bot {
-        
     }
     .info-bot span {
         color: #23acf1;
