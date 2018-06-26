@@ -1,20 +1,20 @@
 <template>
 <div class="login-dialog">
 	<div class="info-dialog">
-			<h3>欢迎来到「亿万毫米」</h3>
+			<h3>欢迎来到 「亿万毫米」</h3>
 	</div>
-	<Form ref="formInline" :model="formInline" :rules="ruleInline" :label-width="100">
+	<form>
 		<div>
 			<Icon type="person" ></Icon>
-			<input type="text" v-model="formInline.user" placeholder="Username"></input>
+			<input type="text" v-model="formInline.user" placeholder="Username" />
 		</div>
 		<div>
 			<Icon type="locked"></Icon>
-			<input type="password" v-model="formInline.password" placeholder="Password"></input>
+			<input type="password" v-model="formInline.password" placeholder="Password" />
 		</div>
 		<Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
-		<p>没有账号，现在去注册</p>
-	</Form>
+		<p>没有账号？<router-link to="/home/register">现在去注册</router-link></p>
+	</form>
 </div>
 </template>
 <script>
