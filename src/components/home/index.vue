@@ -1,7 +1,7 @@
 <template>
 	<div class="layout">
 		<Layout>
-			<Header :style="{position: 'fixed', width: '100%',}" class="top">
+			<Header :style="{position: 'fixed', width: '100%', }" class="top">
 				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
 					<div class="layout-nav">
 						<Menu-item name="/home/index">
@@ -173,5 +173,8 @@ a{
 }
 a:hover {
 	color: #fff;
+}
+div.top.ivu-layout-header {
+	z-index: 1;
 }
 </style>
