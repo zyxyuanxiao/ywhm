@@ -34,58 +34,55 @@
 			<Content :style="{margin: '63px 0 0 0'}">
 				<router-view></router-view>
 			</Content>
-			<Footer class="footer">2018-2019 &copy; 亿万毫米有限责任公司</Footer>
+			<Footer class="layout-footer-center footer">2018-2019 &copy; 亿万毫米有限责任公司</Footer>
 		</Layout>
 	</div>
 </template>
 <script>
 export default {
-	data() {
+  data() {
 	return {};
-	},
-	methods: {
+  },
+  methods: {
 	switchPage(name) {
-		this.$router.push(name);
+	  this.$router.push(name);
 	}
-	}
+  }
 };
 </script>
 <style scoped>
 .layout {
-	width: 100%;
-	border: 1px solid #d7dde4;
-	background: #f5f7f9;
-	position: relative;
-	border-radius: 4px;
-	overflow: hidden;
-}
-.ivu-layout {
-	width: 100%;
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .top {
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	left: 0;
-	top: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  top: 0;
 }
 .logo {
-	height: 60px;
+  width: 100px;
+  height: 60px;
 }
 .layout-nav {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover {
-		color: #23acf1;
+    color: #23acf1;
 }
 .footer {
-	width: 100%;
-	height: 100px;
-	background-color: #495060;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 30px;
+  width:2000px;
+  height: 100px;
+  background-color: #495060;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 </style>
