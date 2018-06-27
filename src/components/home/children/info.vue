@@ -188,6 +188,7 @@
 	flex-direction: column;
 	align-items: center;
     overflow: hidden;
+    background-position: center;
 }
 .big {
 	font-size: 56px;

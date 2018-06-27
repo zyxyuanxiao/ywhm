@@ -9,7 +9,9 @@ import invest from '@/invest'
 import life from '@/life'
 import register from '@/register'
 import index from '@/home/children/info'
-import detail from '@/detail'
+import detail from '@/detail/index'
+import help from '@/detail/help'
+import about from '@/detail/about'
 import download from '@/app/download'
 Vue.use(vueRouter)
 const router = new vueRouter({
@@ -58,6 +60,14 @@ const router = new vueRouter({
                 {
                     path: 'detail',
                     component: detail
+                },
+                {
+                    path: 'about',
+                    component: about
+                },
+                {
+                    path: 'help',
+                    component: help
                 },
                 {
                     path: 'app',

@@ -41,7 +41,7 @@
 						<ul>
 							<li><a href="/home/index">首页</a></li>
 							<li><a  href="/home/app">下载APP</a></li>
-							<li><a  href="">关于我们</a ></li>
+							<li><a  href="/home/about">关于我们</a ></li>
 							<li><a  href="">帮助</a ></li>
 						</ul>
 						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</p>
