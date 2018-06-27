@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <div class="page-tag">
-            <div class="type">行业经验&nbsp;&gt;</div>
+            <div class="type">互联网+&nbsp;&gt;</div>
             <div v-for="item in tags" class="tag" @click="changeTag(item)">{{item}}</div>
         </div>
         <div class="page-content">

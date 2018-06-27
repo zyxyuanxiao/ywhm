@@ -34,55 +34,144 @@
 			<Content :style="{margin: '63px 0 0 0'}">
 				<router-view></router-view>
 			</Content>
-			<Footer class="layout-footer-center footer">2018-2019 &copy; 亿万毫米有限责任公司</Footer>
+			<Footer class="footer">
+				<div class="foot">
+					<div class="left">
+						<img src="../../assets/img/logo.png" alt="" class="footer_logo">
+						<ul>
+							<li><a href="/home/index">首页</a></li>
+							<li><a  href="/home/app">下载APP</a></li>
+							<li><a  href="">关于我们</a ></li>
+							<li><a  href="">帮助</a ></li>
+						</ul>
+						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</p>
+					</div>
+					<div class="right">
+							<div class="phone">010-122344321</div>
+							<p>工作日 &nbsp; 9:00-22:00</p>
+							<div class="ma">
+										<div class="erweima">
+											<img src="../../assets/img/wx.png" alt="客户端二维码">
+											手机微信
+										</div>
+									<div class="erweima">
+										<img src="../../assets/img/ywhm.png" alt="客户端二维码">
+										亿万毫米
+									</div>
+							</div>
+							<p class="addr">地址 &nbsp; 陕西省杨凌区西北农林科技大学<br>邮箱 &nbsp; 9322316551@qq.com</p>
+					</div>
+				</div>
+				</Footer>
 		</Layout>
 	</div>
 </template>
 <script>
 export default {
-  data() {
-	return {};
-  },
-  methods: {
-	switchPage(name) {
-	  this.$router.push(name);
+	data() {
+		return {};
+	},
+	methods: {
+		switchPage(name) {
+			this.$router.push(name);
+		}
 	}
-  }
 };
 </script>
 <style scoped>
 .layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
+	border: 1px solid #d7dde4;
+	background: #f5f7f9;
+	position: relative;
+	border-radius: 4px;
+	overflow: hidden;
 }
 .top {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  top: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	top: 0;
 }
 .logo {
-  width: 100px;
-  height: 60px;
+	height: 60px;
 }
 .layout-nav {
-  margin: 0 auto;
+	margin: 0 auto;
 }
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover {
-    color: #23acf1;
+		color: #23acf1;
 }
 .footer {
-  width:2000px;
-  height: 100px;
-  background-color: #495060;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
+	height: 400px;
+	padding-top: 60px ;
+	padding-bottom: 60px ;
+	background-color: #495060;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.foot {
+	width: 850px;
+	height:280px;
+	display: flex;
+	justify-content: space-around;
+}
+.erweima {
+  width: 72px;
+  height: 90px;
+  padding-bottom: 14px;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: baseline;
+  color: rgb(52, 52, 52);
+  font-weight: 400;
+	float: left;
+	margin-right: 10px;
+}
+.left{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.erweima img {
+  width: 60px;
+  height: 60px;
+	padding: 6px;
+  border-radius: 6px;
+}
+.footer_logo{
+	width: 168px;
+	margin-left: -35px;
+}
+.addr {
+	clear: both;
+	padding-top: 48px;
+}
+ul {
+	list-style-type: none;
+}
+.phone {
+	 font-size: 30px;
+}
+p {
+	font-size:12px;
+	margin-bottom: 10px;
+	color: #bfbfbf;
+}
+
+ul li {
+	 height: 32px;
+	 
+}
+a{
+	color: #999;
+}
+a:hover {
+	color: #fff;
 }
 </style>
