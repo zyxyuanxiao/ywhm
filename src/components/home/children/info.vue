@@ -42,15 +42,16 @@
 		<div class="button"><button class="btn">发现更多行家</button></div>
 		<div class="down">
 			<img src="../../../assets/img/down.jpg" alt="">
+			<p>亿万毫米故事</p>
 		</div>
 		<div class="story">
-			<!-- <ul>
-            	<li><img src="../../../assets/img/banner1.png" alt=""/></li>
-            	<li><img src="../../../assets/img/banner2.jpg" alt=""/></li>
-            	<li><img src="../../../assets/img/banner3.jpg" alt=""/></li>
-       		</ul> -->
-        	<!-- <a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
-        	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a> -->
+			<ul>
+            	<li><img src="../../../assets/img/banner1.png" alt="" width="100%"/></li>
+            	<li><img src="../../../assets/img/banner2.png" alt="" width="100%"/></li>
+            	<li><img src="../../../assets/img/banner3.png" alt="" width="100%"/></li>
+       		</ul>
+        	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
+        	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
 		</div>
 	</div>
 </template>
@@ -315,12 +316,12 @@
 	padding-top: 40px;
 }
 .btn {
-	border: 1px solid #23acf1;
+	border: 1px solid #dbdbdb;
 	border-radius: 25px;
 	width: 180px;
 	height: 50px;
 	background: #fff;
-	color: #23acf1;
+	color: #939393;
 	font-size: 14px;
 	
 }
@@ -328,29 +329,42 @@
 	margin: 0 auto;
 	padding-top: 40px;
 	width: 980px;
+	text-align: center;
 }
-/* .story {
+.down>p {
+	font-size: 32px;
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+.story {
     width: 100%;
     position: relative;
-    margin-bottom: 20px;
+	/* margin-top:  */
+    margin-bottom: 45px;
 }
 .story ul {
 	list-style: none;
+	height: 500px;	
+	overflow: hidden;
 }
 .story ul>li{
     float: left;
 }
+.arrow_left>img, .arrow_right>img {
+	width: 20px;
+	height: 20px;;
+}
 .arrow_left {
     padding: 28px 15px;
-    /*background: #d9d9d9;*/
-    /* background: rgba(0,0,0,0.1);
+    background: #d9d9d9;
+    background: rgba(0,0,0,0.1);
     vertical-align: middle;
     position: absolute;
     top: 150px;
     left: 8px;
-    border-radius: 5px; */
-/* } */
-/* .arrow_right {
+    border-radius: 5px; 
+ } 
+.arrow_right {
     padding: 28px 15px;
     background: rgba(0,0,0,0.1);
     vertical-align: middle;
@@ -362,9 +376,4 @@
 .arrow_left:hover, .arrow_right:hover {
     background: rgba(0,0,0,0.2);
 }
-.arrow img {
-    position: absolute;
-    top: 25px;
-    left: 15px;
-} */
 </style>
