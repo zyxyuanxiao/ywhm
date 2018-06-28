@@ -149,5 +149,3 @@ span {
   font-size: 18px;
 }
 </style>
-
-
