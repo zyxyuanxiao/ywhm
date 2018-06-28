@@ -39,16 +39,48 @@
 				<div class="teacher-info">{{item.info}}</div>
             </div>            
         </div>
-		<div class="button"><button class="btn">发现更多行家</button></div>
+		<div class="button"><a href="home/career"><button class="btn">发现更多行家</button></a></div>
 		<div class="down">
 			<img src="../../../assets/img/down.jpg" alt="">
 			<p>亿万毫米故事</p>
 		</div>
 		<div class="story">
 			<ul>
-            	<li><img src="../../../assets/img/banner1.png" alt="" width="100%"/></li>
-            	<li><img src="../../../assets/img/banner2.png" alt="" width="100%"/></li>
-            	<li><img src="../../../assets/img/banner3.png" alt="" width="100%"/></li>
+            	<li>
+                    <img src="../../../assets/img/banner1.png" alt="" width="100%"/>
+                    <div class="text1">『 终身学习, 就是终身成就 』</div>
+                    <div class="text2">
+                        <div> 在“有趣而无用”大行其道的当下，</div>
+                        <div>亿万毫米网站为你提供省时间的高效知识服务。</div>
+                        <div>提倡碎片化学习方式，让用户短时间内获得有效的知识。</div>
+                    </div>
+                </li>
+            	<li>
+                    <img src="../../../assets/img/banner2.png" alt="" width="100%"/>
+                    <div class="text1">
+                        <div>『 除了社交作用,</div>
+                        <div> 她们还是我的数据库，</div>
+                        <div> 知道她们需要什么很重要 』</div>
+                    </div>
+                    <div class="text2">
+                        <div>乔齐，</div>
+                        <div>女装品牌Georgette.Q创始人。</div>
+                    </div>
+                    <div>
+                        <button>去乔齐的行家页</button>
+                    </div>
+                </li>
+            	<li>
+                    <img src="../../../assets/img/banner3.png" alt="" width="100%"/>
+                    <div class="text1">我要印证一个生命影响另一个生命的可能。</div>
+                    <div class="text2">
+                        <div>萧秋水，</div>
+                        <div>知识管理专家。</div>
+                    </div>
+                    <div>
+                        <button>去萧秋水的行家页</button>
+                    </div>
+                </li>
        		</ul>
         	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
         	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
@@ -192,6 +224,7 @@
     background-position: center;
 }
 .big {
+    font-family: "Microsoft YaHei";
 	font-size: 56px;
 	font-weight: 900;
 	text-shadow: 0 0 28px rgba(0,0,0,.64);
@@ -200,13 +233,15 @@
 	margin-top: 100px;
 }
 .small {
+    font-family: "Microsoft YaHei";
 	font-size: 20px;
 	font-weight: 400;
 	padding: 3px 5px;
 	margin-top: 50px;
 	border: 1px solid #fff;
 	border-radius: 5px;
-	text-shadow: 0 0 28px rgba(0,0,0, 0.1);
+	/* text-shadow: 0 0 28px rgba(0,0,0, 0.1); */
+    text-shadow: 0 0 28px rgba(1,1,1,20);
 }
 .feat {
 	padding: 35px 0;
@@ -240,13 +275,16 @@
 	line-height: 40px;
     margin-top: 40px;
     border: 1px solid rgba(255,255,255,.6);
-    box-shadow: 0 0 6px rgba(0,0,0,.14);
+    background-color: rgba(255,255,255,.1);
+    /* box-shadow: 0 0 6px rgba(0,0,0,.14); */
+    box-shadow: 0 0 6px rgba(1,1,1,.14);
     color: #fff;
-    text-shadow: 0 0 24px rgba(0,0,0,.64);
+    /* text-shadow: 0 0 24px rgba(0,0,0,.64); */
+    text-shadow: 0 0 28px rgba(1,1,1, 20);
 	text-align: center;
 }
 .download:hover {
-	background-color: rgba(255,255,255,.2);
+	background-color: rgba(255,255,255,.3);
 }
 .list {
     display: flex;
@@ -336,19 +374,30 @@
 	padding-top: 50px;
 	padding-bottom: 40px;
 }
+.btn:hover {
+    border: 1px solid #23acf1;
+    color: #23acf1;
+}
+.btn:active {
+    background: #23acf1;
+    color: #fff;
+}
+button {
+    outline: none;
+}
 .story {
     width: 100%;
     position: relative;
-	/* margin-top:  */
     margin-bottom: 45px;
 }
 .story ul {
 	list-style: none;
-	height: 500px;	
+	height: 450px;	
 	overflow: hidden;
 }
 .story ul>li{
     float: left;
+    position: relative;
 }
 .arrow_left>img, .arrow_right>img {
 	width: 20px;
@@ -375,5 +424,25 @@
 }
 .arrow_left:hover, .arrow_right:hover {
     background: rgba(0,0,0,0.2);
+}
+.text1{
+    position: absolute;
+    top: 130px;
+    left: 230px;
+    font-family: "Microsoft YaHei";
+    color: white;
+    font-size: 36px;
+	font-weight: 300;
+	text-shadow: 0 0 28px rgba(0,0,0,10);
+}
+.text2{
+    position: absolute;
+    top: 230px;
+    left: 250px;
+    font-family: "Microsoft YaHei";
+    color: white;
+    font-size: 20px;
+	font-weight: 100;
+	text-shadow: 0 0 14px rgba(0,0,0,10);
 }
 </style>
