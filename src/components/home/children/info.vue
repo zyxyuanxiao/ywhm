@@ -1,4 +1,4 @@
-<template>
+<template>  
 	<div class="page">
 		<div class="banner">
 			<div class="big">行家指路</div>
@@ -47,7 +47,7 @@
 		<div class="story">
 			<ul>
             	<li>
-                    <img src="../../../assets/img/banner1.png" alt="" width="100%"/>
+                    <img src="../../../assets/img/banner1.png" alt="" class="bannerimg"/>
                     <div class="text1">『 终身学习, 就是终身成就 』</div>
                     <div class="text2">
                         <div> 在“有趣而无用”大行其道的当下，</div>
@@ -56,11 +56,10 @@
                     </div>
                 </li>
             	<li>
-                    <img src="../../../assets/img/banner2.png" alt="" width="100%"/>
+                    <img src="../../../assets/img/banner2.png" alt="" class="bannerimg"/>
                     <div class="text1">
                         <div>『 除了社交作用,</div>
-                        <div> 她们还是我的数据库，</div>
-                        <div> 知道她们需要什么很重要 』</div>
+                        <div> 她们还是我的数据库，知道她们需要什么很重要 』</div>
                     </div>
                     <div class="text2">
                         <div>乔齐，</div>
@@ -71,7 +70,7 @@
                     </div>
                 </li>
             	<li>
-                    <img src="../../../assets/img/banner3.png" alt="" width="100%"/>
+                    <img src="../../../assets/img/banner3.png" alt="" class="bannerimg"/>
                     <div class="text1">我要印证一个生命影响另一个生命的可能。</div>
                     <div class="text2">
                         <div>萧秋水，</div>
@@ -85,7 +84,11 @@
         	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
         	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
 		</div>
-	</div>
+        <BackTop :height="1050" :bottom="200" class="top1"></BackTop>
+	    <!-- <BackTop :height="1050" :bottom="200">
+            <div class="top">返回<br>顶端</div>
+        </BackTop>   -->
+    </div>
 </template>
 <script>
 	export default {
@@ -392,12 +395,18 @@ button {
 }
 .story ul {
 	list-style: none;
+    width: 300%;
 	height: 450px;	
 	overflow: hidden;
 }
-.story ul>li{
+.story li{
     float: left;
+    width: 33%;
     position: relative;
+}
+.bannerimg {
+    position: relative;
+    top:-200px;
 }
 .arrow_left>img, .arrow_right>img {
 	width: 20px;
@@ -444,5 +453,20 @@ button {
     font-size: 20px;
 	font-weight: 100;
 	text-shadow: 0 0 14px rgba(0,0,0,10);
+}
+.top{
+    padding: 10px;
+    background: rgba(35, 172, 241, .6);
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    margin-right: -15px;
+    width: 55px;
+}
+.top:hover {
+    background: rgba(35, 172, 241, .9);
+}
+.ivu-back-top-inner i {
+    background-color: rgba(35, 172, 241, .6) !important;
 }
 </style>
