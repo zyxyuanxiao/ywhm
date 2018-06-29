@@ -39,9 +39,9 @@
 				<div class="teacher-info">{{item.info}}</div>
             </div>            
         </div>
-		<div class="button"><a href="home/career"><button class="btn">发现更多行家</button></a></div>
+		<div class="button"><a href="../home/career"><button class="btn">发现更多行家</button></a></div>
 		<div class="down">
-			<img src="../../../assets/img/down.jpg" alt="">
+			<a href="../home/app"><img src="../../../assets/img/down.png" alt=""></a>
 			<p>亿万毫米故事</p>
 		</div>
 		<div class="story">
