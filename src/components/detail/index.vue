@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+	.container {
 		width: 100%;
 	}
 	.cover {
@@ -115,12 +115,12 @@ export default {
 	.info {
 		float: left;
 		width: 540px;
-		padding-right: 50px; 
 		background: #fcfaf9;
 	}
 	.right {
 		float: left;
 		width: 360px;
+		padding-left:40px;
 		margin-top:70px;
 	}
 	.top {

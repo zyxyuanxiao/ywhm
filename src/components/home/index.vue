@@ -94,7 +94,9 @@ export default {
 	top: 0;
 }
 .logo {
-	height: 60px;
+	height: 30px;
+	width:100px;
+	margin-top:15px;
 }
 .layout-nav {
 	margin: 0 auto;
