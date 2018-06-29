@@ -84,10 +84,9 @@
         	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
         	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
 		</div>
-        <BackTop :height="1050" :bottom="200" class="top1"></BackTop>
-	    <!-- <BackTop :height="1050" :bottom="200">
-            <div class="top">返回<br>顶端</div>
-        </BackTop>   -->
+	    <BackTop :height="1050" :bottom="200">
+            <div class="top"><img src="../../../assets/img/top.png" alt=""></div>
+        </BackTop>  
     </div>
 </template>
 <script>
@@ -460,13 +459,15 @@ button {
     color: #fff;
     text-align: center;
     border-radius: 50px;
-    margin-right: -15px;
+    margin-right: -10px;
     width: 55px;
+    height: 45px;
+}
+.top img {
+    width: 30px;
+    margin-top: -3px;
 }
 .top:hover {
     background: rgba(35, 172, 241, .9);
-}
-.ivu-back-top-inner i {
-    background-color: rgba(35, 172, 241, .6) !important;
 }
 </style>
