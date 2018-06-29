@@ -44,7 +44,7 @@
 							<li><a  href="/home/about">关于我们</a ></li>
 							<li><a  href="">帮助</a ></li>
 						</ul>
-						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</p>
+						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502031582"><img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</a></p>
 					</div>
 					<div class="right">
 							<div class="phone">010-122344321</div>
@@ -170,6 +170,9 @@ ul li {
 }
 a{
 	color: #999;
+}
+p a {
+	color:#bfbfbf;
 }
 a:hover {
 	color: #fff;

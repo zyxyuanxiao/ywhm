@@ -13,7 +13,7 @@
                             <span class="tutor-title">{{item.title}}</span>
                             {{item.score}}
                             <span class="unit">分</span>
-                            <img src="../../assets/img/i.png" title="话题转有行系统算法综合学员的匿名评分以及多级因素得出，每增加三个评分，更新一次" class="icon" />
+                            <Icon type="information-circled" size="16" title="话题转有行系统算法综合学员的匿名评分以及多级因素得出，每增加三个评分，更新一次" color="#b3b3b3"></Icon>
                         </div>
                             <div>{{item.price}} <span>元/次</span></div>
                     </div>

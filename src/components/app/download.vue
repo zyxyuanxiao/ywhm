@@ -144,7 +144,6 @@ span {
 .ul img {
   display: block;
 }
-
 .li div {
   font-size: 18px;
 }
