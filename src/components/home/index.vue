@@ -5,7 +5,7 @@
 				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
 					<div class="layout-nav">
 						<Menu-item name="/home/index">
-							<img src="../../assets/img/logo.png" class="logo">
+							<img src="../../assets/img/logo1.png" class="logo">
 						</Menu-item>
 						<Menu-item name="/home/career">
 							职业发展
