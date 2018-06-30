@@ -39,10 +39,10 @@
 					<div class="left">
 						<img src="../../assets/img/logo.png" alt="" class="footer_logo">
 						<ul>
-							<li><a href="/home/index">首页</a></li>
-							<li><a  href="/home/app">下载APP</a></li>
-							<li><a  href="/home/about">关于我们</a ></li>
-							<li><a  href="">帮助</a ></li>
+							<li><router-link to="/home/index">首页</router-link></li>
+							<li><router-link  to="/home/app">下载APP</router-link></li>
+							<li><router-link  to="/home/about">关于我们</router-link></li>
+							<li><router-link  to="">帮助</router-link></li>
 						</ul>
 						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502031582"><img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</a></p>
 					</div>
@@ -165,7 +165,6 @@ p {
 	margin-bottom: 10px;
 	color: #bfbfbf;
 }
-
 ul li {
 	 height: 32px;
 	 
