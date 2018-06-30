@@ -22,7 +22,7 @@
 						<Menu-item name="/home/life">
 							生活服务
 						</Menu-item>
-						<Menu-item name="/home/login">
+						<Menu-item name="">
 							登录
 						</Menu-item>
 						<Menu-item name="/home/register">
@@ -33,6 +33,30 @@
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
 				<router-view></router-view>
+				<Modal
+				v-model="modal1"
+				width="420" height="340">
+					<div class="dialog"
+					class-name="vertical-center-modal">
+						<h3>欢迎来到「亿万毫米」</h3>
+						<Form ref="formInline" :model="formInline" :rules="ruleInline">
+							<FormItem prop="user">
+								<Input type="text" v-model="formInline.user" placeholder="Username">
+									<Icon type="ios-person-outline" slot="prepend" size="20"></Icon>
+								</Input>
+							</FormItem>
+							<FormItem prop="password">
+								<Input type="password" v-model="formInline.password" placeholder="Password">
+									<Icon type="ios-locked-outline" slot="prepend" size="20">></Icon>
+								</Input>
+							</FormItem>
+							<FormItem>
+								<Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+							</FormItem>
+						</Form>
+						<p @click="close">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+					</div>
+				</Modal>
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -69,12 +93,42 @@
 <script>
 export default {
 	data() {
-		return {};
+		return {
+			modal1: false,
+				formInline: {
+					user: '',
+					password: ''
+				},
+				ruleInline: {
+					user: [
+						{ required: true, message: 'Please fill in the user name', trigger: 'blur' }
+					],
+					password: [
+						{ required: true, message: 'Please fill in the password.', trigger: 'blur' },
+						{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+					]
+				}
+		};
 	},
 	methods: {
-		switchPage(name) {
+		switchPage(name) {			
+			if (name == ""){
+				this.modal1 = true
+			}
 			this.$router.push(name);
-		}
+		},
+		handleSubmit(name) {
+				this.$refs[name].validate((valid) => {
+					if (valid) {
+						this.$Message.success('Success!');
+					} else {
+						this.$Message.error('Fail!');
+					}
+				})
+			},
+			close () {
+				this.modal1 = false
+			}
 	}
 };
 </script>
@@ -169,7 +223,7 @@ ul li {
 	 height: 32px;
 	 
 }
-a{
+a {
 	color: #999;
 }
 p a {
@@ -180,5 +234,35 @@ a:hover {
 }
 div.top.ivu-layout-header {
 	z-index: 1;
+}
+.dialog {
+	margin: 30px auto 21px;
+	width: 290px;
+}
+h3 {
+	margin-bottom: 20px;
+	font-size: 28px;
+	font-weight: 400;
+}
+.ivu-btn{
+	width: 100%;
+	height: 36px;
+}
+.register {
+	color: #23acf1;
+}
+.register:hover {
+	color: #23acf1;
+}
+.ivu-form-item-content {
+	border-color: #ccc;
+}
+.ivu-input-group-append, .ivu-input-group-prepend {
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+.ivu-input {
+	padding: 18px 7px;
+	border: 1px solid #ccc;
 }
 </style>

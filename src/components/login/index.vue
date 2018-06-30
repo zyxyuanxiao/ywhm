@@ -22,7 +22,7 @@
 						<Button type="primary" @click="handleSubmit('formInline')">登录</Button>
 					</FormItem>
 				</Form>
-				<p>没有账号？<router-link to="/home/register">现在去注册</router-link></p>
+				<p>没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
 			</div>
 		</Modal>
 	</div>
@@ -74,38 +74,18 @@ h3 {
 	width: 100%;
 	height: 36px;
 }
-a {
+.regester {
 	color: #23acf1;
 }
 .ivu-form-item-content {
 	border-color: #ccc;
-	height: 36px;
 }
 .ivu-input-group-append, .ivu-input-group-prepend {
 	border: 1px solid #ccc;
 	background-color: #fff;
-	width: 36px;
 }
 .ivu-input {
 	padding: 18px 7px;
-	border: 1px solid #ccc;
-}
-.ivu-modal-footer {
-	display: none;
-}
-/* .ivu-btn-primary {
-	background-color: #23acf1;
-    border-color: #22acf1;
-} */
-.ivu-form-item-content {
-	height: 36px;
-	line-height: 36px;
-}
-.ivu-input-group .ivu-input {
-	height: 36px !important;
-	line-height: 36px!important;
-}
-.ivu-input-group-append, .ivu-input-group-prepend{
 	border: 1px solid #ccc;
 }
 </style>
