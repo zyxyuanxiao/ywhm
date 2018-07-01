@@ -1,9 +1,8 @@
 <template>
 	<div class="container">
-		 <div class="left">
 			<div class="cover"></div>
 			<div class="person">
-				<div class="info">
+				<div class="left">
 					<img src="../../assets/img/teacher.jpg" alt="" class="avator">
 					<div class="top">
 						<h1 class="name">{{ total.tutor }}</h1>
@@ -24,11 +23,20 @@
 									<span>{{ total.price }}</span>
 									<span>/次</span>
 								</div>
-								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled" size="16" color="#b3b3b3"></Icon></div>
+								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled"  size="16" color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 							</div>
-
 							<h2 class="title">{{ total.topic }}</h2>
-							<p class="content">{{ total.content }}</p>
+							<div class="content">
+								<p class="content">{{ total.content }}</p>
+								<div class="fold"></div>
+							</div>
+							<div class="ft">
+								<div class="topic-info">
+									<span class="meet-time">约1小时</span>
+									<span class="meet-num">3人约过</span>
+								</div>
+							</div>
+							
 						</li>
 						<li class="item">
 							<div class="price">	
@@ -37,10 +45,19 @@
 									<span>{{ total.price }}</span>
 									<span>/次</span>
 								</div>
-								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled" size="16" color="#b3b3b3"></Icon></div>
+								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled" size="16" color="#b3b3b3"  title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 							</div>
 							<h2 class="title">{{ total.topic }}</h2>
-							<p class="content">{{ total.content }}</p>
+							<div class="content">
+								<p class="content">{{ total.content }}</p>
+								<div class="fold"></div>
+							</div>
+							<div class="ft">
+								<div class="topic-info">
+									<span class="meet-time">约1小时</span>
+									<span class="meet-num">1人约过</span>
+								</div>
+							</div>
 						</li>
 					</ul> 
 					<h2>关于行家</h2>
@@ -48,7 +65,6 @@
 						<div><img src="../../assets/img/teacher_detail.jpg" alt=""></div>
 						<p>{{ total.about }}</p>
 					</div>
-					
 				</div>
 				<div class="right">
 					<div class="promise">
@@ -60,7 +76,7 @@
 					</div>
 					<div class="order">
 						<Button type="primary" shape="circle">立即预约</Button>
-						<Button type="ghost" shape="circle" icon="ios-heart-outline" size="16">加入心愿单</Button>
+						<Button type="ghost" shape="circle" icon="heart" size="20">加入心愿单</Button>
 					</div>
 					
 					<h2>相关行家</h2>
@@ -72,7 +88,7 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bot"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.count}}</span>人见过</div>
 						</div>
 					</div>
 					<div class="guide">
@@ -83,7 +99,7 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bot"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.count}}</span>人见过</div>
 						</div>
 					</div>
 					<div class="guide">
@@ -94,12 +110,11 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bot"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.count}}</span>人见过</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	 </div>
 </template>
 <script>
@@ -140,15 +155,34 @@ export default {
 </script>
 
 <style scoped>
+	.ft {
+		border-top: 1px solid #ddd;
+		height: 50px;
+		line-height: 18px;
+	}
+	.topic-info {
+		display: inline-block;
+	}
+	.meet-time {
+		border-right: 1px solid #ddd;
+		display: inline-block;
+		margin: 16px 6px 16px 0;
+		padding-right: 10px;
+	}
+	.meet-num {
+		display: inline-block;
+		margin: 16px 6px 16px 0;
+		padding-right: 10px;
+	}
 	.container {
 		width: 100%;
+		background-color: #fff;
 	}
 	.cover {
 		background: url('../../assets/img/info_bg.jpg') no-repeat;
 		background-size: cover;
 		height: 500px;
 		background-position: center;
-		padding-right: 20px; 
 	}
 	.avator {
 		width: 155px;
@@ -158,16 +192,14 @@ export default {
 	}
 	.person {
 		width: 900px;
-		margin:0 auto;
+		margin: 0 auto;
+		display: flex;
 	}
-	.info {
-		float: left;
-		width: 540px;
-		background: #fcfaf9;
+	.left {
+		width: 560px;
 	}
 	.right {
-		float: left;
-		width: 360px;
+		width: 340px;
 		padding-left:40px;
 		margin-top:70px;
 	}
@@ -191,6 +223,17 @@ export default {
 		border-top: 1px solid #e5e5e5;
 		border-bottom: 1px solid #e5e5e5;
 	}
+	.detail > span {
+		width: 33%;
+		position: relative;
+	}
+	.detail > span:after{
+		content: "|";
+		position: absolute;
+		height: 14px;
+		width: 1px;
+		right: 0px;
+	}
 	.top span {
 		color: #b0b0b0;
 	}
@@ -206,9 +249,8 @@ export default {
 		height: 36px;
 		width: 70px;
 		font-size: 14px;
-		vertical-align: center;
 		line-height: 36px;
-		margin: 20px 0 10px;
+		margin-top: 10px;
 	}
 	.price {
 		display: flex;
@@ -217,6 +259,7 @@ export default {
 	}
 	.score span{
 		font-size:12px;
+		padding-right: 5px;
 	}
 	.price span:nth-child(2),.score{
 		font-size: 20px;
@@ -255,23 +298,31 @@ export default {
 		width: 100%;
 		height: 40px;
 		color:#000;
-		border-color: rgb(204, 204, 204);
+		border-color: #ccc;
+	}
+	.ivu-btn-ghost:hover {
+		color: #23acf1;
 	}
 	.content {
 		line-height: 22px;
 		font-size: 14px;
 		margin-bottom: 10px;
+		max-height: 50px;
+		overflow: hidden;
 	}
 	h2 {
 		margin-bottom: 10px;
 		color: rgb(52, 52, 52);
+		font-weight: 700;
+		margin-top: 15px;
 	}
 	.item {
-		height:265px;
+		background: #fcfaf9;
+		/* height:265px; */
+		height: 210px;
 		overflow: hidden;
+		margin-top:15px;
 		padding:30px 20px 10px;
-		/* margin-bottom: 10px; */
-		border-bottom: 1px solid #ccc;
 	}
 	.about_tutor p{
 		margin-bottom: 10px;
@@ -287,7 +338,6 @@ export default {
         float: left;
     }
 	.tutor_info {
-		
         padding-left: 15px;
         overflow: hidden;
 	}
@@ -302,14 +352,18 @@ export default {
 	.title{
 		font-size: 14px;
 	}
-	.bot {
-		color: rgb(147, 147, 147);
+	.bott {
+		color: rgb(102, 102, 102);
 	}
 	.guide {
 		padding: 15px 0 15px 10px;
 		border-bottom: 1px solid #ccc;
 		overflow: hidden;
     	cursor: pointer;height: 100px;
+	}
+	.fold {
+		width: 540px;
+		height: 20px;
 	}
 	.guide:hover .title {
 		color: #23acf1;
