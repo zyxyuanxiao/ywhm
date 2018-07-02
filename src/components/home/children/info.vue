@@ -341,7 +341,7 @@
 	left: 20px;
 	bottom: 34px;
 }
-.teacher-info {
+/* .teacher-info {
 	visibility: hidden;
 	width: 190px;
 	color: #fff;
@@ -349,7 +349,53 @@
 	position:absolute;
 	left: 20px;
 	bottom: 0px;
+} */
+.teacher:before {
+    content: "";
+    width: 0;
+    height: 100%;
+    background: #000;
+    padding: 14px 18px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
 }
+.teacher:hover:before {
+    width: 100%;
+    left: 0;
+    opacity: 0.5;
+}
+.teacher .teacher-info {
+    font-size: 15px;
+    text-transform: capitalize;
+    opacity: 0;
+    transition: all 0.5s ease 0s;
+}
+.teacher:hover .teacher-info {
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+.teacher .teacher-info {
+    width: 100%;
+    padding: 14px 18px;
+    color: #fff;
+    position: absolute;
+    top: 38%;
+    left: 0;
+}
+.teacher:hover  .teacher-intro{
+    opacity: 0;
+}
+.teacher:hover .teacher-tutor{
+    opacity: 0;
+}
+.teacher:hover .teacher-job {
+    opacity: 0;
+}
+
+
 .button {
 	width: 180px;
 	margin:0 auto;
