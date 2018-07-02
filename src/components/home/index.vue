@@ -31,7 +31,7 @@
 					<!-- </div> -->
 				</Menu>
 			</Header>
-			<Content :style="{margin: '63px 0 0 0'}">
+			<Content :style="{margin: '63px 0 0 0', backgroundColor: '#fff'}">
 				<router-view></router-view>
 				<Modal
 				v-model="modal1"
@@ -65,7 +65,7 @@
 							<li><router-link to="/home/index">首页</router-link></li>
 							<li><router-link  to="/home/app">下载APP</router-link></li>
 							<li><router-link  to="/home/about">关于我们</router-link></li>
-							<li><router-link  to="">帮助</router-link></li>
+							<li><router-link  to="/home/help">帮助</router-link></li>
 						</ul>
 						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502031582"><img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</a></p>
 					</div>
@@ -73,14 +73,14 @@
 							<div class="phone">010-122344321</div>
 							<p>工作日 &nbsp; 9:00-22:00</p>
 							<div class="ma">
-										<div class="erweima">
-											<img src="../../assets/img/wx.png" alt="客户端二维码">
+								<div class="erweima">
+									<img src="../../assets/img/wx.png" alt="客户端二维码">
 											手机微信
-										</div>
-									<div class="erweima">
-										<img src="../../assets/img/ywhm.png" alt="客户端二维码">
+								</div>
+								<div class="erweima">
+									<img src="../../assets/img/ywhm.png" alt="客户端二维码">
 										亿万毫米
-									</div>
+								</div>
 							</div>
 							<p class="addr">地址 &nbsp; 陕西省杨凌区西北农林科技大学<br>邮箱 &nbsp; 9322316551@qq.com</p>
 					</div>

@@ -76,7 +76,7 @@
 					</div>
 					<div class="order">
 						<Button type="primary" shape="circle">立即预约</Button>
-						<Button type="ghost" shape="circle" icon="heart">加入心愿单</Button>
+						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
 					<h2>相关行家</h2>
@@ -183,6 +183,7 @@ export default {
 		background-size: cover;
 		height: 500px;
 		background-position: center;
+		margin-top: -64px;
 	}
 	.avator {
 		width: 155px;
@@ -298,6 +299,7 @@ export default {
 		width: 100%;
 		height: 40px;
 		color: #000;
+		font-size:14px;
 		border-color: #ccc;
 	}
 	.ivu-btn-ghost:hover {

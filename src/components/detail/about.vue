@@ -73,10 +73,11 @@ h2{
 .faq-content {
     margin: 0 10px 20px;
 }
-.faq-sub-title{
+h3{
     font-weight: 700px;
-    margin:0 10px 12px;
+    margin:0 10px 12px;    
 }
+
 </style>
 
 

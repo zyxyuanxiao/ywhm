@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import vueRouter from 'vue-router'
-import login from '@/login'
 import home from '@/home'
 import career from '@/career'
 import experience from '@/experience'
