@@ -1,109 +1,25 @@
 <template>
-	<div>                                                                       
-	 <Button @click="modal1 = true">Set the width</Button>
-	<Modal
-		v-model="modal1"
-		width="420">
-		<div class="dialog"
-		class-name="vertical-center-modal">
-			<h3>欢迎来到「亿万毫米」</h3>
-			<form action="" method="post" class="login_form" :model="formInline" :rules="ruleInline" >		
-				<div>
-					<lable><img src="../../assets/img/username.png"></lable>
-					<input type="text" placeholder="用户名" v-model="formInline.user">
-				</div>
-				<div>
-					<lable><img src="../../assets/img/password.png"></lable>
-					<input type="password" placeholder="密码" v-model="formInline.password">
-				</div>
-				<input type="submit" value="登录" class="login" @click="handleSubmit('formInline')">
-			</form>
-			<p>没有账号？<router-link to="/home/register">现在去注册</router-link></p>
-		</div>
-	</Modal>
-	</div>
+    <Collapse v-model="value1">
+        <Panel name="1">
+            史蒂夫·乔布斯
+            <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
+        </Panel>
+        <Panel name="2">
+            斯蒂夫·盖瑞·沃兹尼亚克
+            <p slot="content">斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
+        </Panel>
+        <Panel name="3">
+            乔纳森·伊夫
+            <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
+        </Panel>
+    </Collapse>
 </template>
 <script>
-	export default {
-		data () {
-			return {
-				modal1: false,
-				formInline: {
-                    user: '',
-                    password: ''
-                },
-                ruleInline: {
-                    user: [
-                        { required: true, message: 'Please fill in the user name', trigger: 'blur' }
-                    ],
-                    password: [
-                        { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                        { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
-                    ]
-                }
-			}
-			
-		},
-		methods: {
-			ok () {
-				this.$Message.info('Clicked ok');
-			},
-			cancel () {
-				this.$Message.info('Clicked cancel');
-			},
-			handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                })
+    export default {
+        data () {
+            return {
+                value1: '1'
             }
-		}
-	}
+        }
+    }
 </script>
-<style scoped>
-.dialog {
-	margin: 30px auto 21px;
-	width: 280px;
-}
-h3 {
-	margin-bottom: 20px;
-	font-size: 28px;
-	font-weight: 400;
-}
-.login_form {
-	width: 280px;
-	padding-bottom: 15px;
-}
-.login_form label {
-	width: 36px;
-	height: 36px;
-	border: 1px solid #000;
-}
-.login_form div {
-	display: flex;
-	width: 280px;
-	margin-bottom: 20px;
-}
-lable{
-	display: display;
-	width: 36px;
-	height: 36px;
-	border:1px solid;
-	border-right: 0px;
-}
-img{
-	width: 24px;
-	height: 24px;
-}
-input {
-	width: 100%;
-	height: 36px;
-}
-.login {
-	width: 100%;
-}
-</style>
-
