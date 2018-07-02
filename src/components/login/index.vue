@@ -88,4 +88,12 @@ h3 {
 	padding: 18px 7px;
 	border: 1px solid #ccc;
 }
+.vertical-center-modal{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+ } 
+ .ivu-modal{
+        top: 0;
+  }
 </style>

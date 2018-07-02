@@ -1,9 +1,9 @@
 <template>
 	<div class="layout">
 		<Layout>
-			<Header :style="{position: 'fixed', width: '100%', }" class="top">
+			<Header class="top">
 				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
-					<div class="layout-nav">
+					<!-- <div class="layout-nav"> -->
 						<Menu-item name="/home/index">
 							<img src="../../assets/img/logo1.png" class="logo">
 						</Menu-item>
@@ -28,7 +28,7 @@
 						<Menu-item name="/home/register">
 							注册
 						</Menu-item>
-					</div>
+					<!-- </div> -->
 				</Menu>
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
@@ -36,8 +36,7 @@
 				<Modal
 				v-model="modal1"
 				width="420" height="340">
-					<div class="dialog"
-					class-name="vertical-center-modal">
+					<div class="dialog">
 						<h3>欢迎来到「亿万毫米」</h3>
 						<Form ref="formInline" :model="formInline" :rules="ruleInline">
 							<FormItem prop="user">
@@ -115,6 +114,7 @@ export default {
 			if (name == ""){
 				this.modal1 = true
 			}
+			else
 			this.$router.push(name);
 		},
 		handleSubmit(name) {
@@ -125,11 +125,11 @@ export default {
 						this.$Message.error('Fail!');
 					}
 				})
-			},
-			close () {
+		},
+		close () {
 				this.modal1 = false
-			}
-	}
+		}
+	}		
 };
 </script>
 <style scoped>
@@ -139,27 +139,29 @@ export default {
 	position: relative;
 	border-radius: 4px;
 	overflow: hidden;
+	margin-left: -1px;
 }
 .top {
-	padding: 0;
+	position: fixed;
 	display: flex;
+	width: 100%;
+	max-width: 1903px;
 	justify-content: center;
-	left: 0;
 	top: 0;
+	left: 0;
 }
 .logo {
 	height: 30px;
-	width:100px;
+	width: 100px;
 	margin-top:15px;
 }
-.layout-nav {
-	margin: 0 auto;
-}
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover {
-		color: #23acf1;
+	color: #23acf1;
 }
 .footer {
+	width: 100%;
 	height: 400px;
+	margin: 0px;
 	padding-top: 60px ;
 	padding-bottom: 60px ;
 	background-color: #495060;
@@ -167,6 +169,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	/* text-align: center; */
 }
 .foot {
 	width: 850px;
@@ -186,23 +189,23 @@ export default {
   vertical-align: baseline;
   color: rgb(52, 52, 52);
   font-weight: 400;
-	float: left;
-	margin-right: 10px;
+  float: left;
+  margin-right: 10px;
 }
 .left{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 .erweima img {
   width: 60px;
   height: 60px;
-	padding: 6px;
+  padding: 6px;
   border-radius: 6px;
 }
 .footer_logo{
 	width: 168px;
-	margin-left: -35px;
+	margin-left: -10px;
 }
 .addr {
 	clear: both;
@@ -221,7 +224,6 @@ p {
 }
 ul li {
 	 height: 32px;
-	 
 }
 a {
 	color: #999;

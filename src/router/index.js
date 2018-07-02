@@ -54,10 +54,6 @@ const router = new vueRouter({
                     component: register
                 },
                 {
-                    path: 'login',
-                    component: login
-                },
-                {
                     path: 'detail',
                     component: detail
                 },

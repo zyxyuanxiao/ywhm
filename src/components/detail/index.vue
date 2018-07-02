@@ -23,7 +23,7 @@
 									<span>{{ total.price }}</span>
 									<span>/次</span>
 								</div>
-								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled"  size="16" color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
+								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled"  color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 							</div>
 							<h2 class="title">{{ total.topic }}</h2>
 							<div class="content">
@@ -45,7 +45,7 @@
 									<span>{{ total.price }}</span>
 									<span>/次</span>
 								</div>
-								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled" size="16" color="#b3b3b3"  title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
+								<div class="score">{{ total.score}}<span>分</span><Icon type="information-circled" color="#b3b3b3"  title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 							</div>
 							<h2 class="title">{{ total.topic }}</h2>
 							<div class="content">
@@ -62,7 +62,7 @@
 					</ul> 
 					<h2>关于行家</h2>
 					<div class="about_tutor">
-						<div><img src="../../assets/img/teacher_detail.jpg" alt=""></div>
+						<div><img src="../../assets/img/teacher_detail.jpg" class="tutor-pic" alt=""></div>
 						<p>{{ total.about }}</p>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 					</div>
 					<div class="order">
 						<Button type="primary" shape="circle">立即预约</Button>
-						<Button type="ghost" shape="circle" icon="heart" size="20">加入心愿单</Button>
+						<Button type="ghost" shape="circle" icon="heart">加入心愿单</Button>
 					</div>
 					
 					<h2>相关行家</h2>
@@ -297,7 +297,7 @@ export default {
 	.ivu-btn-ghost {
 		width: 100%;
 		height: 40px;
-		color:#000;
+		color: #000;
 		border-color: #ccc;
 	}
 	.ivu-btn-ghost:hover {
@@ -312,16 +312,17 @@ export default {
 	}
 	h2 {
 		margin-bottom: 10px;
+		margin-top: 10px;
 		color: rgb(52, 52, 52);
 		font-weight: 700;
-		margin-top: 15px;
+		margin-top: 2	px;
 	}
 	.item {
 		background: #fcfaf9;
 		/* height:265px; */
 		height: 210px;
 		overflow: hidden;
-		margin-top:15px;
+		margin-top: 20px;
 		padding:30px 20px 10px;
 	}
 	.about_tutor p{
@@ -338,7 +339,7 @@ export default {
         float: left;
     }
 	.tutor_info {
-        padding-left: 15px;
+        padding-left: 10px;
         overflow: hidden;
 	}
 	em {
@@ -367,5 +368,8 @@ export default {
 	}
 	.guide:hover .title {
 		color: #23acf1;
+	}
+	.tutor-pic {
+		margin: 10px 30px 17px;
 	}
 </style>
