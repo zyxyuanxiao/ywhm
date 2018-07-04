@@ -494,8 +494,8 @@ button {
     height: 45px;
 }
 .top img {
-    width: 40px;
-    margin-top: -3px;
+    width: 35px;
+    margin-top: -5px;
 }
 .top:hover {
     background: rgba(35, 172, 241, .9);
@@ -553,5 +553,15 @@ button {
     /* .story img{
         width: 95%;
     } */
+    .top {
+        width: 30px;
+        height: 25px;
+        text-align: center;
+    }
+    .top img {
+        width: 18px;
+        margin-top: -6px;
+        margin-left: -3px;
+    }
 }
 </style>
