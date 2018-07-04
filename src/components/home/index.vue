@@ -32,7 +32,7 @@
 					<!-- </div> -->
 				</Menu>
 			</Header>
-			<Content :style="{margin: '63px 0 0 0', backgroundColor: '#fff'}">
+			<Content :style="{margin: '63px 0 0 0'}">
 				<router-view></router-view>
 				<Modal scrollable 
 				v-model="modal1"
@@ -131,18 +131,17 @@ export default {
 			})
 		},
 		close () {
-			
 			this.modal1 = false
 		}
 	}		
 };
 </script>
 <style scoped>
-/* @media (max-width: 992px) {
+@media (max-width: 992px) {
 	.ivu-menu-dark {
-		display: none;
+		flex-shrink: 2;
 	}
-} */
+}
 .layout {
 	border: 1px solid #d7dde4;
 	background: #f5f7f9;
@@ -178,7 +177,6 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* text-align: center; */
 }
 .foot {
 	width: 850px;

@@ -291,8 +291,8 @@
 .list {
     display: flex;
 	flex-wrap: wrap;
-	align-content: space-between;
-	justify-content: space-between;
+	align-content: space-around;
+	justify-content: space-around;
     margin: 0 auto;
     width: 980px;
 	height: 1000px;
@@ -341,15 +341,6 @@
 	left: 20px;
 	bottom: 34px;
 }
-/* .teacher-info {
-	visibility: hidden;
-	width: 190px;
-	color: #fff;
-	font-size: 12px;
-	position:absolute;
-	left: 20px;
-	bottom: 0px;
-} */
 .teacher:before {
     content: "";
     width: 0;
@@ -385,13 +376,7 @@
     top: 38%;
     left: 0;
 }
-.teacher:hover  .teacher-intro{
-    opacity: 0;
-}
-.teacher:hover .teacher-tutor{
-    opacity: 0;
-}
-.teacher:hover .teacher-job {
+.teacher:hover .teacher-intro, .teacher:hover .teacher-tutor, .teacher:hover .teacher-job {
     opacity: 0;
 }
 .button {
@@ -412,7 +397,8 @@
 .down {
 	margin: 0 auto;
 	padding-top: 40px;
-	width: 980px;
+	/* width: 980px; */
+    width: 100%;
 	text-align: center;
 }
 .down>p {
@@ -508,10 +494,72 @@ button {
     height: 45px;
 }
 .top img {
-    width: 30px;
-    margin-top: -3px;
+    width: 35px;
+    margin-top: -5px;
 }
 .top:hover {
     background: rgba(35, 172, 241, .9);
+}
+ @media (max-width: 768px) {
+	.banner{
+		height: 200px;
+	}
+	.big {
+		line-height: 35px;
+		font-size: 30px;
+	}
+	.banner .big:nth-child(1) {
+		margin-top: 40px;
+	}
+	.small {
+		margin-top:15px;
+		font-size: 14px;
+	}
+    .download {
+        margin-top: 10px;
+        width: 80px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 14px;
+    }
+    .icon {
+		width: 35px;
+		height: 35px;
+	}
+    .desc div:nth-child(1){
+		display: inline-block;
+		height: 30px;
+		font-size: 12px;
+	}
+	.desc div:nth-child(2){
+		display: none;
+	}
+ }
+@media (max-width: 992px) {
+    .list {
+        width: 100%;
+        height: auto !important;
+    }
+    .down img {
+        width: 95%;
+    }
+    .down>p {
+        font-size: 20px;
+        padding-top: 15px;
+	    padding-bottom: 10px;
+    }
+    /* .story img{
+        width: 95%;
+    } */
+    .top {
+        width: 30px;
+        height: 25px;
+        text-align: center;
+    }
+    .top img {
+        width: 18px;
+        margin-top: -6px;
+        margin-left: -3px;
+    }
 }
 </style>

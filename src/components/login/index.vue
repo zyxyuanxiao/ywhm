@@ -3,7 +3,7 @@
 		<Button @click="modal1 = true">Set the width</Button>
 		<Modal
 		v-model="modal1"
-		width="420" height="340">
+		width="400" height="340">
 			<div class="dialog"
 			class-name="vertical-center-modal">
 				<h3>欢迎来到「亿万毫米」</h3>

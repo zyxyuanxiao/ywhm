@@ -1,5 +1,5 @@
 <template>
-  <div id="reg">
+    <div class="reg">
       <h3>欢迎加入「亿万毫米」</h3>
       <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" >
          <FormItem prop="user">
@@ -22,6 +22,7 @@
         </FormItem>
     </Form>
     </div>
+ 
 </template>
 <script>
     export default {
@@ -116,28 +117,37 @@
     }
 </script>
 <style scoped>
-#reg {
-    width: 800px;
+.reg {
+    width: 770px;
     margin: 36px auto ; 
-    /* border: 1px solid #e8e8e8; */
-    padding: 40px;
+    border: 1px solid #e8e8e8;
+    padding:30px;
     background: #fff;
     text-align: center;
 }
 h3 {
-  margin-bottom: 18px;
+  margin-bottom: 36px;
   font-size: 36px;
   font-weight: 400;
 }
 .ivu-input {
-  width: 300px;
+  width: 320px;
 }
 .ivu-btn-primary {
   width: 100%;
 }
 .ivu-form-item {
-    width: 42%;
+    width: 280px;
     margin: 20px auto;
+}
+@media (max-width:768px) {
+   h3 {
+     font-size: 30px;
+   }
+   .reg{
+       margin: 20px 10px;
+       width: 95%;
+   }
 }
 </style>
 
