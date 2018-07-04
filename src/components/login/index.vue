@@ -9,17 +9,17 @@
 				<h3>欢迎来到「亿万毫米」</h3>
 				<Form ref="formInline" :model="formInline" :rules="ruleInline">
 					<FormItem prop="user">
-						<Input type="text" v-model="formInline.user" placeholder="Username">
+						<Input type="text" v-model="formInline.user" placeholder="Username" size="large">
 							<Icon type="ios-person-outline" slot="prepend" size="20"></Icon>
 						</Input>
 					</FormItem>
 					<FormItem prop="password">
-						<Input type="password" v-model="formInline.password" placeholder="Password">
+						<Input type="password" v-model="formInline.password" placeholder="Password" size="large">
 							<Icon type="ios-locked-outline" slot="prepend" size="20">></Icon>
 						</Input>
 					</FormItem>
 					<FormItem>
-						<Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+						<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
 					</FormItem>
 				</Form>
 				<p>没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
@@ -72,7 +72,6 @@ h3 {
 }
 .ivu-btn{
 	width: 100%;
-	height: 36px;
 }
 .regester {
 	color: #23acf1;

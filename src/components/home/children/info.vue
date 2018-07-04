@@ -394,8 +394,6 @@
 .teacher:hover .teacher-job {
     opacity: 0;
 }
-
-
 .button {
 	width: 180px;
 	margin:0 auto;

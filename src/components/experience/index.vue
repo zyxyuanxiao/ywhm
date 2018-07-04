@@ -128,6 +128,8 @@
         margin-bottom: 5px;
         border-bottom: 1px solid #e6e6e6;
         font-size: 14px;
+        flex-wrap: wrap;
+        flex-shrink: 0.5;
     }
     .type {
         font-weight: bold;

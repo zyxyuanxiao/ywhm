@@ -1,8 +1,8 @@
 <template>
 	<div class="layout">
 		<Layout>
-			<Header class="top">
-				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
+			<Header class="top" breakpoint="md">
+				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >
 					<!-- <div class="layout-nav"> -->
 						<Menu-item name="/home/index">
 							<img src="../../assets/img/logo1.png" class="logo">
@@ -28,32 +28,33 @@
 						<Menu-item name="/home/register">
 							注册
 						</Menu-item>
+						 <div slot="trigger"></div>
 					<!-- </div> -->
 				</Menu>
 			</Header>
 			<Content :style="{margin: '63px 0 0 0', backgroundColor: '#fff'}">
 				<router-view></router-view>
-				<Modal
+				<Modal scrollable 
 				v-model="modal1"
-				width="420" height="340">
+				width="420">
 					<div class="dialog">
 						<h3>欢迎来到「亿万毫米」</h3>
 						<Form ref="formInline" :model="formInline" :rules="ruleInline">
 							<FormItem prop="user">
-								<Input type="text" v-model="formInline.user" placeholder="Username">
+								<Input type="text" v-model="formInline.user" placeholder="Username" size="large">
 									<Icon type="ios-person-outline" slot="prepend" size="20"></Icon>
 								</Input>
 							</FormItem>
 							<FormItem prop="password">
-								<Input type="password" v-model="formInline.password" placeholder="Password">
+								<Input type="password" v-model="formInline.password" placeholder="Password" size="large">
 									<Icon type="ios-locked-outline" slot="prepend" size="20">></Icon>
 								</Input>
 							</FormItem>
 							<FormItem>
-								<Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+								<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
 							</FormItem>
 						</Form>
-						<p @click="close">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
 					</div>
 				</Modal>
 			</Content>
@@ -93,6 +94,7 @@
 export default {
 	data() {
 		return {
+			isCollapsed: false,
 			modal1: false,
 				formInline: {
 					user: '',
@@ -109,30 +111,38 @@ export default {
 				}
 		};
 	},
+
 	methods: {
 		switchPage(name) {			
 			if (name == ""){
 				this.modal1 = true
 			}
 			else
-			this.$router.push(name);
+				this.$router.push(name);
 		},
 		handleSubmit(name) {
-				this.$refs[name].validate((valid) => {
-					if (valid) {
-						this.$Message.success('Success!');
-					} else {
-						this.$Message.error('Fail!');
-					}
-				})
+			this.$refs[name].validate((valid) => {
+				if (valid) {
+					this.$Message.success('Success!');
+					this.modal1 = false
+				} else {
+					this.$Message.error('Fail!');
+				}
+			})
 		},
 		close () {
-				this.modal1 = false
+			
+			this.modal1 = false
 		}
 	}		
 };
 </script>
 <style scoped>
+/* @media (max-width: 992px) {
+	.ivu-menu-dark {
+		display: none;
+	}
+} */
 .layout {
 	border: 1px solid #d7dde4;
 	background: #f5f7f9;
@@ -145,7 +155,6 @@ export default {
 	position: fixed;
 	display: flex;
 	width: 100%;
-	max-width: 1903px;
 	justify-content: center;
 	top: 0;
 	left: 0;
@@ -248,23 +257,11 @@ h3 {
 }
 .ivu-btn{
 	width: 100%;
-	height: 36px;
 }
 .register {
 	color: #23acf1;
 }
 .register:hover {
 	color: #23acf1;
-}
-.ivu-form-item-content {
-	border-color: #ccc;
-}
-.ivu-input-group-append, .ivu-input-group-prepend {
-	border: 1px solid #ccc;
-	background-color: #fff;
-}
-.ivu-input {
-	padding: 18px 7px;
-	border: 1px solid #ccc;
 }
 </style>
