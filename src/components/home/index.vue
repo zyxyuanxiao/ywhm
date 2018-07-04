@@ -258,9 +258,6 @@ h3 {
 .ivu-btn{
 	width: 100%;
 }
-.register {
-	color: #23acf1;
-}
 .register:hover {
 	color: #23acf1;
 }
