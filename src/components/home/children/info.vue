@@ -500,6 +500,10 @@ button {
 .top:hover {
     background: rgba(35, 172, 241, .9);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a50783520d09421da63fc38919fc330cfa5f3d6
  @media (max-width: 768px) {
 	.banner{
 		height: 200px;
@@ -535,6 +539,10 @@ button {
 		display: none;
 	}
  }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a50783520d09421da63fc38919fc330cfa5f3d6
 @media (max-width: 992px) {
     .list {
         width: 100%;

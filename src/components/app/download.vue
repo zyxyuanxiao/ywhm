@@ -52,7 +52,7 @@ export default {};
 .column {
   display: flex;
   margin: 0 auto;
-  width: 1000px;
+  max-width: 900px;
   align-content: space-between;
   text-shadow: 1px 0 1px #ccc;
 }
@@ -147,4 +147,13 @@ span {
 .li div {
   font-size: 18px;
 }
+/* @media (max-width: 992px) {
+  .cover {
+    background-position: center;
+    height: 300px;
+  }
+  .column {
+    display: none;
+  }
+} */
 </style>

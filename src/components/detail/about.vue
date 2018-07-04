@@ -63,7 +63,7 @@ h2{
 }
 .single-white-wrap {
     text-align: left;
-    width: 900px;
+    max-width: 900px;
     margin: 33px auto 50px;
     border:1px;
     padding: 40px;

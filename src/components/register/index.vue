@@ -118,7 +118,7 @@
 </script>
 <style scoped>
 .reg {
-    width: 770px;
+    max-width: 770px;
     margin: 36px auto ; 
     border: 1px solid #e8e8e8;
     padding:30px;
@@ -146,7 +146,6 @@ h3 {
    }
    .reg{
        margin: 20px 10px;
-       width: 95%;
    }
 }
 </style>

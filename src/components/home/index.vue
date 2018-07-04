@@ -256,10 +256,13 @@ h3 {
 .ivu-btn{
 	width: 100%;
 }
-.register {
-	color: #23acf1;
-}
 .register:hover {
 	color: #23acf1;
+}
+@media (max-width: 768px) {
+	.ivu-modal {
+		max-width: 420px;
+        margin: 0;
+	}
 }
 </style>

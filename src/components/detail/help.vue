@@ -209,12 +209,12 @@
 
 <style scoped>
 .content {
-  width: 900px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 30px 0;
 }
 .body {
-  width: 810px;
+  max-width: 810px;
   padding: 10px;
   margin: 0 auto;
 }
