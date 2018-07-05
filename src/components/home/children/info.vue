@@ -32,11 +32,11 @@
 		<div class="list">
             <div class="teacher" v-for="item in total" @click="goDetail(item.id)">
 				<!-- <div class="teacher-img">{{item.img}}</div> -->
-                <div class="teacher-view"><p><span>{{item.count}}</span>人见过</p></div>
-                <div class="teacher-tutor">{{item.tutor}}</div>
+                <div class="teacher-view"><p><span>{{item.sub_num}}</span>人见过</p></div>
+                <div class="teacher-tutor">{{item.name}}</div>
                 <div class="teacher-job">{{item.job}}</div>
-                <div class="teacher-intro">{{item.intro}}</div>
-				<div class="teacher-info">{{item.info}}</div>
+                <div class="teacher-intro">{{item.slogan}}</div>
+				<div class="teacher-info">{{item.major}}</div>
             </div>            
         </div>
 		<div class="button"><a href="../home/career"><button class="btn">发现更多行家</button></a></div>
@@ -92,11 +92,12 @@
                 </div>
             </div> -->
             <rd-swipe :swipe="swipe">
-                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs">
-                    <!-- <div class="stroy-title">{{item.title}}</div>
+                <!-- <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"> -->
+                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="item in imgs">
+                    <div class="stroy-title">{{item.title}}</div>
                     <div class="story-text1">{{item.text1}}</div>
                     <div class="story-text2">{{item.text2}}</div>
-                    <div class="stroy-text3">{{item.text3}}</div> -->
+                    <div class="stroy-text3">{{item.text3}}</div>
                 </div>
             </rd-swipe>
         </div>
@@ -117,136 +118,139 @@
                     {
                         "id": "1",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "2",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "3",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
-                       "id": "4",
+                        "id": "4",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "5",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "6",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "7",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "8",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "9",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "10",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "11",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     },
                     {
                         "id": "12",
                         "img": "",
-                        "count": 253,
-                        "tutor": "孙波",
+                        "sub_num": 253,
+                        "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
-                        "intro": "智能硬件与可穿戴设备",
-                        "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+                        "slogan": "智能硬件与可穿戴设备",
+                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     }
                 ],
                 swipe: {
                     activeIndex: 0
                 },
                 imgs: [
-                    banner1,
-                    banner2,
-                    banner3,
+                    // banner1,
+                    // banner2,
+                    // banner3,
                 
-                    // {
-                    //     "title": "『 终身学习, 就是终身成就 』",
-                    //     "text1": "在“有趣而无用”大行其道的当下,亿万毫米网站为你提供省时间的高效知识服务。",
-                    //     "text2": "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    // },
-                    // {
-                    //     "title" : "『 除了社交作用，她们还是我的数据库，知道她们需要什么很重要 』",
-                    //     "text1" : "乔齐，",
-                    //     "text2" : "女装品牌Georgette.Q创始人。"
-                    // },
-                    // {
-                    //     "title" : "『 终身学习, 就是终身成就 』",
-                    //     "text1" : "在“有趣而无用”大行其道的当下,",
-                    //     "text2" : "亿万毫米网站为你提供省时间的高效知识服务。",
-                    //     "text3" : "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    // }
+                    {
+                         banner1,
+                        "title": "『 终身学习, 就是终身成就 』",
+                        "text1": "在“有趣而无用”大行其道的当下,亿万毫米网站为你提供省时间的高效知识服务。",
+                        "text2": "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
+                    },
+                    {
+                         banner2,
+                        "title" : "『 除了社交作用，她们还是我的数据库，知道她们需要什么很重要 』",
+                        "text1" : "乔齐，",
+                        "text2" : "女装品牌Georgette.Q创始人。"
+                    },
+                    {
+                        banner3,
+                        "title" : "『 终身学习, 就是终身成就 』",
+                        "text1" : "在“有趣而无用”大行其道的当下,",
+                        "text2" : "亿万毫米网站为你提供省时间的高效知识服务。",
+                        "text3" : "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
+                    }
                 ]
             }
         },
@@ -472,7 +476,10 @@
 button {
     outline: none;
 }
-.story {
+.swiper-box {
+    margin-bottom: 40px;
+}
+/* .story {
     width: 100%;
     position: relative;
     margin-bottom: 45px;
@@ -517,8 +524,8 @@ button {
 }
 .arrow_left:hover, .arrow_right:hover {
     background: rgba(0,0,0,0.2);
-}
-.text1{
+} */
+/* .text1{
     position: absolute;
     top: 130px;
     left: 230px;
@@ -537,7 +544,7 @@ button {
     font-size: 20px;
 	font-weight: 100;
 	text-shadow: 0 0 14px rgba(0,0,0,10);
-}
+} */
 .top{
     padding: 10px;
     background: rgba(35, 172, 241, .6);
@@ -568,15 +575,11 @@ button {
 		margin-top: 40px;
 	}
 	.small {
-		margin-top:15px;
+		margin-top:20px;
 		font-size: 14px;
 	}
     .download {
-        margin-top: 10px;
-        width: 80px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 14px;
+        display: none;
     }
     .icon {
 		width: 35px;
@@ -597,26 +600,27 @@ button {
         width: 100%;
         height: auto !important;
     }
+    .teacher {
+        margin-bottom: 10px;
+    }
     .down img {
         width: 95%;
     }
     .down>p {
         font-size: 20px;
         padding-top: 15px;
-	    padding-bottom: 10px;
+	    padding-bottom: 20px;
     }
-    /* .story img{
-        width: 95%;
-    } */
     .top {
         width: 30px;
         height: 25px;
         text-align: center;
+        margin-right: -25px !important;
     }
     .top img {
         width: 18px;
         margin-top: -6px;
         margin-left: -3px;
-    }
+    }  
 }
 </style>
