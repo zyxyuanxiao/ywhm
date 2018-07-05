@@ -9,22 +9,22 @@
 								<img src="../../assets/img/logo1.png" class="logo">
 						   </Menu-item>
 					   </div>
-						<div class="top_middle" v-seen="hidden">
+						<img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/>
+						<div class="top_middle" ref="mid">
 							<div>
-								<img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/>
-								<Menu-item name="/home/career">
-								职业发展
+								<Menu-item name="/home/career" @click="show()">
+									职业发展
 								</Menu-item>
-								<Menu-item name="/home/experience">
+								<Menu-item name="/home/experience" @click="show()">
 									行业经验
 								</Menu-item>
-								<Menu-item name="/home/internet">
+								<Menu-item name="/home/internet" @click="show()">
 									互联网+
 								</Menu-item>
-								<Menu-item name="/home/invest">
+								<Menu-item name="/home/invest" @click="show()">
 									创业投资
 								</Menu-item>
-								<Menu-item name="/home/life">
+								<Menu-item name="/home/life" @click="show()">
 									生活服务
 								</Menu-item>
 							</div>
@@ -36,7 +36,7 @@
 							<Menu-item name="/home/register" class="regi">
 								注册
 							</Menu-item>
-							<!-- <img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/> -->
+							
 						</div>
 					<!-- </div> -->
 				</Menu>
@@ -109,7 +109,7 @@
 export default {
 	data() {
 		return {
-			hidden: true,
+			hidden: 'none',
 			isCollapsed: false,
 			modal1: false,
 				formInline: {
@@ -148,6 +148,11 @@ export default {
 		},
 		close () {
 			this.modal1 = false
+		},
+		show () {
+			this.hidden=this.$refs.mid.style.display
+			this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
+			
 		}
 	}		
 };
@@ -286,43 +291,42 @@ h3 {
 	.ivu-menu-horizontal {
 		display: block;
 	}
-	.top_middle{
-		width:100%;
+	.top_middle {
+		display: none;
+		width: 100%;
 		max-width: 770px;
 	}
 	.top_middle div{
-		margin-top: 64px;
 		width: 100%;
 		display: flex;
 		text-align: center;
 		flex-direction: column;
 		background-color: #495060;
+		transition: height 0.5s;
 	}
 	.top_middle .ivu-menu-item {
-		display: none;
-		border-bottom: 1px solid #3c3c3c;
+		border-top: 1px solid #3c3c3c;
 		height: 64px;
 		line-height: 26px;
 		padding: 15px;
 		text-align: center;
 	}
-	/* .top_middle:hover .ivu-menu-item {
-		display: block;
-	} */
+	.top_middle .ivu-menu-item:first-child {
+		margin-top:30px;
+	}
 	.top_right {
+		position: absolute;
+		right: 30px;
+		top: 0px;
 		margin-right: 15px;
 	}
-	.top_middle .ivu-menu-item:first-child{
-         display: block;
-	}
 	.login {
-        margin-top: -30px;
-		left: 75%;
+		position: absolute;
 	}
 	.hidden {
 		display: block;
 		position: absolute;
-        right: 15px;
+		right: 15px;
 	}
 	.regi {
 		display: none;

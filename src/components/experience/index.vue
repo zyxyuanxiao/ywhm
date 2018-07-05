@@ -219,6 +219,9 @@
 		}
 		.info-mid {
 			margin: 2px 0 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 		.gd-info {
 			height: 80px;
