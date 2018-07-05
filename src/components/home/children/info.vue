@@ -44,7 +44,7 @@
 			<a href="../home/app"><img src="../../../assets/img/down.png" alt=""></a>
 			<p>亿万毫米故事</p>
 		</div>
-		<div class="story">
+		<!-- <div class="story">
 			<ul>
             	<li>
                     <img src="../../../assets/img/banner1.png" alt="" class="bannerimg"/>
@@ -83,7 +83,9 @@
        		</ul>
         	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
         	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
-		</div>
+		</div> -->
+     
+   
 	    <BackTop :height="1050" :bottom="200">
             <div class="top"><img src="../../../assets/img/top.png" alt=""></div>
         </BackTop>  

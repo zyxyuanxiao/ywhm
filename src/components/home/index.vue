@@ -2,30 +2,25 @@
 	<div class="layout">
 		<Layout>
 			<Header class="top" breakpoint="md">
-				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >
-					   <div>
-						   <Menu-item name="/home/index">
+				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >  
+						<Menu-item name="/home/index">
 							<img src="../../assets/img/logo1.png" class="logo">
-						   </Menu-item>
-					   </div>
-						<div>
-							<Menu-item name="/home/career">
+						</Menu-item>
+						<Menu-item name="/home/career">
 							职业发展
-							</Menu-item>
-							<Menu-item name="/home/experience">
-								行业经验
-							</Menu-item>
-							<Menu-item name="/home/internet">
-								互联网+
-							</Menu-item>
-							<Menu-item name="/home/invest">
-								创业投资
-							</Menu-item>
-							<Menu-item name="/home/life">
-								生活服务
-							</Menu-item>
-						</div>
-						
+						</Menu-item>
+						<Menu-item name="/home/experience">
+							行业经验
+						</Menu-item>
+						<Menu-item name="/home/internet">
+							互联网+
+						</Menu-item>
+						<Menu-item name="/home/invest">
+							创业投资
+						</Menu-item>
+						<Menu-item name="/home/life">
+							生活服务
+						</Menu-item>	
 						<Menu-item name="">
 							登录
 						</Menu-item>
@@ -33,7 +28,7 @@
 							注册
 						</Menu-item>
 						 <div slot="trigger"></div>
-					<!-- </div> -->
+				
 				</Menu>
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
