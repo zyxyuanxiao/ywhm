@@ -2,33 +2,43 @@
 	<div class="layout">
 		<Layout>
 			<Header class="top" breakpoint="md">
-				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >  
-						<Menu-item name="/home/index">
-							<img src="../../assets/img/logo1.png" class="logo">
-						</Menu-item>
-						<Menu-item name="/home/career">
-							职业发展
-						</Menu-item>
-						<Menu-item name="/home/experience">
-							行业经验
-						</Menu-item>
-						<Menu-item name="/home/internet">
-							互联网+
-						</Menu-item>
-						<Menu-item name="/home/invest">
-							创业投资
-						</Menu-item>
-						<Menu-item name="/home/life">
-							生活服务
-						</Menu-item>	
-						<Menu-item name="">
-							登录
-						</Menu-item>
-						<Menu-item name="/home/register">
-							注册
-						</Menu-item>
-						 <div slot="trigger"></div>
-				
+				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >
+				  <!-- <div> -->
+					   <div class="top_left">
+						   <Menu-item name="/home/index">
+								<img src="../../assets/img/logo1.png" class="logo">
+						   </Menu-item>
+					   </div>
+						<div class="top_middle" v-seen="hidden">
+							<div>
+								<img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/>
+								<Menu-item name="/home/career">
+								职业发展
+								</Menu-item>
+								<Menu-item name="/home/experience">
+									行业经验
+								</Menu-item>
+								<Menu-item name="/home/internet">
+									互联网+
+								</Menu-item>
+								<Menu-item name="/home/invest">
+									创业投资
+								</Menu-item>
+								<Menu-item name="/home/life">
+									生活服务
+								</Menu-item>
+							</div>
+						</div>
+						<div class="top_right">
+							<Menu-item name="" class="login">
+								登录
+							</Menu-item>
+							<Menu-item name="/home/register" class="regi">
+								注册
+							</Menu-item>
+							<!-- <img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/> -->
+						</div>
+					<!-- </div> -->
 				</Menu>
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
@@ -99,6 +109,7 @@
 export default {
 	data() {
 		return {
+			hidden: true,
 			isCollapsed: false,
 			modal1: false,
 				formInline: {
@@ -142,6 +153,14 @@ export default {
 };
 </script>
 <style scoped>
+.hidden {
+	height: 30px;
+	width: 30px;
+	margin: auto;
+	position: absolute;
+	top: 16px;
+	display: none;
+}
 .layout {
 	border: 1px solid #d7dde4;
 	background: #f5f7f9;
@@ -152,16 +171,19 @@ export default {
 }
 .top {
 	position: fixed;
-	display: flex;
 	width: 100%;
-	justify-content: center;
 	top: 0;
 	left: 0;
+	padding:0;
 }
 .logo {
 	height: 30px;
 	width: 100px;
 	margin-top:15px;
+}
+.ivu-menu-horizontal {
+	display: flex;
+	justify-content: center;
 }
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover {
 	color: #23acf1;
@@ -251,6 +273,9 @@ h3 {
 .ivu-btn{
 	width: 100%;
 }
+.register {
+	color: #23acf1;
+}
 .register:hover {
 	color: #23acf1;
 }
@@ -258,9 +283,55 @@ h3 {
 	.ivu-layout-header {
 		padding: 0px;
 	}
-	.ivu-modal {
-		max-width: 420px;
-        margin: 0;
+	.ivu-menu-horizontal {
+		display: block;
+	}
+	.top_middle{
+		width:100%;
+		max-width: 770px;
+	}
+	.top_middle div{
+		margin-top: 64px;
+		width: 100%;
+		display: flex;
+		text-align: center;
+		flex-direction: column;
+		background-color: #495060;
+	}
+	.top_middle .ivu-menu-item {
+		display: none;
+		border-bottom: 1px solid #3c3c3c;
+		height: 64px;
+		line-height: 26px;
+		padding: 15px;
+		text-align: center;
+	}
+	/* .top_middle:hover .ivu-menu-item {
+		display: block;
+	} */
+	.top_right {
+		margin-right: 15px;
+	}
+	.top_middle .ivu-menu-item:first-child{
+         display: block;
+	}
+	.login {
+        margin-top: -30px;
+		left: 75%;
+	}
+	.hidden {
+		display: block;
+		position: absolute;
+        right: 15px;
+	}
+	.regi {
+		display: none;
+	}
+	.ivu-modal-content {
+		max-width: 420px !important;
+	}
+	.ivu-modal-footer {
+		display: none !important;
 	}
 	.footer {
 		padding: 20px ;
@@ -284,7 +355,7 @@ h3 {
 		display: flex;
 		align-content: center;
 		justify-content: center;
-	    font-size: #fff;
+		font-size: #fff;
 		margin-top:30px;
 	}
 	.left li {
