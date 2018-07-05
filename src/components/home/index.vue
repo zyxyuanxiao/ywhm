@@ -3,25 +3,29 @@
 		<Layout>
 			<Header class="top" breakpoint="md">
 				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >
-					<!-- <div class="layout-nav"> -->
-						<Menu-item name="/home/index">
+					   <div>
+						   <Menu-item name="/home/index">
 							<img src="../../assets/img/logo1.png" class="logo">
-						</Menu-item>
-						<Menu-item name="/home/career">
+						   </Menu-item>
+					   </div>
+						<div>
+							<Menu-item name="/home/career">
 							职业发展
-						</Menu-item>
-						<Menu-item name="/home/experience">
-							行业经验
-						</Menu-item>
-						<Menu-item name="/home/internet">
-							互联网+
-						</Menu-item>
-						<Menu-item name="/home/invest">
-							创业投资
-						</Menu-item>
-						<Menu-item name="/home/life">
-							生活服务
-						</Menu-item>
+							</Menu-item>
+							<Menu-item name="/home/experience">
+								行业经验
+							</Menu-item>
+							<Menu-item name="/home/internet">
+								互联网+
+							</Menu-item>
+							<Menu-item name="/home/invest">
+								创业投资
+							</Menu-item>
+							<Menu-item name="/home/life">
+								生活服务
+							</Menu-item>
+						</div>
+						
 						<Menu-item name="">
 							登录
 						</Menu-item>
@@ -61,18 +65,24 @@
 			<Footer class="footer">
 				<div class="foot">
 					<div class="left">
-						<img src="../../assets/img/logo.png" alt="" class="footer_logo">
+						<router-link to="/home/index" class="foot_logo"><img src="../../assets/img/logo.png" alt="" class="footer_logo"></router-link>
 						<ul>
 							<li><router-link to="/home/index">首页</router-link></li>
 							<li><router-link  to="/home/app">下载APP</router-link></li>
 							<li><router-link  to="/home/about">关于我们</router-link></li>
 							<li><router-link  to="/home/help">帮助</router-link></li>
 						</ul>
+						<div>
+							<div class="phone">010-122344321</div>
+							<p>工作日 &nbsp; 9:00-22:00</p>
+						</div>
 						<p class="copyright">ywhm &copy; 2018 KNOWLEDGE IS POWER IN NWSUAF<br>陕西省杨凌示范区亿万毫米教育科技有限公司<br>京03-20180606 &nbsp; | &nbsp;<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502031582"><img src="../../assets/img/jing.png" align="center" alt="">&nbsp;京公网安备11018821620434号</a></p>
 					</div>
 					<div class="right">
+						<div>
 							<div class="phone">010-122344321</div>
 							<p>工作日 &nbsp; 9:00-22:00</p>
+						</div>
 							<div class="ma">
 								<div class="erweima">
 									<img src="../../assets/img/wx.png" alt="客户端二维码">
@@ -137,11 +147,6 @@ export default {
 };
 </script>
 <style scoped>
-@media (max-width: 992px) {
-	.ivu-menu-dark {
-		flex-shrink: 2;
-	}
-}
 .layout {
 	border: 1px solid #d7dde4;
 	background: #f5f7f9;
@@ -174,13 +179,10 @@ export default {
 	padding-bottom: 60px ;
 	background-color: #495060;
 	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .foot {
-	width: 850px;
-	height:280px;
+	margin: 0 auto;
+	max-width: 850px;
 	display: flex;
 	justify-content: space-around;
 }
@@ -204,6 +206,9 @@ export default {
 	flex-direction: column;
 	justify-content: space-around;
 }
+.left div {
+	display: none;
+}
 .erweima img {
   width: 60px;
   height: 60px;
@@ -218,9 +223,7 @@ export default {
 	clear: both;
 	padding-top: 48px;
 }
-ul {
-	list-style-type: none;
-}
+
 .phone {
 	 font-size: 30px;
 }
@@ -234,9 +237,6 @@ ul li {
 }
 a {
 	color: #999;
-}
-p a {
-	color:#bfbfbf;
 }
 a:hover {
 	color: #fff;
@@ -260,9 +260,64 @@ h3 {
 	color: #23acf1;
 }
 @media (max-width: 768px) {
+	.ivu-layout-header {
+		padding: 0px;
+	}
 	.ivu-modal {
 		max-width: 420px;
         margin: 0;
+	}
+	.footer {
+		padding: 20px ;
+		text-align: center;	
+		color: #fff;	
+	}
+	.foot {
+		flex-direction: column;
+		align-content: center;
+		justify-content: center;
+	}
+	.ma {
+		display: none;
+	}
+	.left {
+		width: 100%;
+		text-align: center;
+		height: auto;
+	}
+	.left ul {
+		display: flex;
+		align-content: center;
+		justify-content: center;
+	    font-size: #fff;
+		margin-top:30px;
+	}
+	.left li {
+		padding-left: 16px;
+	}
+	.left div {
+		display: block;
+	}
+	.right div {
+		display: none;
+	}
+	a,.copyright,.addr {
+		color: #fff;
+	}
+	.copyright{
+		order: 2;
+	}
+	.addr {
+		padding-top: 15px;
+	}
+	.foot_logo {
+		margin: 0;
+		height: 64px;
+		width: 100%;
+		border-bottom: 1px solid rgba(255,255,255,.5);
+		font-size: 0;
+		line-height: 32px;
+		overflow: hidden;
 	}
 }
 </style>

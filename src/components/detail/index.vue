@@ -68,9 +68,11 @@
 				<div class="right">
 					<div class="promise">
 						<p class="tip">只需付<span>几百元，</span>就可以与行家</p>
-						<span>一对一线下面谈</span>
-						<p>为您答疑解惑、出谋划策。不满意还能“无忧退款”。</p>
-						<img src="../../assets/img/logo1.png" alt="" style="width:90px; float:right; margin-right:22px;">
+						<p class="tip"><span>一对一线下面谈</span></p>
+						<p class="occur">为您答疑解惑、出谋划策。不满意还能“无忧退款”。</p>
+						<p class="about-tips">为您答疑解惑、出谋划策。</p>
+						<p class="about-tips">不满意还能“无忧退款”。</p>
+						<img src="../../assets/img/logo1.png" alt="" class="before" >
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
@@ -87,7 +89,7 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bott"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
 					</div>
 					<div class="guide">
@@ -98,7 +100,7 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bott"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
 					</div>
 					<div class="guide">
@@ -109,7 +111,7 @@
 								<em class="intro">{{item.intro}}</em> 
 							</div>
 							<div class="title">{{item.title}}</div>
-							<div class="bott"><span>{{item.count}}</span>人见过</div>
+							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
 					</div>
 				</div>
@@ -187,21 +189,25 @@ export default {
 		margin-top: -64px;
 	}
 	.avator {
-		width: 155px;
-		height: 155px;
+		float: left;
+		padding: 5px;
+		width: 165px;
+		height: 165px;
 		border-radius: 50%;
-		margin: -120px 520px 0 0;
+		margin: -128px 25px 0 0;
+		background-color: #fff;
+		box-shadow: 0 1px 1px #ccc;
 	}
 	.person {
 		max-width: 900px;
 		margin: 0 auto;
 		display: flex;
 	}
-	.left {
-		max-width: 560px;
+	.left, .right {
+		width: 100%;
 	}
 	.right {
-		max-width: 340px;
+		width: 340px;
 		padding-left: 40px;
 		margin-top: 70px;
 	}
@@ -212,10 +218,11 @@ export default {
 		font-size: 38px;
 		line-height: 38px;
 		font-weight: 400;
-		padding: 20px 0 5px;
-		margin-top: -20px;
+		clear: both;
 	}
-
+	.occur {
+		margin:5px 0 10px;
+	}
 	.detail {
 		margin: 10px 77px 4px;
 		display: flex;
@@ -274,10 +281,13 @@ export default {
 	.promise {
 		margin-top:25px;
 		padding: 25px 0 20px 20px;
-		width: 300px;
+		width: 320px;
 		background: #f1efee;
 		border-radius: 8px;
 		overflow: hidden;
+	}
+	.about-tips {
+		display: none;
 	}
 	.promise p span {
 		font-weight: bold;
@@ -285,6 +295,12 @@ export default {
 	.promise span {
 		font-size: 20px;
 		font-weight: bold;
+	}
+	.before {
+		width:90px; 
+		float:right; 
+		margin-top:8px; 
+		margin-right:22px;
 	}
 	.order {
 		padding: 20px;
@@ -317,7 +333,7 @@ export default {
 	}
 	h2 {
 		margin-bottom: 10px;
-		margin-top: 10px;
+		margin-top: 15px;
 		color: rgb(52, 52, 52);
 		font-weight: 700;
 		padding-left: 5px;
@@ -376,37 +392,77 @@ export default {
 		color: #23acf1;
 	}
 	.image {
-		margin: 10px 30px 17px;
-		max-width: 500px;
+		margin: 10px auto 17px;
+		text-align: center;
 	}
-	@media (max-width: 992px) {
+	@media (max-width: 768px) {
 		.cover {
 			height: 250px;
 		}
 		.avator {
 			width: 133px;
 			height: 133px;
-			margin: 0 auto;
+			float: none;
 			margin-top: -100px;
+		}
+		.image {
+			margin: 10px 15px 17px;
+		}
+		.name {
+			margin: 20px 0 5px;
+			font-weight: 700;
+			line-height: 20px;
+			font-size: 20px;
 		}
 		.person {
 			flex-direction: column;
-		}
-		.left .avator{
-			text-align: center
 		}
 		.tutor-pic  {
 			width: 100%;
 		}
 		.right {
 			width: 100%;
-			max-width: 560px;
+			margin-top: 20px;
 			padding-left: 0;
 			width: 100%;
-			margin: 0 auto;
 		}
 		.promise {
 			width: 100%;
+			margin-top: 0;
+			border-radius: 0;
+		}
+		.promise span{
+			font-size: 24px
+		}
+		.detail {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.occur,.before {
+			display: none;
+		}
+		.about-tips {
+			color: #666;
+			font-size: 14px;
+			margin: 5px 0 0;
+			display: block;
+		}
+		.tip {
+			line-height: 35px;
+    		font-size: 24px;
+		}
+		.order {			
+			padding: 10px 0;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background-color: #fff;
+			z-index: 10;
+			display: flex;
+		}
+		.ivu-btn-primary {
+			margin-bottom: 0;
 		}
 	}
 </style>

@@ -147,6 +147,7 @@
 		margin-right: auto;
 	}
 	.gd {
+		margin: 12px 10px 0;
 		background-color: #fff;
 		margin-bottom: 10px;
 		padding: 20px;
@@ -204,9 +205,6 @@
 		text-decoration: none;
 	}
 	@media (max-width:768px) {
-		.page-content {
-			margin: 12px 10px 0;
-		}
 		.gd-avator {
 		    width: 80px;
 	        height: 80px;
