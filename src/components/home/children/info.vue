@@ -84,14 +84,32 @@
         	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
         	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
 		</div> -->
-     
-   
+       
+        <div class="swiper-box">
+            <!-- <div class="contacts">
+                <div class="contact" :class="{ 'active': index === swipe.activeIndex }" v-for="(contact, index) in contacts" @click="turnTo(index)">
+                    {{contact.text}}
+                </div>
+            </div> -->
+            <rd-swipe :swipe="swipe">
+                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs">
+                    <!-- <div class="stroy-title">{{item.title}}</div>
+                    <div class="story-text1">{{item.text1}}</div>
+                    <div class="story-text2">{{item.text2}}</div>
+                    <div class="stroy-text3">{{item.text3}}</div> -->
+                </div>
+            </rd-swipe>
+        </div>
 	    <BackTop :height="1050" :bottom="200">
             <div class="top"><img src="../../../assets/img/top.png" alt=""></div>
         </BackTop>  
     </div>
 </template>
 <script>
+    import rdSwipe from './vue-slide.vue'
+    import banner1 from '../../../assets/img/banner1.png'
+    import banner2 from '../../../assets/img/banner2.png'
+    import banner3 from '../../../assets/img/banner3.png'
 	export default {
         data() {
             return {
@@ -204,12 +222,47 @@
                         "intro": "智能硬件与可穿戴设备",
                         "info":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
                     }
+                ],
+                swipe: {
+                    activeIndex: 0
+                },
+                imgs: [
+                    banner1,
+                    banner2,
+                    banner3,
+                
+                    // {
+                    //     "title": "『 终身学习, 就是终身成就 』",
+                    //     "text1": "在“有趣而无用”大行其道的当下,亿万毫米网站为你提供省时间的高效知识服务。",
+                    //     "text2": "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
+                    // },
+                    // {
+                    //     "title" : "『 除了社交作用，她们还是我的数据库，知道她们需要什么很重要 』",
+                    //     "text1" : "乔齐，",
+                    //     "text2" : "女装品牌Georgette.Q创始人。"
+                    // },
+                    // {
+                    //     "title" : "『 终身学习, 就是终身成就 』",
+                    //     "text1" : "在“有趣而无用”大行其道的当下,",
+                    //     "text2" : "亿万毫米网站为你提供省时间的高效知识服务。",
+                    //     "text3" : "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
+                    // }
                 ]
             }
+        },
+        components: {
+            rdSwipe
         },
         methods: {
             goDetail(id) {
                 this.$router.push("/home/detail?id="+id)
+            },
+            turnTo (index) {
+                this.$children.map(swipe => {
+                    if (swipe.turnTo) {
+                        swipe.turnTo(index)
+                    }
+                })
             }
         }
     }

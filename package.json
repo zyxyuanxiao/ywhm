@@ -27,6 +27,7 @@
   "dependencies": {
     "iview": "^2.14.2",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-slide": "^1.1.1"
   }
 }
