@@ -92,13 +92,7 @@
                 </div>
             </div> -->
             <rd-swipe :swipe="swipe">
-                <!-- <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"> -->
-                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="item in imgs">
-                    <div class="stroy-title">{{item.title}}</div>
-                    <div class="story-text1">{{item.text1}}</div>
-                    <div class="story-text2">{{item.text2}}</div>
-                    <div class="stroy-text3">{{item.text3}}</div>
-                </div>
+                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"></div>
             </rd-swipe>
         </div>
 	    <BackTop :height="1050" :bottom="200">
@@ -228,29 +222,9 @@
                     activeIndex: 0
                 },
                 imgs: [
-                    // banner1,
-                    // banner2,
-                    // banner3,
-                
-                    {
-                         banner1,
-                        "title": "『 终身学习, 就是终身成就 』",
-                        "text1": "在“有趣而无用”大行其道的当下,亿万毫米网站为你提供省时间的高效知识服务。",
-                        "text2": "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    },
-                    {
-                         banner2,
-                        "title" : "『 除了社交作用，她们还是我的数据库，知道她们需要什么很重要 』",
-                        "text1" : "乔齐，",
-                        "text2" : "女装品牌Georgette.Q创始人。"
-                    },
-                    {
-                        banner3,
-                        "title" : "『 终身学习, 就是终身成就 』",
-                        "text1" : "在“有趣而无用”大行其道的当下,",
-                        "text2" : "亿万毫米网站为你提供省时间的高效知识服务。",
-                        "text3" : "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    }
+                    banner1,
+                    banner2,
+                    banner3
                 ]
             }
         },
@@ -593,6 +567,14 @@ button {
 	.desc div:nth-child(2){
 		display: none;
 	}
+    .rd-swipe {
+        width: 100%;
+        height: 250px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+}
  }
 
 @media (max-width: 992px) {
