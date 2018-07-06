@@ -458,11 +458,18 @@ export default {
 			left: 0;
 			width: 100%;
 			background-color: #fff;
+			align-content: space-around;
 			z-index: 10;
 			display: flex;
 		}
 		.ivu-btn-primary {
 			margin-bottom: 0;
+			margin: 0 2%;
+			width: 96%;
+		}
+		.ivu-btn-ghost {
+			width: 96%;
+			margin: 0 2%;
 		}
 	}
 </style>

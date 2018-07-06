@@ -2,8 +2,34 @@
 	<div class="layout">
 		<Layout>
 			<Header class="top" breakpoint="md">
-				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage" >
-				  <!-- <div> -->
+				<Menu mode="horizontal" theme="dark" active-name="/home/index" @on-select="switchPage">
+					<div class="md">
+						<Menu-item name="/home/index">
+							<img src="../../assets/img/logo1.png" class="logo">
+						 </Menu-item>
+						 <Menu-item name="/home/career">
+							职业发展
+						</Menu-item>
+						<Menu-item name="/home/experience">
+							行业经验
+						</Menu-item>
+						<Menu-item name="/home/internet">
+							互联网+
+						</Menu-item>
+						<Menu-item name="/home/invest">
+							创业投资
+						</Menu-item>
+						<Menu-item name="/home/life">
+							生活服务
+						</Menu-item>
+						<Menu-item name="">
+							登录
+						</Menu-item>
+						<Menu-item name="/home/register">
+							注册
+						</Menu-item>
+					</div>
+				  <div class="sm">
 					   <div class="top_left">
 						   <Menu-item name="/home/index">
 								<img src="../../assets/img/logo1.png" class="logo">
@@ -12,19 +38,19 @@
 						<img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/>
 						<div class="top_middle" ref="mid">
 							<div>
-								<Menu-item name="/home/career" @click="show()">
+								<Menu-item name="/home/career">
 									职业发展
 								</Menu-item>
-								<Menu-item name="/home/experience" @click="show()">
+								<Menu-item name="/home/experience">
 									行业经验
 								</Menu-item>
-								<Menu-item name="/home/internet" @click="show()">
+								<Menu-item name="/home/internet">
 									互联网+
 								</Menu-item>
-								<Menu-item name="/home/invest" @click="show()">
+								<Menu-item name="/home/invest">
 									创业投资
 								</Menu-item>
-								<Menu-item name="/home/life" @click="show()">
+								<Menu-item name="/home/life">
 									生活服务
 								</Menu-item>
 							</div>
@@ -32,13 +58,9 @@
 						<div class="top_right">
 							<Menu-item name="" class="login">
 								登录
-							</Menu-item>
-							<Menu-item name="/home/register" class="regi">
-								注册
-							</Menu-item>
-							
+							</Menu-item>							
 						</div>
-					<!-- </div> -->
+					</div>
 				</Menu>
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
@@ -71,7 +93,7 @@
 				<div class="foot">
 					<div class="left">
 						<router-link to="/home/index" class="foot_logo"><img src="../../assets/img/logo.png" alt="" class="footer_logo"></router-link>
-						<ul>
+						<ul class="foot_list">
 							<li><router-link to="/home/index">首页</router-link></li>
 							<li><router-link  to="/home/app">下载APP</router-link></li>
 							<li><router-link  to="/home/about">关于我们</router-link></li>
@@ -110,6 +132,7 @@ export default {
 	data() {
 		return {
 			hidden: 'none',
+			width: 	0,
 			isCollapsed: false,
 			modal1: false,
 				formInline: {
@@ -133,8 +156,14 @@ export default {
 			if (name == ""){
 				this.modal1 = true
 			}
-			else
-				this.$router.push(name);
+			else{
+				this.$router.push(name);				
+				if (this.width <= 768 && name!="/home/index"){
+					this.hidden = this.$refs.mid.style.display
+					this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
+					console.log("<=768 " + this.width) 
+			   }
+		   }
 		},
 		handleSubmit(name) {
 			this.$refs[name].validate((valid) => {
@@ -144,6 +173,7 @@ export default {
 				} else {
 					this.$Message.error('Fail!');
 				}
+
 			})
 		},
 		close () {
@@ -152,7 +182,6 @@ export default {
 		show () {
 			this.hidden=this.$refs.mid.style.display
 			this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-			
 		}
 	}		
 };
@@ -238,23 +267,32 @@ export default {
   border-radius: 6px;
 }
 .footer_logo{
-	width: 168px;
+	width: 150px;
 	margin-left: -10px;
 }
 .addr {
 	clear: both;
 	padding-top: 48px;
 }
-
+.right {
+	margin-top: 10px;
+}
 .phone {
 	 font-size: 30px;
+	 height: 50px;
+     padding-top: 8px;
 }
 p {
 	font-size:12px;
 	margin-bottom: 10px;
 	color: #bfbfbf;
 }
-ul li {
+.foot_list {
+	margin-top:20px;
+	margin-bottom: 10px;
+}
+
+.foot_list li {
 	 height: 32px;
 }
 a {
@@ -284,35 +322,60 @@ h3 {
 .register:hover {
 	color: #23acf1;
 }
+.sm {
+	display: none;
+}
 @media (max-width: 768px) {
 	.ivu-layout-header {
 		padding: 0px;
 	}
+	.md {
+		display: none;
+	}
+	.sm {
+		display: block
+	}
 	.ivu-menu-horizontal {
 		display: block;
 	}
+	.foot_list {
+		margin: 0;
+	}
 	.top_middle {
 		display: none;
+		position: absolute;
 		width: 100%;
-		max-width: 770px;
-	}
+		top: 63px;
+		/* width: 100%; */
+		/* max-width: 770px; */
+	}	
+
 	.top_middle div{
 		width: 100%;
 		display: flex;
 		text-align: center;
 		flex-direction: column;
 		background-color: #495060;
-		transition: height 0.5s;
+		/* min-height: 0px; */
+		/* transition: height 0.5s ease; */
+		animation: fold 2s ;
+		animation: spread 0.4s;
+	}	@keyframes fold {
+		from {
+			height: 0%;
+		}
+		to {
+			height: 100%;
+		}
 	}
+
 	.top_middle .ivu-menu-item {
 		border-top: 1px solid #3c3c3c;
-		height: 64px;
+		height: 54px;
 		line-height: 26px;
 		padding: 15px;
 		text-align: center;
-	}
-	.top_middle .ivu-menu-item:first-child {
-		margin-top:30px;
+		/* animation: fold 0.1s; */
 	}
 	.top_right {
 		position: absolute;
@@ -327,9 +390,6 @@ h3 {
 		display: block;
 		position: absolute;
 		right: 15px;
-	}
-	.regi {
-		display: none;
 	}
 	.ivu-modal-content {
 		max-width: 420px !important;
@@ -354,6 +414,9 @@ h3 {
 		width: 100%;
 		text-align: center;
 		height: auto;
+	}	
+	.left div {
+		display: block;
 	}
 	.left ul {
 		display: flex;
@@ -363,11 +426,15 @@ h3 {
 		margin-top:30px;
 	}
 	.left li {
-		padding-left: 16px;
+        margin: 0 10px;
 	}
-	.left div {
-		display: block;
+	.phone {
+		font-size: 24px;
+		padding: 0;
+		height: 34px;
+		margin-top: 8px;
 	}
+
 	.right div {
 		display: none;
 	}
@@ -378,16 +445,17 @@ h3 {
 		order: 2;
 	}
 	.addr {
-		padding-top: 15px;
+		padding-top: 6px;
+	}
+	.footer_logo {
+		width: 120px;
 	}
 	.foot_logo {
-		margin: 0;
-		height: 64px;
-		width: 100%;
 		border-bottom: 1px solid rgba(255,255,255,.5);
 		font-size: 0;
 		line-height: 32px;
 		overflow: hidden;
+		height: 50px;
 	}
 }
 </style>
