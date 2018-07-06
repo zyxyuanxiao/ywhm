@@ -31,7 +31,7 @@
 		</div>
 		<div class="list">
             <div class="teacher" v-for="item in total" @click="goDetail(item.id)">
-				<!-- <div class="teacher-img">{{item.img}}</div> -->
+				<div class="teacher-img"><img v-bind:src="item.img" class="teacher-img"></div>
                 <div class="teacher-view"><p><span>{{item.sub_num}}</span>人见过</p></div>
                 <div class="teacher-tutor">{{item.name}}</div>
                 <div class="teacher-job">{{item.job}}</div>
@@ -39,9 +39,9 @@
 				<div class="teacher-info">{{item.major}}</div>
             </div>            
         </div>
-		<div class="button"><a href="../home/career"><button class="btn">发现更多行家</button></a></div>
+		<div class="button"><router-link to="/home/career"><button class="btn">发现更多行家</button></router-link></div>
 		<div class="down">
-			<a href="../home/app"><img src="../../../assets/img/down.png" alt=""></a>
+			<router-link to="/home/app"><img src="../../../assets/img/down.png" alt=""></router-link>
 			<p>亿万毫米故事</p>
 		</div>
 		<!-- <div class="story">
@@ -111,7 +111,7 @@
                 total: [
                     {
                         "id": "1",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -120,7 +120,7 @@
                     },
                     {
                         "id": "2",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -129,7 +129,7 @@
                     },
                     {
                         "id": "3",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -138,7 +138,7 @@
                     },
                     {
                         "id": "4",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -147,7 +147,7 @@
                     },
                     {
                         "id": "5",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -156,7 +156,7 @@
                     },
                     {
                         "id": "6",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -165,7 +165,7 @@
                     },
                     {
                         "id": "7",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -174,7 +174,7 @@
                     },
                     {
                         "id": "8",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -183,7 +183,7 @@
                     },
                     {
                         "id": "9",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -192,7 +192,7 @@
                     },
                     {
                         "id": "10",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -201,7 +201,7 @@
                     },
                     {
                         "id": "11",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -210,7 +210,7 @@
                     },
                     {
                         "id": "12",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -331,13 +331,16 @@
 	height: 1000px;
 }
 .teacher { 
-	background: url("../../../assets/img/teacher1.jpg") no-repeat;
+	/* background: url("../../../assets/img/teacher1.jpg") no-repeat; */
     width: 230px;
     height: 320px;
 	background-size: cover;
     border-radius: 10px;
     overflow: hidden;
 	position: relative;
+}
+.teacher-img {
+    width: 230px;
 }
 .teacher-view {
     width: 100px;
