@@ -577,7 +577,7 @@ button {
         position: relative;
         overflow: hidden;
         z-index: 0;
-}
+    }
  }
 
 @media (max-width: 992px) {
@@ -607,5 +607,39 @@ button {
         margin-top: -6px;
         margin-left: -3px;
     }  
+}
+@media (max-width: 500px) {
+    .teacher {
+        width: 47%;
+    }
+}
+@media (max-width: 414px) {
+    .teacher {
+        height: 260px;
+    }
+    .teacher-tutor {
+        bottom:95px;
+    }
+    .teacher-job {
+        line-height: 14px;
+    }
+    .teacher-img {
+        margin-left: -12px;
+    }
+}
+@media (max-width: 400px) {
+    .teacher {
+        height: 250px;
+    }
+    .teacher-intro {
+        bottom: 26px;
+    }
+    .teacher-tutor {
+        bottom:80px;
+    }
+    .teacher-job {
+        line-height: 14px;
+        bottom: 52px;
+    }
 }
 </style>
