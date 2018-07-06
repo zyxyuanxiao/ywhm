@@ -35,8 +35,6 @@
 						</Form>
 						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
 					</div>
-
-
     </Modal>
 	</div>
 </template>

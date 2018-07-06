@@ -63,7 +63,7 @@
 					</div>
 				</Menu>
 			</Header>
-			<Content :style="{margin: '63px 0 0 0'}">
+			<Content class="contents">
 				<router-view></router-view>
 				<Modal :mask-closable="false" scrollable 
 				v-model="modal1"
@@ -196,6 +196,9 @@ export default {
 };
 </script>
 <style scoped>	
+.contents {
+	margin: 63px 0 0 0;
+}
 .hidden {
 	height: 26px;
 	width: 26px;
@@ -462,8 +465,8 @@ h3 {
 	.footer_logo {
 		width: 120px;
 	}
-	.gd {
-		padding: 5px;
+	.contents {
+		margin: 58px 0 0 0;
 	}
 	.foot_logo {
 		border-bottom: 1px solid rgba(255,255,255,.5);
