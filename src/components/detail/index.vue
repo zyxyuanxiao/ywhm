@@ -395,6 +395,17 @@ export default {
 		margin: 10px auto 17px;
 		text-align: center;
 	}
+	.vertical-center-modal{
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+	} 
+	.vertical-center-modal .ivu-modal{
+        top: 0;
+    }
+	.vertical-center-modal .ivu-modal-footer{
+		display: none;
+	}
 	@media (max-width: 768px) {
 		.cover {
 			height: 250px;

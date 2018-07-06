@@ -227,6 +227,9 @@
 			height: 80px;
 			padding-left: 10px;
 		}
+		.gd {
+			padding: 8px;
+	   }
 		.score {
 			display: none;
 		}

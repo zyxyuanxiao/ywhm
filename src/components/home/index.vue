@@ -37,7 +37,7 @@
 					   </div>
 						<img src="../../assets/img/more.png" alt="" class="hidden" @click="show()"/>
 						<div class="top_middle" ref="mid">
-							<div>
+							<div ref="fold">
 								<Menu-item name="/home/career">
 									职业发展
 								</Menu-item>
@@ -65,9 +65,11 @@
 			</Header>
 			<Content :style="{margin: '63px 0 0 0'}">
 				<router-view></router-view>
-				<Modal scrollable 
+				<Modal :mask-closable="false" scrollable 
 				v-model="modal1"
-				width="420">
+				width="420"
+				class-name="vertical-center-modal"
+				>
 					<div class="dialog">
 						<h3>欢迎来到「亿万毫米」</h3>
 						<Form ref="formInline" :model="formInline" :rules="ruleInline">
@@ -87,7 +89,7 @@
 						</Form>
 						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
 					</div>
-				</Modal>
+   			 </Modal>
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -113,7 +115,7 @@
 							<div class="ma">
 								<div class="erweima">
 									<img src="../../assets/img/wx.png" alt="客户端二维码">
-											手机微信
+										手机微信
 								</div>
 								<div class="erweima">
 									<img src="../../assets/img/ywhm.png" alt="客户端二维码">
@@ -182,17 +184,24 @@ export default {
 		show () {
 			this.hidden=this.$refs.mid.style.display
 			this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-		}
+			if(this.$refs.mid.style.display==="block"){
+				console.log("mzry")
+				this.$refs.fold.style.height="270px"
+			}
+			else
+		        this.$refs.fold.style.height="0px"
+		   }
+		   
 	}		
 };
 </script>
-<style scoped>
+<style scoped>	
 .hidden {
-	height: 30px;
-	width: 30px;
+	height: 26px;
+	width: 26px;
 	margin: auto;
 	position: absolute;
-	top: 16px;
+	top: 18px;
 	display: none;
 }
 .layout {
@@ -325,7 +334,22 @@ h3 {
 .sm {
 	display: none;
 }
+.ivu-modal-footer {
+	visibility: hidden !important;
+}
+.vertical-center-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+.vertical-center-modal .ivu-modal{
+    top: 0;
+ }
 @media (max-width: 768px) {
+	.logo {
+		width:90px;
+		height:27px;
+	}
 	.ivu-layout-header {
 		padding: 0px;
 	}
@@ -338,6 +362,9 @@ h3 {
 	.ivu-menu-horizontal {
 		display: block;
 	}
+	.top {
+		height: 48px;
+	}
 	.foot_list {
 		margin: 0;
 	}
@@ -345,37 +372,25 @@ h3 {
 		display: none;
 		position: absolute;
 		width: 100%;
-		top: 63px;
-		/* width: 100%; */
-		/* max-width: 770px; */
-	}	
+		top: 60px;
+	}
 
-	.top_middle div{
+	.top_middle div{		
 		width: 100%;
 		display: flex;
 		text-align: center;
 		flex-direction: column;
 		background-color: #495060;
-		/* min-height: 0px; */
-		/* transition: height 0.5s ease; */
-		animation: fold 2s ;
-		animation: spread 0.4s;
-	}	@keyframes fold {
-		from {
-			height: 0%;
-		}
-		to {
-			height: 100%;
-		}
+	}	
+	.ivu-modal-footer {
+		display: none !important;
 	}
-
 	.top_middle .ivu-menu-item {
 		border-top: 1px solid #3c3c3c;
 		height: 54px;
 		line-height: 26px;
 		padding: 15px;
 		text-align: center;
-		/* animation: fold 0.1s; */
 	}
 	.top_right {
 		position: absolute;
@@ -392,10 +407,7 @@ h3 {
 		right: 15px;
 	}
 	.ivu-modal-content {
-		max-width: 420px !important;
-	}
-	.ivu-modal-footer {
-		display: none !important;
+		width: 420px !important;
 	}
 	.footer {
 		padding: 20px ;
@@ -449,6 +461,9 @@ h3 {
 	}
 	.footer_logo {
 		width: 120px;
+	}
+	.gd {
+		padding: 5px;
 	}
 	.foot_logo {
 		border-bottom: 1px solid rgba(255,255,255,.5);
