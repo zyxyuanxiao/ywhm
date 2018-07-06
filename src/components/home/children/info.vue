@@ -31,7 +31,7 @@
 		</div>
 		<div class="list">
             <div class="teacher" v-for="item in total" @click="goDetail(item.id)">
-				<!-- <div class="teacher-img">{{item.img}}</div> -->
+				<div class="teacher-img"><img v-bind:src="item.img" class="teacher-img"></div>
                 <div class="teacher-view"><p><span>{{item.sub_num}}</span>人见过</p></div>
                 <div class="teacher-tutor">{{item.name}}</div>
                 <div class="teacher-job">{{item.job}}</div>
@@ -39,9 +39,9 @@
 				<div class="teacher-info">{{item.major}}</div>
             </div>            
         </div>
-		<div class="button"><a href="../home/career"><button class="btn">发现更多行家</button></a></div>
+		<div class="button"><router-link to="/home/career"><button class="btn">发现更多行家</button></router-link></div>
 		<div class="down">
-			<a href="../home/app"><img src="../../../assets/img/down.png" alt=""></a>
+			<router-link to="/home/app"><img src="../../../assets/img/down.png" alt=""></router-link>
 			<p>亿万毫米故事</p>
 		</div>
 		<!-- <div class="story">
@@ -92,13 +92,7 @@
                 </div>
             </div> -->
             <rd-swipe :swipe="swipe">
-                <!-- <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"> -->
-                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="item in imgs">
-                    <div class="stroy-title">{{item.title}}</div>
-                    <div class="story-text1">{{item.text1}}</div>
-                    <div class="story-text2">{{item.text2}}</div>
-                    <div class="stroy-text3">{{item.text3}}</div>
-                </div>
+                <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"></div>
             </rd-swipe>
         </div>
 	    <BackTop :height="1050" :bottom="200">
@@ -117,7 +111,7 @@
                 total: [
                     {
                         "id": "1",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -126,7 +120,7 @@
                     },
                     {
                         "id": "2",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -135,7 +129,7 @@
                     },
                     {
                         "id": "3",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -144,7 +138,7 @@
                     },
                     {
                         "id": "4",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -153,7 +147,7 @@
                     },
                     {
                         "id": "5",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -162,7 +156,7 @@
                     },
                     {
                         "id": "6",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -171,7 +165,7 @@
                     },
                     {
                         "id": "7",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -180,7 +174,7 @@
                     },
                     {
                         "id": "8",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -189,7 +183,7 @@
                     },
                     {
                         "id": "9",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -198,7 +192,7 @@
                     },
                     {
                         "id": "10",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -207,7 +201,7 @@
                     },
                     {
                         "id": "11",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -216,7 +210,7 @@
                     },
                     {
                         "id": "12",
-                        "img": "",
+                        img: require('../../../assets/img/teacher1.jpg'),
                         "sub_num": 253,
                         "name": "孙波",
                         "job":"奇虎360科技有限公司销售总监",
@@ -228,29 +222,9 @@
                     activeIndex: 0
                 },
                 imgs: [
-                    // banner1,
-                    // banner2,
-                    // banner3,
-                
-                    {
-                         banner1,
-                        "title": "『 终身学习, 就是终身成就 』",
-                        "text1": "在“有趣而无用”大行其道的当下,亿万毫米网站为你提供省时间的高效知识服务。",
-                        "text2": "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    },
-                    {
-                         banner2,
-                        "title" : "『 除了社交作用，她们还是我的数据库，知道她们需要什么很重要 』",
-                        "text1" : "乔齐，",
-                        "text2" : "女装品牌Georgette.Q创始人。"
-                    },
-                    {
-                        banner3,
-                        "title" : "『 终身学习, 就是终身成就 』",
-                        "text1" : "在“有趣而无用”大行其道的当下,",
-                        "text2" : "亿万毫米网站为你提供省时间的高效知识服务。",
-                        "text3" : "提倡碎片化学习方式，让用户短时间内获得有效的知识。"
-                    }
+                    banner1,
+                    banner2,
+                    banner3
                 ]
             }
         },
@@ -357,13 +331,16 @@
 	height: 1000px;
 }
 .teacher { 
-	background: url("../../../assets/img/teacher1.jpg") no-repeat;
+	/* background: url("../../../assets/img/teacher1.jpg") no-repeat; */
     width: 230px;
     height: 320px;
 	background-size: cover;
     border-radius: 10px;
     overflow: hidden;
 	position: relative;
+}
+.teacher-img {
+    width: 230px;
 }
 .teacher-view {
     width: 100px;
@@ -593,6 +570,14 @@ button {
 	.desc div:nth-child(2){
 		display: none;
 	}
+    .rd-swipe {
+        width: 100%;
+        height: 250px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+}
  }
 
 @media (max-width: 992px) {
