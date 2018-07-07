@@ -65,31 +65,7 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
-				<Modal :mask-closable="false" scrollable 
-				v-model="modal1"
-				width="420"
-				class-name="vertical-center-modal"
-				>
-					<div class="dialog">
-						<h3>欢迎来到「亿万毫米」</h3>
-						<Form ref="formInline" :model="formInline" :rules="ruleInline">
-							<FormItem prop="user">
-								<Input type="text" v-model="formInline.user" placeholder="Username" size="large">
-									<Icon type="ios-person-outline" slot="prepend" size="20"></Icon>
-								</Input>
-							</FormItem>
-							<FormItem prop="password">
-								<Input type="password" v-model="formInline.password" placeholder="Password" size="large">
-									<Icon type="ios-locked-outline" slot="prepend" size="20">></Icon>
-								</Input>
-							</FormItem>
-							<FormItem>
-								<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
-							</FormItem>
-						</Form>
-						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
-					</div>
-   			 </Modal>
+				<login v-if="modal1"></login>
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -130,7 +106,9 @@
 	</div>
 </template>
 <script>
+import login from '../login/index'
 export default {
+	components:{login},
   data() {
     return {
 	  login: false,
@@ -138,32 +116,6 @@ export default {
 	  width: 0,
       isCollapsed: false,
       modal1: false,
-      formInline: {
-        user: "",
-        password: ""
-      },
-      ruleInline: {
-        user: [
-          {
-            required: true,
-            message: "Please fill in the user name",
-            trigger: "blur"
-          }
-        ],
-        password: [
-          {
-            required: true,
-            message: "Please fill in the password.",
-            trigger: "blur"
-          },
-          {
-            type: "string",
-            min: 6,
-            message: "The password length cannot be less than 6 bits",
-            trigger: "blur"
-          }
-        ]
-      }
 	}
   },
   methods: {
@@ -178,19 +130,6 @@ export default {
             this.hidden == "none" ? "block" : "none";
         }
       }
-    },
-    handleSubmit(name) {
-      this.$refs[name].validate(valid => {
-        if (valid) {
-          this.$Message.success("Success!");
-          this.modal1 = false;
-        } else {
-          this.$Message.error("Fail!");
-        }
-      });
-    },
-    close() {
-      this.modal1 = false;
     },
     show() {
       this.hidden = this.$refs.mid.style.display;
