@@ -14,6 +14,9 @@ module.exports = {
             '@': path.resolve(__dirname,'../src/components')
         }
     },
+    externals: {
+        'axios': 'axios'
+    },
     module: {
         rules: [
             {
