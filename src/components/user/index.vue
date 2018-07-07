@@ -1,120 +1,181 @@
-
 <template>
-<div>
-	
-    <Button @click="modal9 = true">20px from the top</Button>
-    <Modal 
-        v-model="modal9"
-        :styles="{top: '20px'}">
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-    </Modal>
-    <Button @click="modal10 = true">Vertical center</Button>
-    <Modal :mask-closable="false" scrollable 
-        v-model="modal10"
-		width="420"
-        class-name="vertical-center-modal"
-		>
-					<div class="dialog">
-						<h3>欢迎来到「亿万毫米」</h3>
-						<Form ref="formInline" :model="formInline" :rules="ruleInline">
-							<FormItem prop="user">
-								<Input type="text" v-model="formInline.user" placeholder="Username" size="large">
-									<Icon type="ios-person-outline" slot="prepend" size="20"></Icon>
-								</Input>
-							</FormItem>
-							<FormItem prop="password">
-								<Input type="password" v-model="formInline.password" placeholder="Password" size="large">
-									<Icon type="ios-locked-outline" slot="prepend" size="20">></Icon>
-								</Input>
-							</FormItem>
-							<FormItem>
-								<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
-							</FormItem>
-						</Form>
-						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+	<div class="container">
+		<Layout>
+        	<Sider hide-trigger :style="{background: '#fff'}">
+            	<Menu theme="light" width="auto">
+					<div class="user" id="userInfo">
+						<a class="user-avatar" id="nickname">
+							<img src="../../assets/img/user-avatar.png" alt="" class="img">
+						</a>
 					</div>
-    </Modal>
+					<MenuItem name="tutor">我约的行家</MenuItem>
+					<MenuItem name="wish_list">心愿单</MenuItem>
+                </Menu>
+            </Sider>
+			<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+				<div class="main0">
+					<div class="user-content">
+						<h2>我约的人</h2>
+						<div class="setting-content">
+							<p class="none">
+								真忧伤，我还没有约过人诶。
+								<a href="">立即去约人！</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="main1">
+					<div class="user-content" v-for="item in total" @click="goDetail(item.id)" >
+						<div class="time">
+							<span>发起时间：{{item.time}}</span>
+						</div>
+						<div class="setting-content">
+							<table>
+								<tr>
+									<td>
+										<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
+									</td>
+									<td>	
+										<div class="title">{{item.title}}</div>
+										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+									</td>
+									<td>
+										<div class="price">{{item.price}}</div>
+									</td>
+									<td>
+										<div class="detail"><a href="">查看详情</a></div>	
+									</td>
+								</tr>
+							</table>
+							<!-- <div class="left">
+								<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
+								<div class="title">{{item.title}}</div>
+								<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+							</div>
+							<div class="right">
+								<div class="price">{{item.price}}</div>
+								<div class="detail"><a href="">查看详情</a></div>	
+							</div>							 -->
+						</div>
+					</div>
+				</div>
+            </Content>
+		</Layout>
 	</div>
 </template>
 <script>
     export default {
-       data() {
-		return {
-			hidden: 'none',
-			width: 	0,
-			isCollapsed: false,
-			modal9: false,
-			modal10: false,
-				formInline: {
-					user: '',
-					password: ''
-				},
-				ruleInline: {
-					user: [
-						{ required: true, message: 'Please fill in the user name', trigger: 'blur' }
-					],
-					password: [
-						{ required: true, message: 'Please fill in the password.', trigger: 'blur' },
-						{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
-					]
-				}
-		};
-	},
+    	data() {
+			return {
+				total: [
+                    {
+                        "id": "1",
+						"time": "2018-07-07",
+                        "avator": "",
+                        "title": "医学背景健身导师，解决你所有问题!",
+						"name": "原李峰",
+                        "job": "「原来健身工作室」创始人",
+                        "price": 499
+                    },
+					{
+                        "id": "2",
+						"time": "2018-07-07",
+                        "avator": "",
+                        "title": "医学背景健身导师，解决你所有问题!",
+						"name": "原李峰",
+                        "job": "「原来健身工作室」创始人",
+                        "price": 499
+                    }
+				]
+			};
+		},
 
-	methods: {
-		switchPage(name) {			
-			if (name == ""){
-				this.modal1 = true
-			}
-			else{
-				this.$router.push(name);				
-				if (this.width <= 768 && name!="/home/index"){
-					this.hidden = this.$refs.mid.style.display
-					this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-					console.log("<=768 " + this.width) 
-			   }
-		   }
-		},
-		handleSubmit(name) {
-			this.$refs[name].validate((valid) => {
-				if (valid) {
-					this.$Message.success('Success!');
-					this.modal1 = false
-				} else {
-					this.$Message.error('Fail!');
-				}
-
-			})
-		},
-		close () {
-			this.modal1 = false
-		},
-		show () {
-			this.hidden=this.$refs.mid.style.display
-			this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-			if(this.$refs.mid.style.display==="block"){
-				console.log("mzry")
-				this.$refs.fold.style.height="270px"
-			}
-			else
-		        this.$refs.fold.style.height="0px"
-		   }
-		   
-	}	
-    }
-</script>
-<style>
-    .vertical-center-modal{
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-	} 
-	.vertical-center-modal .ivu-modal{
-            top: 0;
-    }
-	.vertical-center-modal .ivu-modal-footer{
-		display: none;
+		methods: {
+		
+    	}
 	}
+</script>
+<style scoped>
+.container {
+	/* width:1080px; */
+	margin:0 auto;
+}
+.ivu-layout.ivu-layout-has-sider>.ivu-layout, .ivu-layout.ivu-layout-has-sider>.ivu-layout-content {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.ivu-layout-sider {
+	z-index: 0;
+}
+.user {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.img {
+	width: 100px;
+}
+.main0 {
+	border: 1px solid #e8e8e8;
+	margin: 0 auto;
+	width: 800px;
+	display: none;
+
+}
+.main0 .user-content h2 {
+   	font-size: 14px;
+    padding: 10px 15px 10px 30px;
+    border-bottom: 1px solid #e8e8e8;
+    overflow: hidden;
+}
+.main0 .user-content {
+	height:250px; 
+}
+.main0 .setting-content {
+	text-align: center;
+	line-height: 250px;
+
+}
+
+.main1 .user-content {
+	border: 1px solid #e8e8e8;
+	margin: 0 auto;
+	width: 650px;
+	margin-bottom: 20px;
+}
+.main1 .setting-content  {
+	border-top: 1px solid #e8e8e8;
+}
+.time {
+	height: 30px;
+	line-height: 30px;
+	padding-left: 20px;
+}
+table {
+	width:100%;
+}
+table td:nth-child(3),td:nth-child(4) {
+	text-align: center;
+	width: 110px;
+}
+table td:nth-child(2),td:nth-child(3) {
+	border-right: 1px solid #e8e8e8;
+}
+.avatar {
+	padding-top: 10px;
+	padding-left: 20px;
+}
+.avatar img{
+	width: 80px;
+}
+.title {
+	font-size: 16px;
+	
+}
+/* .title :hover {
+	color: #23acf1;
+} */
+
+
 </style>

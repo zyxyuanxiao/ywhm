@@ -77,7 +77,7 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle"  @click="show">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
@@ -117,104 +117,16 @@
 					</div>
 				</div>
 			</div>
-			 <Modal :mask-closable="false" scrollable 
-        v-model="modal1"
-		width="560"
-        class-name="vertical-center-modal"
-		>
-		<Steps :current=current>
-			<Step title="预约"></Step>
-			<Step title="问题"></Step>
-			<Step title="付款"></Step>
-        </Steps>
-		<hr />
-		<div ref="first">
-		<p style="margin-top: 10px;">预约</p>
-		<div>
-		<div class="gd_list" @click="bg" ref="btn" v-for="item in gd">
-				<span class="m_title"> {{ item.title }} </span>
-				<span class="m_price" }}元一次<br>
-					约{{ item.duration }}小时 </p>
-				</span>
-		</div></div>
-		</div>
-		<div class="form" ref="form1" >
-		<Form ref="form" :model="form" :rules="ruleValidate" label-position="top" >
-        <FormItem label="告诉行家你要请教的问题：（20-300字）">
-            <Input v-model="form.value1" type="textarea" placeholder="Enter something..."></Input>
-        </FormItem>
-        <FormItem label="介绍自己当前的情况：（20-300字）">
-            <Input v-model="form.value2" type="textarea" :rows="4" placeholder="Enter something..."></Input>
-        </FormItem>
-		</Form>        
-        </div>
-		<hr />
-		<div class="next">
-			<div ref="next">
-				<Button type="primary" @click="nextStep()" class="next1">下一步</Button>
-			</div>
-			<div ref="submit" class="submit">
-				<Button type="primary" @click="finish()" class="sbm">提交</Button>
-			</div>
-		</div>
-    </Modal>
-	<Modal :mask-closable="false" scrollable 
-        v-model="modal2"
-		width="420"
-        class-name="vertical-center-modal"
-		>
-		<div style="text-align: center; margin-bottom: 20px;">
-			<h1 class="sub">提交成功！</h1>
-			<p> 请等待行家反馈</p>
-		</div>
-		<div style="text-align: center;">
-			<Button type="primary" @click="process">查看进度</Button>
-			<Button type="ghost" @click="cancel">取消</Button>
-		</div>
-	</Modal>
+			<orders v-if="model"></orders>
 	 </div>
 </template>
 <script>
+import orders from './order.vue'
 export default {
+	components:{orders},
 	data () {
 		return {
-			current: 0,
-			modal1: false,
-			modal2: false,
-			form: {
-				value1: '',
-				value2: '',
-			},
-			gd: [
-				{
-					id: 1,
-					title: '如何转行做投资？',
-					price: 600,
-					duration: 1
-				},
-				{
-					id: 2,
-					title: '如何通过商业计划书打动投资人？',
-					price: 500,
-					duration: 1.5
-				},
-				{
-					id: 3,
-					title: '决定PE投资成败的十大要素',
-					price: 600,
-					duration: 2
-				}
-			],
-			 ruleValidate: {
-				value1: [
-                    { required: true, message: '*请填写打算向行家请教的问题', trigger: 'blur' },
-                    { type: 'string', min: 20, message: '最少20个字哦', trigger: 'blur' }
-				],
-			   value2: [
-                    { required: true, message: '*请填写一些自己的情况', trigger: 'blur' },
-                    { type: 'string', min: 20, message: '最少20个字哦', trigger: 'blur' }
-                ]
-			 },
+			model: false,
 			total: {
 				 		"id": "1",
 						"avator": "",
@@ -248,35 +160,8 @@ export default {
 		}
 	},
 	methods: {
-		bg() {
-			// document.querySelector('div').setAttribute('style', 'background:#23acf1')
-			this.$refs.btn.style.background = "#23acf1"	
-			this.$refs.btn.style.color="#ffffff"
-		},
-		nextStep() {
-			this.$refs.first.style.display = "none"
-			this.$refs.form1.style.display = "block"
-			this.$refs.next.style.display = "none"
-			this.$refs.submit.style.display = "block"
-			if (this.current == 3) {
-                 this.current = 0;
-            } else {
-                this.current += 1;
-            }
-		},
-		finish() {
-			this.modal1 = false
-			this.modal2 = true
-		},
-		process() {
-			this.$router.push('/home/userInfo');
-			this.modal2=false
-		},
-		cancel() {
-			this.modal2=false
-		},
-		show() {
-			this.modal1=true
+		showOrder() {
+			this.model=true
 		}
 	}
 }

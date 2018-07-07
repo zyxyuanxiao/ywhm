@@ -204,6 +204,17 @@
 	a {
 		text-decoration: none;
 	}
+	.vertical-center-modal{
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+	} 
+	.vertical-center-modal .ivu-modal{
+            top: 0;
+    }
+	.vertical-center-modal .ivu-modal-footer{
+		display: none;
+	}
 	@media (max-width:768px) {
 		.gd-avator {
 		    width: 80px;
