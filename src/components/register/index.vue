@@ -29,12 +29,13 @@
         data () {
             const validateUser = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('Please enter your username'));
+                    callback(new Error('请输入用户名'));
                 } 
+                callback();
             };
             const validatePass = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('Please enter your password'));
+                    callback(new Error('请输入密码'));
                 } else {
                     if (this.formCustom.passwdCheck !== '') {
                         // 对第二个密码框单独验证
@@ -45,16 +46,16 @@
             };
             const validatePassCheck = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('Please enter your password again'));
+                    callback(new Error('请再次输入密码'));
                 } else if (value !== this.formCustom.passwd) {
-                    callback(new Error('The two input passwords do not match!'));
+                    callback(new Error('两次密码不一致'));
                 } else {
                     callback();
                 }
             };
             const validateemail = (rule, value, callback) => {
                 if (!value) {
-                    return callback(new Error('email cannot be empty'));
+                    return callback(new Error('邮箱不能为空'));
                 }
                 else {
                     if (value !== '') { 
