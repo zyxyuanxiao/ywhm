@@ -248,7 +248,7 @@ export default {
       this.$ajax({
         url: "/tutor/getAll"
       }).then(res => {
-          console.log(res);
+          
         }).catch(err => {
           console.log(err);
         })

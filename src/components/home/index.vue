@@ -131,123 +131,130 @@
 </template>
 <script>
 export default {
-	data() {
-		return {
-			hidden: 'none',
-			width: 	0,
-			isCollapsed: false,
-			modal1: false,
-				formInline: {
-					user: '',
-					password: ''
-				},
-				ruleInline: {
-					user: [
-						{ required: true, message: 'Please fill in the user name', trigger: 'blur' }
-					],
-					password: [
-						{ required: true, message: 'Please fill in the password.', trigger: 'blur' },
-						{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
-					]
-				}
-		};
-	},
-
-	methods: {
-		switchPage(name) {			
-			if (name == ""){
-				this.modal1 = true
-			}
-			else{
-				this.$router.push(name);				
-				if (this.width <= 768 && name!="/home/index"){
-					this.hidden = this.$refs.mid.style.display
-					this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-					console.log("<=768 " + this.width) 
-			   }
-		   }
-		},
-		handleSubmit(name) {
-			this.$refs[name].validate((valid) => {
-				if (valid) {
-					this.$Message.success('Success!');
-					this.modal1 = false
-				} else {
-					this.$Message.error('Fail!');
-				}
-
-			})
-		},
-		close () {
-			this.modal1 = false
-		},
-		show () {
-			this.hidden=this.$refs.mid.style.display
-			this.$refs.mid.style.display = this.hidden=="none"?"block":"none"
-			if(this.$refs.mid.style.display==="block"){
-				console.log("mzry")
-				this.$refs.fold.style.height="270px"
-			}
-			else
-		        this.$refs.fold.style.height="0px"
-		   }
-		   
-	}		
+  data() {
+    return {
+	  login: false,
+      hidden: "none",
+	  width: 0,
+      isCollapsed: false,
+      modal1: false,
+      formInline: {
+        user: "",
+        password: ""
+      },
+      ruleInline: {
+        user: [
+          {
+            required: true,
+            message: "Please fill in the user name",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: "Please fill in the password.",
+            trigger: "blur"
+          },
+          {
+            type: "string",
+            min: 6,
+            message: "The password length cannot be less than 6 bits",
+            trigger: "blur"
+          }
+        ]
+      }
+	}
+  },
+  methods: {
+    switchPage(name) {
+      if (name == "") {
+        this.modal1 = true;
+      } else {
+        this.$router.push(name);
+        if (this.width <= 768 && name != "/home/index") {
+          this.hidden = this.$refs.mid.style.display;
+          this.$refs.mid.style.display =
+            this.hidden == "none" ? "block" : "none";
+        }
+      }
+    },
+    handleSubmit(name) {
+      this.$refs[name].validate(valid => {
+        if (valid) {
+          this.$Message.success("Success!");
+          this.modal1 = false;
+        } else {
+          this.$Message.error("Fail!");
+        }
+      });
+    },
+    close() {
+      this.modal1 = false;
+    },
+    show() {
+      this.hidden = this.$refs.mid.style.display;
+      this.$refs.mid.style.display = this.hidden == "none" ? "block" : "none";
+      if (this.$refs.mid.style.display === "block") {
+        this.$refs.fold.style.height = "270px";
+      } else this.$refs.fold.style.height = "0px";
+    }
+  }
 };
 </script>
-<style scoped>	
+<style scoped>
 .contents {
-	margin: 63px 0 0 0;
+  margin: 63px 0 0 0;
 }
 .hidden {
-	height: 26px;
-	width: 26px;
-	margin: auto;
-	position: absolute;
-	top: 18px;
-	display: none;
+  height: 26px;
+  width: 26px;
+  margin: auto;
+  position: absolute;
+  top: 18px;
+  display: none;
 }
 .layout {
-	border: 1px solid #d7dde4;
-	background: #f5f7f9;
-	position: relative;
-	border-radius: 4px;
-	overflow: hidden;
-	margin-left: -1px;
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: -1px;
 }
 .top {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
-	padding:0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
 }
 .logo {
-	height: 30px;
-	width: 100px;
-	margin-top:15px;
+  height: 30px;
+  width: 100px;
+  margin-top: 15px;
 }
 .ivu-menu-horizontal {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover {
-	color: #23acf1;
+  color: #23acf1;
 }
 .footer {
-	width: 100%;
-	height: 400px;
-	margin: 0px;
-	padding-top: 60px ;
-	padding-bottom: 60px ;
-	background-color: #495060;
-	color: #fff;
+  width: 100%;
+  height: 400px;
+  margin: 0px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #495060;
+  color: #fff;
 }
 .foot {
-	margin: 0 auto;
-	max-width: 850px;
-	display: flex;
-	justify-content: space-around;
+  margin: 0 auto;
+  max-width: 850px;
+  display: flex;
+  justify-content: space-around;
 }
 .erweima {
   width: 72px;
@@ -264,13 +271,13 @@ export default {
   float: left;
   margin-right: 10px;
 }
-.left{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .left div {
-	display: none;
+  display: none;
 }
 .erweima img {
   width: 60px;
@@ -278,202 +285,204 @@ export default {
   padding: 6px;
   border-radius: 6px;
 }
-.footer_logo{
-	width: 150px;
-	margin-left: -10px;
+.footer_logo {
+  width: 150px;
+  margin-left: -10px;
 }
 .addr {
-	clear: both;
-	padding-top: 48px;
+  clear: both;
+  padding-top: 48px;
 }
 .right {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 .phone {
-	 font-size: 30px;
-	 height: 50px;
-     padding-top: 8px;
+  font-size: 30px;
+  height: 50px;
+  padding-top: 8px;
 }
 p {
-	font-size:12px;
-	margin-bottom: 10px;
-	color: #bfbfbf;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #bfbfbf;
 }
 .foot_list {
-	margin-top:20px;
-	margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .foot_list li {
-	 height: 32px;
+  height: 32px;
 }
 a {
-	color: #999;
+  color: #999;
 }
 a:hover {
-	color: #fff;
+  color: #fff;
 }
 div.top.ivu-layout-header {
-	z-index: 1;
+  z-index: 1;
 }
 .dialog {
-	margin: 30px auto 21px;
-	width: 290px;
+  margin: 30px auto 21px;
+  width: 290px;
 }
 h3 {
-	margin-bottom: 20px;
-	font-size: 28px;
-	font-weight: 400;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 400;
 }
-.ivu-btn{
-	width: 100%;
+.ivu-btn {
+  width: 100%;
 }
 .register {
-	color: #23acf1;
+  color: #23acf1;
 }
 .register:hover {
-	color: #23acf1;
+  color: #23acf1;
 }
 .sm {
-	display: none;
+  display: none;
 }
 .ivu-modal-footer {
-	visibility: hidden !important;
+  visibility: hidden !important;
 }
-.vertical-center-modal{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} 
-.vertical-center-modal .ivu-modal{
-    top: 0;
- }
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-center-modal .ivu-modal {
+  top: 0;
+}
 @media (max-width: 768px) {
-	.logo {
-		width:90px;
-		height:27px;
-	}
-	.ivu-layout-header {
-		padding: 0px;
-	}
-	.md {
-		display: none;
-	}
-	.sm {
-		display: block
-	}
-	.ivu-menu-horizontal {
-		display: block;
-	}
-	.top {
-		height: 48px;
-	}
-	.foot_list {
-		margin: 0;
-	}
-	.top_middle {
-		display: none;
-		position: absolute;
-		width: 100%;
-		top: 60px;
-	}
+  .logo {
+    width: 90px;
+    height: 27px;
+  }
+  .ivu-layout-header {
+    padding: 0px;
+  }
+  .md {
+    display: none;
+  }
+  .sm {
+    display: block;
+  }
+  .ivu-menu-horizontal {
+    display: block;
+  }
+  .top {
+    height: 48px;
+  }
+  .foot_list {
+    margin: 0;
+  }
+  .top_middle {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 60px;
+  }
 
-	.top_middle div{		
-		width: 100%;
-		display: flex;
-		text-align: center;
-		flex-direction: column;
-		background-color: #495060;
-	}	
-	.ivu-modal-footer {
-		display: none !important;
-	}
-	.top_middle .ivu-menu-item {
-		border-top: 1px solid #3c3c3c;
-		height: 54px;
-		line-height: 26px;
-		padding: 15px;
-		text-align: center;
-	}
-	.top_right {
-		position: absolute;
-		right: 30px;
-		top: 0px;
-		margin-right: 15px;
-	}
-	.login {
-		position: absolute;
-	}
-	.hidden {
-		display: block;
-		position: absolute;
-		right: 15px;
-	}
-	.ivu-modal-content {
-		width: 420px !important;
-	}
-	.footer {
-		padding: 20px ;
-		text-align: center;	
-		color: #fff;	
-	}
-	.foot {
-		flex-direction: column;
-		align-content: center;
-		justify-content: center;
-	}
-	.ma {
-		display: none;
-	}
-	.left {
-		width: 100%;
-		text-align: center;
-		height: auto;
-	}	
-	.left div {
-		display: block;
-	}
-	.left ul {
-		display: flex;
-		align-content: center;
-		justify-content: center;
-		font-size: #fff;
-		margin-top:30px;
-	}
-	.left li {
-        margin: 0 10px;
-	}
-	.phone {
-		font-size: 24px;
-		padding: 0;
-		height: 34px;
-		margin-top: 8px;
-	}
+  .top_middle div {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: #495060;
+  }
+  .ivu-modal-footer {
+    display: none !important;
+  }
+  .top_middle .ivu-menu-item {
+    border-top: 1px solid #3c3c3c;
+    height: 54px;
+    line-height: 26px;
+    padding: 15px;
+    text-align: center;
+  }
+  .top_right {
+    position: absolute;
+    right: 30px;
+    top: 0px;
+    margin-right: 15px;
+  }
+  .login {
+    position: absolute;
+  }
+  .hidden {
+    display: block;
+    position: absolute;
+    right: 15px;
+  }
+  .ivu-modal-content {
+    width: 420px !important;
+  }
+  .footer {
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  .foot {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  .ma {
+    display: none;
+  }
+  .left {
+    width: 100%;
+    text-align: center;
+    height: auto;
+  }
+  .left div {
+    display: block;
+  }
+  .left ul {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: #fff;
+    margin-top: 30px;
+  }
+  .left li {
+    margin: 0 10px;
+  }
+  .phone {
+    font-size: 24px;
+    padding: 0;
+    height: 34px;
+    margin-top: 8px;
+  }
 
-	.right div {
-		display: none;
-	}
-	a,.copyright,.addr {
-		color: #fff;
-	}
-	.copyright{
-		order: 2;
-	}
-	.addr {
-		padding-top: 6px;
-	}
-	.footer_logo {
-		width: 120px;
-	}
-	.contents {
-		margin: 58px 0 0 0;
-	}
-	.foot_logo {
-		border-bottom: 1px solid rgba(255,255,255,.5);
-		font-size: 0;
-		line-height: 32px;
-		overflow: hidden;
-		height: 50px;
-	}
+  .right div {
+    display: none;
+  }
+  a,
+  .copyright,
+  .addr {
+    color: #fff;
+  }
+  .copyright {
+    order: 2;
+  }
+  .addr {
+    padding-top: 6px;
+  }
+  .footer_logo {
+    width: 120px;
+  }
+  .contents {
+    margin: 58px 0 0 0;
+  }
+  .foot_logo {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 0;
+    line-height: 32px;
+    overflow: hidden;
+    height: 50px;
+  }
 }
 </style>
