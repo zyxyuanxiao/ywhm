@@ -76,7 +76,7 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
@@ -116,12 +116,16 @@
 					</div>
 				</div>
 			</div>
+			<orders v-if="model"></orders>
 	 </div>
 </template>
 <script>
+import orders from './order.vue'
 export default {
+	components:{orders},
 	data () {
 		return {
+			model: false,
 			total: {
 				 		"id": "1",
 						"avator": "",
@@ -152,6 +156,11 @@ export default {
 						"respond": 3,
 						"wish_num": 1321
 			}
+		}
+	},
+	methods: {
+		showOrder() {
+			this.model=true
 		}
 	}
 }
