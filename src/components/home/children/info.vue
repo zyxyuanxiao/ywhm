@@ -101,360 +101,383 @@
     </div>
 </template>
 <script>
-    import rdSwipe from './vue-slide.vue'
-    import banner1 from '../../../assets/img/banner1.png'
-    import banner2 from '../../../assets/img/banner2.png'
-    import banner3 from '../../../assets/img/banner3.png'
-	export default {
-        data() {
-            return {
-                total: [
-                    {
-                        "id": "1",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "2",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "3",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "4",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "5",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "6",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "7",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "8",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "9",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "10",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "11",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    },
-                    {
-                        "id": "12",
-                        img: require('../../../assets/img/teacher1.jpg'),
-                        "sub_num": 253,
-                        "name": "孙波",
-                        "job":"奇虎360科技有限公司销售总监",
-                        "slogan": "智能硬件与可穿戴设备",
-                        "major":"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-                    }
-                ],
-                swipe: {
-                    activeIndex: 0
-                },
-                imgs: [
-                    banner1,
-                    banner2,
-                    banner3
-                ]
-            }
+import rdSwipe from "./vue-slide.vue";
+import banner1 from "../../../assets/img/banner1.png";
+import banner2 from "../../../assets/img/banner2.png";
+import banner3 from "../../../assets/img/banner3.png";
+export default {
+  data() {
+    return {
+      total: [
+        {
+          id: "1",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
         },
-        components: {
-            rdSwipe
+        {
+          id: "2",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
         },
-        methods: {
-            goDetail(id) {
-                this.$router.push("/home/detail?id="+id)
-            },
-            turnTo (index) {
-                this.$children.map(swipe => {
-                    if (swipe.turnTo) {
-                        swipe.turnTo(index)
-                    }
-                })
-            }
+        {
+          id: "3",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "4",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "5",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "6",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "7",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "8",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "9",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "10",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "11",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        {
+          id: "12",
+          img: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监",
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
         }
+      ],
+      swipe: {
+        activeIndex: 0
+      },
+      imgs: [banner1, banner2, banner3]
+    };
+  },
+  components: {
+    rdSwipe
+  },
+  mounted() {
+      //获取专家列表
+      this.getAll()
+  },
+  methods: {
+    getAll() {
+      this.$ajax({
+        url: "/tutor/getAll"
+      }).then(res => {
+          console.log(res);
+        }).catch(err => {
+          console.log(err);
+        })
+    },
+    goDetail(id) {
+      this.$router.push("/home/detail?id=" + id);
+    },
+    turnTo(index) {
+      this.$children.map(swipe => {
+        if (swipe.turnTo) {
+          swipe.turnTo(index);
+        }
+      });
     }
+  }
+};
 </script>
 <style scoped>
 .banner {
-	width: 100%;
-	height: 500px;
-	background: url("../../../assets/img/index.png") no-repeat;
-	background-size: cover;
-	color: #fff;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    overflow: hidden;
-    background-position: center;
+  width: 100%;
+  height: 500px;
+  background: url("../../../assets/img/index.png") no-repeat;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background-position: center;
 }
 .big {
-    font-family: "Microsoft YaHei";
-	font-size: 56px;
-	font-weight: 900;
-	text-shadow: 0 0 28px rgba(0,0,0,.64);
+  font-family: "Microsoft YaHei";
+  font-size: 56px;
+  font-weight: 900;
+  text-shadow: 0 0 28px rgba(0, 0, 0, 0.64);
 }
 .banner .big:nth-child(1) {
-	margin-top: 100px;
+  margin-top: 100px;
 }
 .small {
-    font-family: "Microsoft YaHei";
-	font-size: 20px;
-	font-weight: 400;
-	padding: 3px 5px;
-	margin-top: 50px;
-	border: 1px solid #fff;
-	border-radius: 5px;
-	/* text-shadow: 0 0 28px rgba(0,0,0, 0.1); */
-    text-shadow: 0 0 28px rgba(1,1,1,20);
+  font-family: "Microsoft YaHei";
+  font-size: 20px;
+  font-weight: 400;
+  padding: 3px 5px;
+  margin-top: 50px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  /* text-shadow: 0 0 28px rgba(0,0,0, 0.1); */
+  text-shadow: 0 0 28px rgba(1, 1, 1, 20);
 }
 .feat {
-	padding: 35px 0;
-	display: flex;
-	justify-content: center;
+  padding: 35px 0;
+  display: flex;
+  justify-content: center;
 }
 .li {
-	margin: 0 30px;
-	display: flex;
-	align-items: center;
+  margin: 0 30px;
+  display: flex;
+  align-items: center;
 }
 .icon {
-	width: 50px;
-	height: 50px;
-	margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
 }
 .desc div:nth-child(1) {
-	font-family: "Microsoft YaHei";
-	font-size: 20px;
-	color: #7b7b7b;
+  font-family: "Microsoft YaHei";
+  font-size: 20px;
+  color: #7b7b7b;
 }
 .desc div:nth-child(2) {
-	font-size: 14px;
-	color: #939393;
-	padding-top: 4px;
+  font-size: 14px;
+  color: #939393;
+  padding-top: 4px;
 }
 .download {
-    width: 180px;
-	font-size: 14px;
-	height: 40px;
-	line-height: 40px;
-    margin-top: 40px;
-    border: 1px solid rgba(255,255,255,.6);
-    background-color: rgba(255,255,255,.1);
-    /* box-shadow: 0 0 6px rgba(0,0,0,.14); */
-    box-shadow: 0 0 6px rgba(1,1,1,.14);
-    color: #fff;
-    /* text-shadow: 0 0 24px rgba(0,0,0,.64); */
-    text-shadow: 0 0 28px rgba(1,1,1, 20);
-	text-align: center;
+  width: 180px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.1);
+  /* box-shadow: 0 0 6px rgba(0,0,0,.14); */
+  box-shadow: 0 0 6px rgba(1, 1, 1, 0.14);
+  color: #fff;
+  /* text-shadow: 0 0 24px rgba(0,0,0,.64); */
+  text-shadow: 0 0 28px rgba(1, 1, 1, 20);
+  text-align: center;
 }
 .download:hover {
-	background-color: rgba(255,255,255,.3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .list {
-    display: flex;
-	flex-wrap: wrap;
-	align-content: space-around;
-	justify-content: space-around;
-    margin: 0 auto;
-    width: 980px;
-	height: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 980px;
+  height: 1000px;
 }
-.teacher { 
-	/* background: url("../../../assets/img/teacher1.jpg") no-repeat; */
-    width: 230px;
-    height: 320px;
-	background-size: cover;
-    border-radius: 10px;
-    overflow: hidden;
-	position: relative;
+.teacher {
+  /* background: url("../../../assets/img/teacher1.jpg") no-repeat; */
+  width: 230px;
+  height: 320px;
+  background-size: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
 .teacher-img {
-    width: 230px;
+  width: 230px;
 }
 .teacher-view {
-    width: 100px;
-    height: 30px;
-    border-radius: 15px;
-    background: #23acf1;
-	position: absolute;
-	right: -20px;
-	top: 10px;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  background: #23acf1;
+  position: absolute;
+  right: -20px;
+  top: 10px;
 }
-.teacher-view>p {
-	color: #fff;
-	margin-top: 6px;
-	margin-left: 18px;
+.teacher-view > p {
+  color: #fff;
+  margin-top: 6px;
+  margin-left: 18px;
 }
 .teacher-tutor {
-	color: #fff;
-	font-size: 24px;
-	position:absolute;
-	left: 20px;
-	bottom: 80px;
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  left: 20px;
+  bottom: 80px;
 }
 .teacher-job {
-	color: #23acf1;
-	font-size: 12px;
-	position:absolute;
-	left: 20px;
-	bottom: 65px;
+  color: #23acf1;
+  font-size: 12px;
+  position: absolute;
+  left: 20px;
+  bottom: 65px;
 }
 .teacher-intro {
-	color: #fff;
-	font-size: 14px;
-	position:absolute;
-	left: 20px;
-	bottom: 34px;
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  left: 20px;
+  bottom: 34px;
 }
 .teacher:before {
-    content: "";
-    width: 0;
-    height: 100%;
-    background: #000;
-    padding: 14px 18px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    opacity: 0;
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+  content: "";
+  width: 0;
+  height: 100%;
+  background: #000;
+  padding: 14px 18px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  opacity: 0;
+  transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
 }
 .teacher:hover:before {
-    width: 100%;
-    left: 0;
-    opacity: 0.5;
+  width: 100%;
+  left: 0;
+  opacity: 0.5;
+  cursor: pointer;
 }
 .teacher .teacher-info {
-    font-size: 15px;
-    text-transform: capitalize;
-    opacity: 0;
-    transition: all 0.5s ease 0s;
+  font-size: 15px;
+  text-transform: capitalize;
+  opacity: 0;
+  transition: all 0.5s ease 0s;
 }
 .teacher:hover .teacher-info {
-    opacity: 1;
-    transition-delay: 0.2s;
+  opacity: 1;
+  transition-delay: 0.2s;
 }
 .teacher .teacher-info {
-    width: 100%;
-    padding: 14px 18px;
-    color: #fff;
-    position: absolute;
-    top: 38%;
-    left: 0;
+  width: 100%;
+  padding: 14px 18px;
+  color: #fff;
+  position: absolute;
+  top: 38%;
+  left: 0;
 }
-.teacher:hover .teacher-intro, .teacher:hover .teacher-tutor, .teacher:hover .teacher-job {
-    opacity: 0;
+.teacher:hover .teacher-intro,
+.teacher:hover .teacher-tutor,
+.teacher:hover .teacher-job {
+  opacity: 0;
 }
 .button {
-	width: 180px;
-	margin:0 auto;
-	padding-top: 40px;
+  width: 180px;
+  margin: 0 auto;
+  padding-top: 40px;
 }
 .btn {
-	border: 1px solid #dbdbdb;
-	border-radius: 25px;
-	width: 180px;
-	height: 50px;
-	background: #fff;
-	color: #939393;
-	font-size: 14px;
-	
+  border: 1px solid #dbdbdb;
+  border-radius: 25px;
+  width: 180px;
+  height: 50px;
+  background: #fff;
+  color: #939393;
+  font-size: 14px;
 }
 .down {
-	margin: 0 auto;
-	padding-top: 40px;
-	/* width: 980px; */
-    width: 100%;
-	text-align: center;
+  margin: 0 auto;
+  padding-top: 40px;
+  /* width: 980px; */
+  width: 100%;
+  text-align: center;
 }
-.down>p {
-	font-size: 32px;
-	padding-top: 50px;
-	padding-bottom: 40px;
+.down > p {
+  font-size: 32px;
+  padding-top: 50px;
+  padding-bottom: 40px;
 }
 .btn:hover {
-    border: 1px solid #23acf1;
-    color: #23acf1;
+  border: 1px solid #23acf1;
+  color: #23acf1;
 }
 .btn:active {
-    background: #23acf1;
-    color: #fff;
+  background: #23acf1;
+  color: #fff;
 }
 button {
-    outline: none;
+  outline: none;
 }
 .swiper-box {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 /* .story {
     width: 100%;
@@ -522,124 +545,124 @@ button {
 	font-weight: 100;
 	text-shadow: 0 0 14px rgba(0,0,0,10);
 } */
-.top{
-    padding: 10px;
-    background: rgba(35, 172, 241, .6);
-    color: #fff;
-    text-align: center;
-    border-radius: 50px;
-    margin-right: -10px;
-    width: 55px;
-    height: 45px;
+.top {
+  padding: 10px;
+  background: rgba(35, 172, 241, 0.6);
+  color: #fff;
+  text-align: center;
+  border-radius: 50px;
+  margin-right: -10px;
+  width: 55px;
+  height: 45px;
 }
 .top img {
-    width: 35px;
-    margin-top: -5px;
+  width: 35px;
+  margin-top: -5px;
 }
 .top:hover {
-    background: rgba(35, 172, 241, .9);
+  background: rgba(35, 172, 241, 0.9);
 }
 
- @media (max-width: 768px) {
-	.banner{
-		height: 200px;
-	}
-	.big {
-		line-height: 35px;
-		font-size: 30px;
-	}
-	.banner .big:nth-child(1) {
-		margin-top: 40px;
-	}
-	.small {
-		margin-top:20px;
-		font-size: 14px;
-	}
-    .download {
-        display: none;
-    }
-    .icon {
-		width: 35px;
-		height: 35px;
-	}
-    .desc div:nth-child(1){
-		display: inline-block;
-		height: 30px;
-		font-size: 12px;
-	}
-	.desc div:nth-child(2){
-		display: none;
-	}
-    .rd-swipe {
-        width: 100%;
-        height: 250px;
-        margin: 0 auto;
-        position: relative;
-        overflow: hidden;
-        z-index: 0;
-    }
- }
+@media (max-width: 768px) {
+  .banner {
+    height: 200px;
+  }
+  .big {
+    line-height: 35px;
+    font-size: 30px;
+  }
+  .banner .big:nth-child(1) {
+    margin-top: 40px;
+  }
+  .small {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .download {
+    display: none;
+  }
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+  .desc div:nth-child(1) {
+    display: inline-block;
+    height: 30px;
+    font-size: 12px;
+  }
+  .desc div:nth-child(2) {
+    display: none;
+  }
+  .rd-swipe {
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+}
 
 @media (max-width: 992px) {
-    .list {
-        width: 100%;
-        height: auto !important;
-    }
-    .teacher {
-        margin-bottom: 10px;
-    }
-    .down img {
-        width: 95%;
-    }
-    .down>p {
-        font-size: 20px;
-        padding-top: 15px;
-	    padding-bottom: 20px;
-    }
-    .top {
-        width: 30px;
-        height: 25px;
-        text-align: center;
-        margin-right: -25px !important;
-    }
-    .top img {
-        width: 18px;
-        margin-top: -6px;
-        margin-left: -3px;
-    }  
+  .list {
+    width: 100%;
+    height: auto !important;
+  }
+  .teacher {
+    margin-bottom: 10px;
+  }
+  .down img {
+    width: 95%;
+  }
+  .down > p {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+  .top {
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    margin-right: -25px !important;
+  }
+  .top img {
+    width: 18px;
+    margin-top: -6px;
+    margin-left: -3px;
+  }
 }
 @media (max-width: 500px) {
-    .teacher {
-        width: 47%;
-    }
+  .teacher {
+    width: 47%;
+  }
 }
 @media (max-width: 414px) {
-    .teacher {
-        height: 260px;
-    }
-    .teacher-tutor {
-        bottom:95px;
-    }
-    .teacher-job {
-        line-height: 14px;
-    }
-    .teacher-img {
-        margin-left: -12px;
-    }
+  .teacher {
+    height: 260px;
+  }
+  .teacher-tutor {
+    bottom: 95px;
+  }
+  .teacher-job {
+    line-height: 14px;
+  }
+  .teacher-img {
+    margin-left: -12px;
+  }
 }
 @media (max-width: 400px) {
-    .teacher {
-        height: 250px;
-    }
-    .teacher-intro {
-        bottom: 26px;
-    }
-    .teacher-tutor {
-        bottom:80px;
-    }
-    .teacher-job {
-        line-height: 14px;
-        bottom: 52px;
-    }
+  .teacher {
+    height: 250px;
+  }
+  .teacher-intro {
+    bottom: 26px;
+  }
+  .teacher-tutor {
+    bottom: 80px;
+  }
+  .teacher-job {
+    line-height: 14px;
+    bottom: 52px;
+  }
 }
 </style>

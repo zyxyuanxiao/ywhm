@@ -55,6 +55,7 @@
 								<div class="topic-info">
 									<span class="meet-time">约{{total.respond}}小时</span>
 									<span class="meet-num">{{total.sub_num}}人约过</span>
+								
 								</div>
 							</div>
 						</li>
@@ -76,7 +77,7 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
@@ -116,12 +117,16 @@
 					</div>
 				</div>
 			</div>
+			<orders v-if="model"></orders>
 	 </div>
 </template>
 <script>
+import orders from './order.vue'
 export default {
+	components:{orders},
 	data () {
 		return {
+			model: false,
 			total: {
 				 		"id": "1",
 						"avator": "",
@@ -152,6 +157,11 @@ export default {
 						"respond": 3,
 						"wish_num": 1321
 			}
+		}
+	},
+	methods: {
+		showOrder() {
+			this.model=true
 		}
 	}
 }
@@ -405,6 +415,96 @@ export default {
     }
 	.vertical-center-modal .ivu-modal-footer{
 		display: none;
+	}
+	.ivu-form .ivu-form-item-label,p {
+		font-size: 14px;
+	}
+    .vertical-center-modal{
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+	} 
+	.vertical-center-modal .ivu-modal{
+        top: 0;
+    }
+	.vertical-center-modal .ivu-modal-footer{
+		display: none;
+	}
+	.ivu-modal-body:first-child {
+		width: 500px;
+		margin: auto;
+	}
+	.gd_list {
+		width: 100%;
+		font-size: 14px;
+   		margin-bottom: 20px;
+		height: 40px;
+		border: 1px solid rgb(52, 52, 52);
+		border-radius: 20px; 
+		cursor: pointer;
+		line-height: 40px;
+		display: block;
+		margin-top: 10px;
+		padding: 0 20px;
+		text-align: left;
+	}	
+	.gd_list:first-child {
+		background-color: #23acf1;
+		color:#fff;
+		border-color: #23acf1;
+	}
+	.gd_list:visited {
+		background-color: #23acf1;
+		color:#fff;
+		border-color: #23acf1;
+	}
+	.gd_list:hover {
+		/* background-color: #6ed5d7; */
+		border: 1px solid #23acf1;
+    	color: #343434;
+	}
+	.m_title {
+		float: left;
+	}
+	.ivu-steps {
+		height: 40px;
+		margin-top: 20px;
+	}
+	.m_price {
+		float: right;
+		font-size: 12px;
+		line-height: 1.4;
+		margin-top: 3px;
+		text-align: right;
+	}
+	.ivu-btn-primary:last-child,.sbm{
+		padding: 10px;
+		width: 140px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+	}
+	.sub,.next1 {
+		margin: 0px 6px;
+	}
+	.next {
+		text-align: right;
+   		width: 100%;
+		margin-top: 10px;
+	}
+	.sub {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 32px;
+		color: rgb(52,52,52);
+		font-weight: 500;
+	}
+	.form {
+		margin-top:20px;
+		display: none;
+	}
+	.submit{
+		 display: none;
 	}
 	@media (max-width: 768px) {
 		.cover {
