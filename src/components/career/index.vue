@@ -5,7 +5,7 @@
             <div v-for="item in tags" class="tag" @click="changeTag(item)">{{item}}</div>
         </div>
         <div class="page-content">
-            <div class="gd" v-for="item in total" @click="goDetail(item.id)" >
+            <div class="gd" v-for="item in filter" @click="goDetail(item.id)" >
                 <div class="gd-avator">{{item.avator}}</div>
                 <div class="gd-info" >
                     <div class="info-top">
@@ -100,13 +100,11 @@ export default {
           small_type: "职业规划"
         }
       ],
-      market: [],
-      human: [],
-      sale: [],
-      financial: []
+      filter: this.total,
     };
   },
   mounted () {
+      this.filter=this.total
       this.getList()
   },
   methods: {
@@ -122,7 +120,16 @@ export default {
           console.log(err);
         })
     },
-    changeTag() {},
+    changeTag(small_type) {
+				var total=this.total
+				if(small_type=="全部")
+				this.filter=total
+				else{
+				this.filter = total.filter(function(item,index,array){
+					return (item.small_type==small_type);
+				});
+				}
+			},
     goDetail(id) {
       this.$router.push("/home/detail?id=" + id);
     }

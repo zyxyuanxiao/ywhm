@@ -5,7 +5,7 @@
 			<div v-for="item in tags" class="tag" @click="changeTag(item)">{{item}}</div>
 		</div>
 		<div class="page-content">
-			<div class="gd" v-for="item in total" @click="goDetail(item.id)" >
+			<div class="gd" v-for="item in filter" @click="goDetail(item.id)" >
 				<div class="gd-avator">{{item.avator}}</div>
 				<div class="gd-info" >
 					<div class="info-top">
@@ -13,13 +13,13 @@
 							<span class="tutor-title">{{item.title}}</span>
 							<span class="score">{{item.score}}
 							<span class="unit">分</span>
-							 <Icon type="information-circled" size="16" title="话题转有行系统算法综合学员的匿名评分以及多级因素得出，每增加三个评分，更新一次" color="#b3b3b3"></Icon></span>
+							<Icon type="information-circled" size="16" title="话题转有行系统算法综合学员的匿名评分以及多级因素得出，每增加三个评分，更新一次" color="#b3b3b3"></Icon></span>
 						</div>
 							<div class="price">{{item.price}} <span>元/次</span></div>
 					</div>
 					<div class="info-mid">
 						<div class="info-tutor">{{item.name}}</div>
-						<div class="info-intro">{{item.intro}}</div> 
+						<div class="info-major">{{item.major}}</div> 
 					</div>
 					<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 				</div>
@@ -39,7 +39,7 @@
 						"title": "用思维导图管理生活、工作和项目市场",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "市场"
@@ -50,7 +50,7 @@
 						"title": "用思维导图管理生活、工作和项目人力",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "人力"
@@ -61,7 +61,7 @@
 						"title": "用思维导图管理生活、工作和项目销售",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "销售"
@@ -72,7 +72,7 @@
 						"title": "用思维导图管理生活、工作和项目金融",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "金融"
@@ -83,7 +83,7 @@
 						"title": "用思维导图管理生活、工作和项目销售",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "销售"
@@ -94,26 +94,34 @@
 						"title": "用思维导图管理生活、工作和项目金融",
 						"score": 9.8,
 						"name": "高雁鹏",
-						"intro": "项目管理&思维导图讲师，小能熊布道师",
+						"major": "项目管理&思维导图讲师，小能熊布道师",
 						"sub_num": 112,
 						"price": 798,
 						"small_type": "金融"
 					}
 				],
-				market: [],
-				human: [],
-				sale: [],
-				financial: []
+				filter: this.total,
 			}
 		},
-		methods: {
-		changeTag() {
-			
+		mounted:function() {
+			this.filter=this.total
 		},
-		goDetail(id) {
-			this.$router.push("/home/detail?id="+id)
+		methods: {
+			changeTag(small_type) {
+				console.log(this.filter)
+				var total=this.total
+				if(small_type=="全部")
+				this.filter=total
+				else{
+				this.filter = total.filter(function(item,index,array){
+					return (item.small_type==small_type);
+				});
+				}
+			},
+			goDetail(id) {
+				this.$router.push("/home/detail?id="+id)
+			}
 		}
-	}
 	}
 </script>
 <style>
