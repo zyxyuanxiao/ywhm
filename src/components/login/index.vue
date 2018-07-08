@@ -52,9 +52,8 @@ export default {
         if(cur == true){//当父组件传递值为true是，则显示
            this.modal1 = true;
         }
-      },
-    }
-    ,
+      }
+    },
 	methods: {
 		handleSubmit(name) {
 			this.$refs[name].validate((valid) => {

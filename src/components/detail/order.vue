@@ -68,8 +68,7 @@
 			modal1: this.message,
 			modal2: false,
 			formValidate: false,
-			value1: '',
-			value2: '',
+			// first: true,
 			form: {
 				value1: '',
 				value2: '',
@@ -106,13 +105,13 @@
 			 }
 		};
 	},
-	watch:{
+	 watch:{
       message(cur){//监听invitor值的变化
         if(cur == true){//当父组件传递值为true是，则显示
            this.modal1 = true;
         }
-	  }
-	},
+      }
+    },
 	methods: {
 		handleSubmit(name) {
 			this.$refs[name].validate((valid) => {
@@ -130,11 +129,27 @@
 			this.$refs.btn.style.color="#ffffff"
 		},
 		nextStep() {
-			this.$refs.first.style.display = "none"
-			this.$refs.form1.style.display = "block"
-			this.$refs.next.style.display = "none"
-			this.$refs.submit.style.display = "block"
-			this.$emit('changingType','false');
+			if (this.modal==true) {
+				this.$refs.form1.style.display = "block"
+				this.$refs.submit.style.display = "block"
+				this.$refs.first.style.display = "none"
+				this.$refs.next.style.display = "none"
+				this.$emit('changingType','false');
+				// this.first=false
+			}
+			else {
+				this.$refs.form1.style.display = "none"
+				this.$refs.submit.style.display = "none"
+				this.$refs.first.style.display = "block"
+				this.$refs.next.style.display = "block"
+				// this.$emit('changingType','false');
+			}
+			// this.$refs.first.style.display = this.first == "none" ? "none" : "block";
+			// this.$refs.form1.style.display =  this.first == "none" ? "block" : "none";
+			// this.$refs.next.style.display =  this.first == "none" ? "none" : "block";
+			// this.$refs.submit.style.display = this.first == "none" ? "block" : "none";
+			// if(this.$refs.first.style.display=="block")
+			// 	this.$emit('changingType','false');
 			if (this.current == 3) {
                  this.current = 0;
             } else {
@@ -143,7 +158,7 @@
 		},
 		finish() {
 			this.modal1 = false
-			this.$emit('changingType','false');
+			// this.$emit('changingType','false');
 			this.modal2 = true
 		},
 		process() {

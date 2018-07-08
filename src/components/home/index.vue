@@ -65,10 +65,7 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
-<<<<<<< HEAD
 				<login :message="modal1" @changingType="showlDialog" ></login>
-=======
->>>>>>> 82fbc7f43ba3c1290b98a552cf7c0f3884cf60a3
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -116,14 +113,9 @@ export default {
   components:{login},
   data() {
     return {
-<<<<<<< HEAD
       login: false,
       hidden: "none",
       width: 0,
-=======
-      hidden: "none",
-	    width: 0,
->>>>>>> 82fbc7f43ba3c1290b98a552cf7c0f3884cf60a3
       isCollapsed: false,
       modal1: false,
 	}

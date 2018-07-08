@@ -110,125 +110,19 @@ export default {
     return {
       total: [
         {
-          id: "1",
+          id: "1", 
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监", 
+          major:"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』",
           avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
+          wish_num: 20,
+          respond: 2,
           slogan: "智能硬件与可穿戴设备",
           major:
             "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
         },
-        {
-          id: "2",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "3",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "4",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "5",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "6",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "7",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "8",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "9",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "10",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "11",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "12",
-         avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        }
+        
       ],
       swipe: {
         activeIndex: 0
@@ -248,13 +142,13 @@ export default {
       this.$ajax({
         url: "/tutor/getAll"
       }).then(res => {
-          this.total=res
+          this.total=res.data
         }).catch(err => {
           console.log(err);
         })
     },
     goDetail(id) {
-      this.$router.push("/home/detail?id=" + 3);
+      this.$router.push("/home/detail?id=" + id);
     },
     turnTo(index) {
       this.$children.map(swipe => {

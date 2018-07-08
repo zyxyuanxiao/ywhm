@@ -1,7 +1,28 @@
 <template>
 	<div class="container">
 		<Layout>
-        	<Sider hide-trigger :style="{background: '#fff'}">
+			<div class="user" id="userInfo">
+						<a class="user-avatar" id="nickname">
+							<img src="../../assets/img/user-avatar.png" alt="" class="img">
+						</a>
+					</div>
+			<Tabs :animated="false">
+        		<TabPane label="我约的行家">
+					<div class="main0">
+					<div class="user-content">
+						<h2>我约的人</h2>
+						<div class="setting-content">
+							<p class="none">
+								真忧伤，我还没有约过人诶。
+								<a href="">立即去约人！</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				</TabPane>
+        		<TabPane label="心愿单">心愿单</TabPane>
+			</Tabs>
+        	<!-- <Sider hide-trigger :style="{background: '#fff'}">
             	<Menu theme="light" width="auto">
 					<div class="user" id="userInfo">
 						<a class="user-avatar" id="nickname">
@@ -11,7 +32,7 @@
 					<MenuItem name="tutor">我约的行家</MenuItem>
 					<MenuItem name="wish_list">心愿单</MenuItem>
                 </Menu>
-            </Sider>
+            </Sider> -->
 			<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
 				<div class="main0">
 					<div class="user-content">
@@ -47,15 +68,6 @@
 									</td>
 								</tr>
 							</table>
-							<!-- <div class="left">
-								<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
-								<div class="title">{{item.title}}</div>
-								<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
-							</div>
-							<div class="right">
-								<div class="price">{{item.price}}</div>
-								<div class="detail"><a href="">查看详情</a></div>	
-							</div>							 -->
 						</div>
 					</div>
 				</div>
@@ -99,6 +111,19 @@
 .container {
 	/* width:1080px; */
 	margin:0 auto;
+}
+.ivu-tabs {
+	display: flex;
+}
+.layout .ivu-layout {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
+.ivu-tabs-nav {
+    display: flex;
+    flex-direction: column;
 }
 .ivu-layout.ivu-layout-has-sider>.ivu-layout, .ivu-layout.ivu-layout-has-sider>.ivu-layout-content {
     overflow-x: hidden;
@@ -176,6 +201,4 @@ table td:nth-child(2),td:nth-child(3) {
 /* .title :hover {
 	color: #23acf1;
 } */
-
-
 </style>
