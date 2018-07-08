@@ -129,12 +129,12 @@
 			this.$refs.btn.style.color="#ffffff"
 		},
 		nextStep() {
-			if (this.modal==true) {
+			if (this.modal1==true) {
 				this.$refs.form1.style.display = "block"
 				this.$refs.submit.style.display = "block"
 				this.$refs.first.style.display = "none"
 				this.$refs.next.style.display = "none"
-				this.$emit('changingType','false');
+				// this.$emit('changingType','false');
 				// this.first=false
 			}
 			else {
