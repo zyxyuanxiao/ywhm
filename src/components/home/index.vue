@@ -22,10 +22,16 @@
 						<Menu-item name="/home/life">
 							生活服务
 						</Menu-item>
-						<Menu-item name="" v-model="modal1" 	@click="showlDialog">
+            <Menu-item name="/home/userInfo" class="login" v-if="session">
+							{{ userName }}
+						</Menu-item>
+						<Menu-item name="goLogin" v-else>
 							登录
 						</Menu-item>
-						<Menu-item name="/home/register">
+            <Menu-item name="goLogout" v-if="session">
+							退出
+						</Menu-item>
+						<Menu-item name="/home/register" v-else>
 							注册
 						</Menu-item>
 					</div>
@@ -56,7 +62,10 @@
 							</div>
 						</div>
 						<div class="top_right">
-							<Menu-item name="" class="login" @click="showlDialog" v-model="modal1">
+              <Menu-item name="/home/userInfo" class="login" v-if="session">
+								{{ userName }}
+							</Menu-item>
+							<Menu-item name="" class="login" v-else>
 								登录
 							</Menu-item>							
 						</div>
@@ -65,10 +74,6 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
-<<<<<<< HEAD
-				<login :message="modal1" @changingType="showlDialog" ></login>
-=======
->>>>>>> 82fbc7f43ba3c1290b98a552cf7c0f3884cf60a3
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -106,40 +111,52 @@
 				</div>
 				</Footer>
         <!-- 登录 -->
-        <login v-if="modal1"></login>
+        <login ref="login"></login>
 		</Layout>
 	</div>
 </template>
 <script>
-import login from '../login/index'
+import login from "../login/index";
 export default {
-  components:{login},
+  components: { login },
   data() {
     return {
-<<<<<<< HEAD
-      login: false,
+      session: false,
+      userName: "",
       hidden: "none",
       width: 0,
-=======
       hidden: "none",
-	    width: 0,
->>>>>>> 82fbc7f43ba3c1290b98a552cf7c0f3884cf60a3
-      isCollapsed: false,
-      modal1: false,
-	}
+      width: 0,
+      isCollapsed: false
+    };
+  },
+  mounted() {
+    if (sessionStorage.getItem("userId")) {
+      this.session = true;
+      this.userName = sessionStorage.getItem("userName");
+    }
   },
   methods: {
     switchPage(name) {
-      if (name == "") {
-		    this.modal1 = true;
-      } else {
-        this.$router.push(name);
-        if (this.width <= 768 && name != "/home/index") {
-          this.hidden = this.$refs.mid.style.display;
-          this.$refs.mid.style.display =
+      switch (name) {
+        //登录
+        case "goLogin":
+          this.$refs.login.showFrame();
+          break;
+        //退出登录
+        case "goLogout":
+          sessionStorage.removeItem("userId");
+          sessionStorage.removeItem("userName");
+          this.session = false;
+          break;
+        default:
+          this.$router.push(name);
+          if (this.width <= 768 && name != "/home/index") {
+            this.hidden = this.$refs.mid.style.display;
+            this.$refs.mid.style.display =
             this.hidden == "none" ? "block" : "none";
-        }
-      }      
+          }
+      }
     },
     show() {
       this.hidden = this.$refs.mid.style.display;
@@ -147,17 +164,8 @@ export default {
       if (this.$refs.mid.style.display === "block") {
         this.$refs.fold.style.height = "270px";
       } else this.$refs.fold.style.height = "0px";
-    },
-     showlDialog(data){
-        if(data == 'false'){
-          this.modal1 = false;
-        }else{
-          this.modal1 = true;
-        }
-      },
-  },
- 
-
+    }
+  }
 };
 </script>
 <style scoped>

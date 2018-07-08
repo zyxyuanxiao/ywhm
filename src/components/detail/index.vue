@@ -77,7 +77,7 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle" @click="showOrder" v-model="modal1">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder" v-model="modal">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
@@ -117,7 +117,7 @@
 					</div>
 				</div>
 			</div>
-			<orders :message="modal1" @changingType="showOrder"></orders>
+			<orders :message="modal" @changingType="showOrder"></orders>
 	 </div>
 </template>
 <script>
@@ -162,15 +162,16 @@ export default {
 	},
 	mounted() {
 		this.id = this.$route.query.id
+		console.log(this.id)
 		this.getOne()
 		this.selectByTutor()
 	},
 	methods: {
 		showOrder(data) {
 			if(data == 'false'){
-				this.modal1 = false;
+				this.modal = false;
 			}else{
-				this.modal1 = true;
+				this.modal = true;
 			}
 		},
 		//获取导师信息

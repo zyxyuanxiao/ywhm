@@ -44,53 +44,8 @@
 			<router-link to="/home/app"><img src="../../../assets/img/down.png" alt=""></router-link>
 			<p>亿万毫米故事</p>
 		</div>
-		<!-- <div class="story">
-			<ul>
-            	<li>
-                    <img src="../../../assets/img/banner1.png" alt="" class="bannerimg"/>
-                    <div class="text1">『 终身学习, 就是终身成就 』</div>
-                    <div class="text2">
-                        <div> 在“有趣而无用”大行其道的当下，</div>
-                        <div>亿万毫米网站为你提供省时间的高效知识服务。</div>
-                        <div>提倡碎片化学习方式，让用户短时间内获得有效的知识。</div>
-                    </div>
-                </li>
-            	<li>
-                    <img src="../../../assets/img/banner2.png" alt="" class="bannerimg"/>
-                    <div class="text1">
-                        <div>『 除了社交作用,</div>
-                        <div> 她们还是我的数据库，知道她们需要什么很重要 』</div>
-                    </div>
-                    <div class="text2">
-                        <div>乔齐，</div>
-                        <div>女装品牌Georgette.Q创始人。</div>
-                    </div>
-                    <div>
-                        <button>去乔齐的行家页</button>
-                    </div>
-                </li>
-            	<li>
-                    <img src="../../../assets/img/banner3.png" alt="" class="bannerimg"/>
-                    <div class="text1">我要印证一个生命影响另一个生命的可能。</div>
-                    <div class="text2">
-                        <div>萧秋水，</div>
-                        <div>知识管理专家。</div>
-                    </div>
-                    <div>
-                        <button>去萧秋水的行家页</button>
-                    </div>
-                </li>
-       		</ul>
-        	<a href="#" class="arrow_left"><img src="../../../assets/img/left.png" alt=""/></a>
-        	<a href="#" class="arrow_right"><img src="../../../assets/img/right.png" alt=""/></a>
-		</div> -->
        
         <div class="swiper-box">
-            <!-- <div class="contacts">
-                <div class="contact" :class="{ 'active': index === swipe.activeIndex }" v-for="(contact, index) in contacts" @click="turnTo(index)">
-                    {{contact.text}}
-                </div>
-            </div> -->
             <rd-swipe :swipe="swipe">
                 <div class="rd-swipe-item" :style="{ 'background-image': `url(${img})` }" v-for="(img, index) in imgs"></div>
             </rd-swipe>
@@ -108,128 +63,7 @@ import banner3 from "../../../assets/img/banner3.png";
 export default {
   data() {
     return {
-      total: [
-        {
-          id: "1",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "2",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "3",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "4",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "5",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "6",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "7",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "8",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "9",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "10",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "11",
-          avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        },
-        {
-          id: "12",
-         avatar: require("../../../assets/img/teacher1.jpg"),
-          sub_num: 253,
-          name: "孙波",
-          job: "奇虎360科技有限公司销售总监",
-          slogan: "智能硬件与可穿戴设备",
-          major:
-            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
-        }
-      ],
+      total: [],
       swipe: {
         activeIndex: 0
       },
@@ -248,13 +82,13 @@ export default {
       this.$ajax({
         url: "/tutor/getAll"
       }).then(res => {
-          this.total=res
+          this.total = res.data
         }).catch(err => {
           console.log(err);
         })
     },
     goDetail(id) {
-      this.$router.push("/home/detail?id=" + 3);
+      this.$router.push("/home/detail?id=" + id);
     },
     turnTo(index) {
       this.$children.map(swipe => {

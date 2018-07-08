@@ -12,7 +12,7 @@ import detail from '@/detail/index'
 import help from '@/detail/help'
 import about from '@/detail/about'
 import download from '@/app/download'
-import user from '@/user'
+import userInfo from '@/user'
 Vue.use(vueRouter)
 const router = new vueRouter({
 	mode: 'history',
@@ -71,7 +71,7 @@ const router = new vueRouter({
 				},
 				{
 					path: 'userInfo',
-					component: user
+					component: userInfo
 				}
 			]
 		}

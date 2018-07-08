@@ -85,11 +85,10 @@ export default {
   },
   methods: {
     handleSubmit(name) {
-        let self = this
       this.$refs[name].validate(valid => {
         if (valid) {
             //注册
-          self.$ajax({
+          this.$ajax({
             url: "/user/register",
             data: {
                 nickname: this.formCustom.user,
@@ -97,13 +96,10 @@ export default {
                 email: this.formCustom.email
             }
           }).then(res => {
-              if(sessionStorage) {
-                  sessionStorage.setItem("userId",res.data.id)
-              }
-              self.$Message.success('登录成功')
+              this.$Message.success('注册成功，请您重新登录')
               this.$router.push('/')
             }).catch(err => {
-              console.log(err);
+              this.$Message.error('注册失败')
             });
         }
       });
