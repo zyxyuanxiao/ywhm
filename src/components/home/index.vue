@@ -74,6 +74,10 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
+<<<<<<< HEAD
+=======
+				<login :message="modal1" @changingType="showlDialog" ></login>
+>>>>>>> 990d62d97ed12da0f50f5539a720bcdda1bb2397
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -121,6 +125,7 @@ export default {
   components: { login },
   data() {
     return {
+<<<<<<< HEAD
       session: false,
       userName: "",
       hidden: "none",
@@ -135,6 +140,14 @@ export default {
       this.session = true;
       this.userName = sessionStorage.getItem("userName");
     }
+=======
+      login: false,
+      hidden: "none",
+      width: 0,
+      isCollapsed: false,
+      modal1: false,
+	}
+>>>>>>> 990d62d97ed12da0f50f5539a720bcdda1bb2397
   },
   methods: {
     switchPage(name) {

@@ -63,7 +63,26 @@ import banner3 from "../../../assets/img/banner3.png";
 export default {
   data() {
     return {
+<<<<<<< HEAD
       total: [],
+=======
+      total: [
+        {
+          id: "1", 
+          name: "孙波",
+          job: "奇虎360科技有限公司销售总监", 
+          major:"『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』",
+          avatar: require("../../../assets/img/teacher1.jpg"),
+          sub_num: 253,
+          wish_num: 20,
+          respond: 2,
+          slogan: "智能硬件与可穿戴设备",
+          major:
+            "『我在消费类电子及智能硬件营销领域拥有10余年的行业背景，期待可以与你分享我在产品营销管理方面的经验。』"
+        },
+        
+      ],
+>>>>>>> 990d62d97ed12da0f50f5539a720bcdda1bb2397
       swipe: {
         activeIndex: 0
       },
@@ -82,7 +101,11 @@ export default {
       this.$ajax({
         url: "/tutor/getAll"
       }).then(res => {
+<<<<<<< HEAD
           this.total = res.data
+=======
+          this.total=res.data
+>>>>>>> 990d62d97ed12da0f50f5539a720bcdda1bb2397
         }).catch(err => {
           console.log(err);
         })
