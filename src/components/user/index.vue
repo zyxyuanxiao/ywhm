@@ -1,40 +1,19 @@
 <template>
 	<div class="container">
 		<Layout>
-			<div class="user" id="userInfo">
-						<a class="user-avatar" id="nickname">
-							<img src="../../assets/img/user-avatar.png" alt="" class="img">
-						</a>
-					</div>
-			<Tabs :animated="false">
-        		<TabPane label="我约的行家">
-					<div class="main0">
-					<div class="user-content">
-						<h2>我约的人</h2>
-						<div class="setting-content">
-							<p class="none">
-								真忧伤，我还没有约过人诶。
-								<a href="">立即去约人！</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				</TabPane>
-        		<TabPane label="心愿单">心愿单</TabPane>
-			</Tabs>
-        	<!-- <Sider hide-trigger :style="{background: '#fff'}">
-            	<Menu theme="light" width="auto">
+        	<Sider hide-trigger :style="{background: '#fff'}" >
+            	<Menu theme="light" @on-select="switchPage">
 					<div class="user" id="userInfo">
 						<a class="user-avatar" id="nickname">
 							<img src="../../assets/img/user-avatar.png" alt="" class="img">
 						</a>
 					</div>
-					<MenuItem name="tutor">我约的行家</MenuItem>
+					<MenuItem name="tutor" @click="orderTutor">我约的行家</MenuItem>
 					<MenuItem name="wish_list">心愿单</MenuItem>
                 </Menu>
-            </Sider> -->
+            </Sider>
 			<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-				<div class="main0">
+				<div class="main0" >
 					<div class="user-content">
 						<h2>我约的人</h2>
 						<div class="setting-content">
@@ -45,8 +24,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="main1">
-					<div class="user-content" v-for="item in total" @click="goDetail(item.id)" >
+				<div class="main1" ref="main1">
+					<div class="user-content" v-for="item in total"  >
 						<div class="time">
 							<span>发起时间：{{item.time}}</span>
 						</div>
@@ -57,18 +36,64 @@
 										<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
 									</td>
 									<td>	
-										<div class="title">{{item.title}}</div>
+										<div class="title"><a href="">{{item.title}}</a></div>
 										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
 									</td>
 									<td>
-										<div class="price">{{item.price}}</div>
+										<div class="price">{{item.price}}元</div>
 									</td>
 									<td>
-										<div class="detail"><a href="">查看详情</a></div>	
+										<div class="detail" @click="goDetail(item.id)">查看详情</div>	
 									</td>
 								</tr>
 							</table>
 						</div>
+					</div>
+				</div>
+				<div class="check-details" ref="details">
+					<div class="user-content" v-for="item in filter">
+						<div class="time">
+							<span>发起时间：{{item.time}}</span>
+						</div>
+						<div class="setting-content">
+							<table>
+								<tr>
+									<td>
+										<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
+									</td>
+									<td>	
+										<div class="title"><a href="">{{item.title}}</a></div>
+										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="question">
+							<p class="t">您想请教的问题是：</p>
+							<p>{{item.question}}</p>
+						</div>
+						<div class="situation">
+							<p class="t">您的个人简介：</p>
+							<p>{{item.situation}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="heart" ref="heart">
+					<div class="gd" v-for="item in heartList">
+					<div class="gd-avator"></div>
+					<div class="gd-info" >
+						<div class="info-top">
+							<div class="tutor-info">
+								<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.job}}</span>
+							</div>
+								<div class="price">{{item.price}} <span>元/次</span></div>
+						</div>
+						<div class="info-middle">
+							<div class="info-major">{{item.job}}</div>
+							<Button type="ghost" class="delete" @click="remove(item.id)">删除</Button>
+						</div>
+						<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
+					</div>
 					</div>
 				</div>
             </Content>
@@ -87,7 +112,9 @@
                         "title": "医学背景健身导师，解决你所有问题!",
 						"name": "原李峰",
                         "job": "「原来健身工作室」创始人",
-                        "price": 499
+                        "price": 499,
+						"question": "aaaaaaaaaaaaaaa",
+						"situation": "bbbbbbbbbbbbbbbbb"
                     },
 					{
                         "id": "2",
@@ -96,34 +123,101 @@
                         "title": "医学背景健身导师，解决你所有问题!",
 						"name": "原李峰",
                         "job": "「原来健身工作室」创始人",
-                        "price": 499
+						"price": 499,
+						"question": "aaaaaaaaaaaaaaa",
+						"situation": "cccccccccccccc"
                     }
-				]
+				],
+				heartList: [
+                    {
+                        "id": "1",
+						"time": "2018-07-07",
+                        "avator": "",
+                        "title": "医学背景健身导师，解决你所有问题!",
+						"name": "原李峰",
+                        "job": "「原来健身工作室」创始人",
+                        "price": 499,
+						"sub_num" :20,
+						 "score": 8
+                    },
+					{
+                        "id": "2",
+						"time": "2018-07-07",
+                        "avator": "",
+                        "title": "医学背景健身导师，解决你所有问题!",
+						"name": "原李峰",
+                        "job": "「原来健身工作室」创始人",
+						"price": 499,
+						"sub_num" :20,
+						 "score": 9
+                    }
+				],
+				filter: []
 			};
 		},
-
 		methods: {
-		
+			goDetail(id) {
+				console.log(id)
+				this.$refs.details.style.display="block"
+				this.$refs.main1.style.display="none"
+				this.filter = this.total.filter(function(item,index,array){
+					console.log(item.id==id)
+					return (item.id==id);
+				})
+				console.log(this.filter)
+			},
+			orderTutor() {
+				this.$refs.details.style.display="none"
+				this.$refs.main1.style.display="block"
+			},
+			remove(id) {
+				console.log(id)
+				for (var i = this.heartList.length-1; i>=0; i--)
+					if (this.heartList[i].id==id)
+						this.heartList.splice(i,1);
+			},
+			switchPage (name) {
+				if(name=="tutor"){
+					this.$refs.details.style.display="none"
+					this.$refs.main1.style.display="block"
+					this.$refs.heart.style.display="none"
+				}
+				else {
+					this.$refs.details.style.display="none"
+					this.$refs.main1.style.display="none"
+					this.$refs.heart.style.display="block"
+				}
+			}
     	}
 	}
 </script>
 <style scoped>
+.heart {
+	width: 780px;
+	margin:0 auto;
+	display: none;
+}
+.delete {
+	float: right;
+	display: none;
+	margin-top: 15px;
+    width: 80px;
+}
+.info-middle {
+	display: flex;
+	align-content: space-around;
+	justify-content: space-between;
+	height:44px;
+}
+.gd:hover .delete  {
+	display: block;
+}
 .container {
-	/* width:1080px; */
+	width:1080px;
 	margin:0 auto;
 }
-.ivu-tabs {
-	display: flex;
-}
-.layout .ivu-layout {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-content: center;
-}
-.ivu-tabs-nav {
-    display: flex;
-    flex-direction: column;
+.ivu-layout-sider, .ivu-layout-content, .ivu-menu-light {
+	background: #fafafa !important;
 }
 .ivu-layout.ivu-layout-has-sider>.ivu-layout, .ivu-layout.ivu-layout-has-sider>.ivu-layout-content {
     overflow-x: hidden;
@@ -137,16 +231,19 @@
 	margin-bottom: 30px;
 	text-align: center;
 }
-
+.detail:hover{
+	color:#23acf1;
+}
 .img {
 	width: 100px;
+	border: 4px solid #fff;
+	border-radius: 50%;
 }
 .main0 {
 	border: 1px solid #e8e8e8;
 	margin: 0 auto;
 	width: 800px;
 	display: none;
-
 }
 .main0 .user-content h2 {
    	font-size: 14px;
@@ -162,14 +259,14 @@
 	line-height: 250px;
 
 }
-
 .main1 .user-content {
 	border: 1px solid #e8e8e8;
 	margin: 0 auto;
-	width: 650px;
+	width: 780px;
 	margin-bottom: 20px;
+	background: #fff !important;
 }
-.main1 .setting-content  {
+.main1 .setting-content {
 	border-top: 1px solid #e8e8e8;
 }
 .time {
@@ -184,7 +281,7 @@ table td:nth-child(3),td:nth-child(4) {
 	text-align: center;
 	width: 110px;
 }
-table td:nth-child(2),td:nth-child(3) {
+.main1 table td:nth-child(2),td:nth-child(3) {
 	border-right: 1px solid #e8e8e8;
 }
 .avatar {
@@ -196,9 +293,42 @@ table td:nth-child(2),td:nth-child(3) {
 }
 .title {
 	font-size: 16px;
+	margin-top: -6px;
+	margin-bottom: 6px;
 	
 }
-/* .title :hover {
-	color: #23acf1;
-} */
+.title>a  :hover {
+	color: #23acf1 !important;
+}
+.check-details .user-content {
+	margin: 0 auto;
+	width: 780px;
+	margin-bottom: 20px;
+	background: #fff !important;
+}
+.check-details .setting-content, .check-details .time  {
+	border-top: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+	border-left: 1px solid #e8e8e8;
+}
+.check-details .situation  {
+	border-right: 1px solid #e8e8e8;
+	border-left: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+}
+.check-details .question {
+	border-top: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+	border-left: 1px solid #e8e8e8;
+	border-bottom: 1px dotted #e8e8e8;
+}
+.check-details .question, .check-details .situation  {
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.t {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
 </style>
