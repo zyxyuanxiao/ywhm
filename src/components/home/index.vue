@@ -22,7 +22,7 @@
 						<Menu-item name="/home/life">
 							生活服务
 						</Menu-item>
-						<Menu-item name="">
+						<Menu-item name="" v-model="modal1" 	@click="showlDialog">
 							登录
 						</Menu-item>
 						<Menu-item name="/home/register">
@@ -56,7 +56,7 @@
 							</div>
 						</div>
 						<div class="top_right">
-							<Menu-item name="" class="login">
+							<Menu-item name="" class="login" @click="showlDialog" v-model="modal1">
 								登录
 							</Menu-item>							
 						</div>
@@ -65,7 +65,7 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
-				<login v-if="modal1"></login>
+				<login :message="modal1" @changingType="showlDialog" ></login>
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -108,12 +108,12 @@
 <script>
 import login from '../login/index'
 export default {
-	components:{login},
+  components:{login},
   data() {
     return {
-	  login: false,
+      login: false,
       hidden: "none",
-	  width: 0,
+      width: 0,
       isCollapsed: false,
       modal1: false,
 	}
@@ -121,7 +121,7 @@ export default {
   methods: {
     switchPage(name) {
       if (name == "") {
-        this.modal1 = true;
+		    this.modal1 = true;
       } else {
         this.$router.push(name);
         if (this.width <= 768 && name != "/home/index") {
@@ -129,7 +129,7 @@ export default {
           this.$refs.mid.style.display =
             this.hidden == "none" ? "block" : "none";
         }
-      }
+      }      
     },
     show() {
       this.hidden = this.$refs.mid.style.display;
@@ -137,8 +137,17 @@ export default {
       if (this.$refs.mid.style.display === "block") {
         this.$refs.fold.style.height = "270px";
       } else this.$refs.fold.style.height = "0px";
-    }
-  }
+    },
+     showlDialog(data){
+        if(data == 'false'){
+          this.modal1 = false;
+        }else{
+          this.modal1 = true;
+        }
+      },
+  },
+ 
+
 };
 </script>
 <style scoped>

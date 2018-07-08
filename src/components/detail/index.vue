@@ -77,7 +77,7 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder" v-model="modal1">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
@@ -117,7 +117,7 @@
 					</div>
 				</div>
 			</div>
-			<orders v-if="model"></orders>
+			<orders :message="modal1" @changingType="showOrder"></orders>
 	 </div>
 </template>
 <script>
@@ -126,7 +126,7 @@ export default {
 	components:{orders},
 	data () {
 		return {
-			model: false,
+			modal1: false,
 			total: {
 				 		"id": "1",
 						"avator": "",
@@ -156,12 +156,16 @@ export default {
 						"about": "资深HR，央企集团总部人力资源经理。精通人力资源各个模块。人力资源师，经济师，职业规划深度嗜好者。崇尚“每天做一件实事，每月做一件新事，每年做一件大事，一生做一件有意义的事”。追求工作与生活的平衡，30出头却长着一张20岁的娃娃脸，穿XS码裤子，但却已经是4岁宝宝的母亲。身边朋友及公司员工在职场中遇到问题时总会第一时间咨询我，有“知心姐姐”之称^_^乐于助人，善于分享，希望可以帮助到更多的朋友。微信公众号：李小船（定期分享职场发展和个人成长原创文章，欢迎关注）",
 						"respond": 3,
 						"wish_num": 1321
-			}
+			},
 		}
 	},
 	methods: {
-		showOrder() {
-			this.model=true
+		showOrder(data) {
+			if(data == 'false'){
+				this.modal1 = false;
+			}else{
+				this.modal1 = true;
+			}
 		}
 	}
 }

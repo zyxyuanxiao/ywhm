@@ -31,7 +31,7 @@
 		</div>
 		<div class="list">
             <div class="teacher" v-for="item in total" @click="goDetail(item.id)">
-				<div class="teacher-img"><img v-bind:src="item.img" class="teacher-img"></div>
+				<div class="teacher-img"><img v-bind:src="item.avatar" class="teacher-img"></div>
                 <div class="teacher-view"><p><span>{{item.sub_num}}</span>人见过</p></div>
                 <div class="teacher-tutor">{{item.name}}</div>
                 <div class="teacher-job">{{item.job}}</div>
@@ -111,7 +111,7 @@ export default {
       total: [
         {
           id: "1",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -121,7 +121,7 @@ export default {
         },
         {
           id: "2",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -131,7 +131,7 @@ export default {
         },
         {
           id: "3",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -141,7 +141,7 @@ export default {
         },
         {
           id: "4",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -151,7 +151,7 @@ export default {
         },
         {
           id: "5",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -161,7 +161,7 @@ export default {
         },
         {
           id: "6",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -171,7 +171,7 @@ export default {
         },
         {
           id: "7",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -181,7 +181,7 @@ export default {
         },
         {
           id: "8",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -191,7 +191,7 @@ export default {
         },
         {
           id: "9",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -201,7 +201,7 @@ export default {
         },
         {
           id: "10",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -211,7 +211,7 @@ export default {
         },
         {
           id: "11",
-          img: require("../../../assets/img/teacher1.jpg"),
+          avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -221,7 +221,7 @@ export default {
         },
         {
           id: "12",
-          img: require("../../../assets/img/teacher1.jpg"),
+         avatar: require("../../../assets/img/teacher1.jpg"),
           sub_num: 253,
           name: "孙波",
           job: "奇虎360科技有限公司销售总监",
@@ -248,7 +248,7 @@ export default {
       this.$ajax({
         url: "/tutor/getAll"
       }).then(res => {
-          
+          this.total=res
         }).catch(err => {
           console.log(err);
         })

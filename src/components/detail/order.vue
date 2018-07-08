@@ -1,7 +1,7 @@
 
 <template>
 <div>
-    <Modal :mask-closable="false" scrollable 
+    <Modal :mask-closable="false" scrollable @on-cancel="close()"
         v-model="modal1"
 		width="560"
         class-name="vertical-center-modal"
@@ -26,10 +26,10 @@
 		<div class="form" ref="form1" >
 		<Form ref="form" :model="form" :rules="ruleValidate" label-position="top" >
         <FormItem label="告诉行家你要请教的问题：（20-300字）">
-            <Input v-model="value1" type="textarea" placeholder="Enter something..."></Input>
+            <Input v-model="form.value1" type="textarea" placeholder="Enter something..."></Input>
         </FormItem>
         <FormItem label="介绍自己当前的情况：（20-300字）">
-            <Input v-model="value2" type="textarea" :rows="4" placeholder="Enter something..."></Input>
+            <Input v-model="form.value2" type="textarea" :rows="4" placeholder="Enter something..."></Input>
         </FormItem>
 		</Form>        
         </div>
@@ -61,18 +61,19 @@
 </template>
 <script>
     export default {
+	   props:['message'],
        data() {
 		return {
 			current: 0,
-			modal1: true,
+			modal1: this.message,
 			modal2: false,
 			formValidate: false,
 			value1: '',
 			value2: '',
-			// form: {
-			// 	value1: '',
-			// 	value2: '',
-			// },
+			form: {
+				value1: '',
+				value2: '',
+			},
 			gd: [
 				{
 					id: 1,
@@ -102,15 +103,21 @@
                     { required: true, message: '*请填写一些自己的情况', trigger: 'blur' },
                     { type: 'string', min: 20, message: '最少20个字哦', trigger: 'blur' }
                 ]
-			 },
+			 }
 		};
+	},
+	watch:{
+      message(cur){//监听invitor值的变化
+        if(cur == true){//当父组件传递值为true是，则显示
+           this.modal1 = true;
+        }
+	  }
 	},
 	methods: {
 		handleSubmit(name) {
 			this.$refs[name].validate((valid) => {
 				if (valid) {
 					this.$Message.success('Success!');
-					this.modal1 = false
 				} else {
 					this.$Message.error('Fail!');
 				}
@@ -127,6 +134,7 @@
 			this.$refs.form1.style.display = "block"
 			this.$refs.next.style.display = "none"
 			this.$refs.submit.style.display = "block"
+			this.$emit('changingType','false');
 			if (this.current == 3) {
                  this.current = 0;
             } else {
@@ -135,6 +143,7 @@
 		},
 		finish() {
 			this.modal1 = false
+			this.$emit('changingType','false');
 			this.modal2 = true
 		},
 		process() {
@@ -143,9 +152,12 @@
 		},
 		cancel() {
 			this.modal2=false
-		}
+		},
+		close () {
+			this.$emit('changingType','false');
+		},
 	}
-}
+	}
 </script>
 <style scoped>
 	body,.ivu-form-label-top .ivu-form-item-label {

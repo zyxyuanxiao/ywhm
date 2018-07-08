@@ -3,6 +3,7 @@
 				v-model="modal1"
 				width="420"
 				class-name="vertical-center-modal"
+				@on-cancel="close()"
 				>
 					<div class="dialog">
 						<h3>欢迎来到「亿万毫米」</h3>
@@ -21,15 +22,16 @@
 								<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
 							</FormItem>
 						</Form>
-						<p @click="close" style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+						<p style="font-size: 14px;" @click="closed">没有账号？<router-link to="/home/register" class="register" >现在去注册</router-link></p>
 					</div>
    	 </Modal>
 </template>
 <script>
 export default {
+	props:['message'],
 	data() {
 		return {
-			modal1: true,
+			modal1: this.message,
 			formInline: {
 					user: '',
 					password: ''
@@ -45,6 +47,14 @@ export default {
 			}
 		}
 	},
+	 watch:{
+      message(cur){//监听invitor值的变化
+        if(cur == true){//当父组件传递值为true是，则显示
+           this.modal1 = true;
+        }
+      },
+    }
+    ,
 	methods: {
 		handleSubmit(name) {
 			this.$refs[name].validate((valid) => {
@@ -57,8 +67,12 @@ export default {
 			})
 		},
 		close () {
-			this.modal1 = false
+			this.$emit('changingType','false');
 		},
+		closed () {
+			this.modal1 = false
+			this.$emit('changingType','false');
+		}
 	}	
 }
 </script>
