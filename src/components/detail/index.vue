@@ -55,22 +55,23 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle" @click="showOrder" v-model="model1">立即预约</Button>
+						<Button type="primary" shape="circle" @click="showOrder" v-model="modal1">立即预约</Button>
 						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
 					</div>
 					
 					<h2>相关行家</h2>
-					<!-- <div class="guide">
-						<div class="tutor_avator">{{item.avator}}</div>
+					<div  v-for="item in tutors">
+					<div class="guide">
+						<div class="tutor_avator"></div>
 						<div class="tutor_info">
 							<div class="tutor_top">
-								<span class="tutor">{{item.tutor}}</span>
-								<em class="intro">{{item.intro}}</em> 
+								<span class="tutor">{{item.name}}</span>
+								<em class="intro">{{item.job}}</em> 
 							</div>
-							<div class="title">{{item.title}}</div>
-							<div class="bott"><span>{{item.count}}</span>人见过</div>
+							<div class="title">{{item.major}}</div>
+							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
-					</div> -->
+					</div></div>
 				</div>
 			</div>
 			<orders :message="modal1" @changingType="showOrder"></orders>
@@ -85,47 +86,28 @@ export default {
 			id: null,
 			modal1: false,
 			tutor: {},
-			guide_info: [
+			guide_info: [],
+			tutors: [
 				{
-					"id": "1",
-					"title": "医学背景健身导师，解决你所有问题!",
-					"score": 9.3,
-					"price": 499,
-					"count": 210,
-					"describe": "累成狗，没加薪，怎么办？",
-					"duration": "找兼职赚外快？炒股票赚快钱？别逗了！升职加薪才是性价比最优的开源方式好不好！可是，累成了加班狗，资历不如你、业绩不如你的同事纷纷升迁，你被排除在外；努力敬业、谦虚待人，加薪屡屡失之交臂；恪尽职守、勤奋工作，升职依旧遥不可及。当你压抑着越来越多愤怒的时候，好事者却在一边幸灾乐祸。究竟什么样的人才能升职加薪？是兢兢业业、埋头苦干、超额完成任务的人，还是那些游手好闲、见风使舵，却城府老辣、深谋远虑的人？是实力受到肯定的员工，还是锋芒毕露的红人？职场是一个没有硝烟的战场，如果你在这个战场上勇往直前，不仅没有取得战绩，却负伤累累，是时候盘点整顿了。我能从“术”的角度给你方法，帮助你以全新的面貌整装待发，重上战场。本话题不适合工作为体制内讲究论资排辈的人群哦，制度的壁垒无能为力，你懂得：）本话题涉及的是职场中“术”的方法，如果你有职业转换、职业倦怠、职业迷茫、offer选择的困惑，可选择我发布的另外一个职场“道”的话题。升职加薪是性价比最优的开源方式！本次预约为远程通话，需要在「在行」App内完成通话扫描二维码下载App分享话题： ",
-				},
-			],
-			items: [
-				{
-					"id": "1",
-					"name": "曲明",
-					"avator": "",
-					"respond": 1,
-					"job": "「原来健身工作室」创始人",
-					"sub_num": 100,
-					"wish_num":200,
-					"major": ''
+					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
+					"name": "李倩",
+					"job": "51猎头联合创始人，「简历评书」主",
+					"sub_num": "640",
+					'major':"写简历聊面试"
 				},
 				{
-					"id": "1",
-					"name": "曲明",
-					"avator": "",
-					"respond": 1,
-					"job": "「原来健身工作室」创始人",
-					"sub_num": 100,
-					"wish_num":200,
-					"major": ''
-				},
+					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
+					"name": "李倩",
+					"job": "51猎头联合创始人，「简历评书」主",
+					"sub_num": "640",
+					'major':"写简历聊面试"
+				},				
 				{
-					"id": "1",
-					"name": "曲明",
-					"avator": "",
-					"respond": 1,
-					"job": "「原来健身工作室」创始人",
-					"sub_num": 100,
-					"wish_num":200,
-					"major": ''
+					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
+					"name": "李倩",
+					"job": "51猎头联合创始人，「简历评书」主",
+					"sub_num": "640",
+					'major':"写简历聊面试"
 				},
 			]
 		}
@@ -135,6 +117,7 @@ export default {
 		console.log(this.id)
 		this.getOne()
 		this.selectByTutor()
+		this.getOnes()
 	},
 	methods: {
 		showOrder(data) {
@@ -154,6 +137,18 @@ export default {
 				}
 			}).then(res => {
 				this.tutor=res.data
+			}).catch(err => {
+				console.log(err);
+			})
+		},
+		getOnes () {
+			this.$ajax({
+				url: "/guide/selectByRandom",
+				data: {
+					id: this.id
+				}
+			}).then(res => {
+				this.tutors=res.data
 			}).catch(err => {
 				console.log(err);
 			})
