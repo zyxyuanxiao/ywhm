@@ -126,6 +126,7 @@ export default {
 	components:{orders},
 	data () {
 		return {
+			id: null,
 			model: false,
 			total: {
 				 		"id": "1",
@@ -159,7 +160,38 @@ export default {
 			}
 		}
 	},
+	mounted() {
+		this.id = this.$route.query.id
+		this.getOne()
+		this.selectByTutor()
+	},
 	methods: {
+		//获取导师信息
+		getOne () {
+			this.$ajax({
+				url: "/tutor/getOne",
+				data: {
+					id: this.id
+				}
+			}).then(res => {
+				
+			}).catch(err => {
+				console.log(err);
+			})
+		},
+		//获取导师所有指导课
+		selectByTutor () {
+			this.$ajax({
+				url: "/guide/selectByTutor",
+				data: {
+					tutor_id: this.id
+				}
+			}).then(res => {
+				
+			}).catch(err => {
+				console.log(err);
+			})
+		},
 		showOrder() {
 			this.model=true
 		}

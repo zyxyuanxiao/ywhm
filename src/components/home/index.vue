@@ -65,7 +65,6 @@
 			</Header>
 			<Content class="contents">
 				<router-view></router-view>
-				<login v-if="modal1"></login>
 			</Content>
 			<Footer class="footer">
 				<div class="foot">
@@ -102,6 +101,8 @@
 					</div>
 				</div>
 				</Footer>
+        <!-- 登录 -->
+        <login v-if="modal1"></login>
 		</Layout>
 	</div>
 </template>
@@ -111,9 +112,8 @@ export default {
 	components:{login},
   data() {
     return {
-	  login: false,
       hidden: "none",
-	  width: 0,
+	    width: 0,
       isCollapsed: false,
       modal1: false,
 	}

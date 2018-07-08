@@ -254,7 +254,7 @@ export default {
         })
     },
     goDetail(id) {
-      this.$router.push("/home/detail?id=" + id);
+      this.$router.push("/home/detail?id=" + 3);
     },
     turnTo(index) {
       this.$children.map(swipe => {
