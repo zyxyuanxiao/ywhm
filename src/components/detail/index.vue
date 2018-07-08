@@ -3,7 +3,7 @@
 			<div class="cover"></div>
 			<div class="person">
 				<div class="left"><div class="top">
-					<img :src=tutor.avator alt="" class="avator">
+					<div :style="{backgroundImage:'url(' + tutor.avatar + ')'}" class="avator"></div>
 						<h1 class="name">{{ tutor.name }}</h1>
 						<p class="intro1">{{ tutor.job }}</p>
 						<div class="detail">
@@ -14,7 +14,7 @@
 						<p class="b">北京 &nbsp; <span>复兴门 &nbsp; 崇文门</span></p>	
 					</div>
 					<!-- <div class="button">通话</div> -->
-					<ul v-for="item in guide_info">
+					<ul v-for="item in guides">
 						<li class="item">
 							<div class="price">							
 								<div>
@@ -39,7 +39,7 @@
 					</ul> 
 					<h2>关于行家</h2>
 					<div class="about_tutor">
-						<div class="image"><img :src=tutor.avator class="tutor-pic" alt=""></div>
+						<div class="image"><img :src=tutor.avatar class="tutor-pic" alt=""></div>
 						<p>{{tutor.major}}</p>
 						<p>{{ tutor.descirbe }}</p>
 					</div>
@@ -55,14 +55,14 @@
 						<div style="clear:both"></div>
 					</div>
 					<div class="order">
-						<Button type="primary" shape="circle" @click="showOrder" v-model="modal1">立即预约</Button>
-						<Button type="ghost" shape="circle"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>加入心愿单</Button>
+						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
+						<Button type="ghost" shape="circle" @click="addWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{wishStatus}}</Button>
 					</div>
 					
 					<h2>相关行家</h2>
-					<div  v-for="item in tutors">
+					<div  v-for="item in relatedTutors">
 					<div class="guide">
-						<div class="tutor_avator"></div>
+						<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 						<div class="tutor_info">
 							<div class="tutor_top">
 								<span class="tutor">{{item.name}}</span>
@@ -74,59 +74,38 @@
 					</div></div>
 				</div>
 			</div>
-			<orders :message="modal1" @changingType="showOrder"></orders>
+			<!-- 预约 -->
+			<orders ref="order" :guide-list="guides"></orders>
+			<!-- 登录 -->
+       		<login ref="login"></login>
 	 </div>
 </template>
 <script>
 import orders from './order.vue'
+import login from '../login'
 export default {
-	components:{orders},
+	components:{
+		orders,
+		login
+	},
 	data () {
 		return {
 			id: null,
-			modal1: false,
 			tutor: {},
-			guide_info: [],
-			tutors: [
-				{
-					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
-					"name": "李倩",
-					"job": "51猎头联合创始人，「简历评书」主",
-					"sub_num": "640",
-					'major':"写简历聊面试"
-				},
-				{
-					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
-					"name": "李倩",
-					"job": "51猎头联合创始人，「简历评书」主",
-					"sub_num": "640",
-					'major':"写简历聊面试"
-				},				
-				{
-					"avator": "http://medias.zaih.com/Fpt528wmoD_Xm6i1YKHCPyxjRjLg!avatar",
-					"name": "李倩",
-					"job": "51猎头联合创始人，「简历评书」主",
-					"sub_num": "640",
-					'major':"写简历聊面试"
-				},
-			]
+			guides: [],
+			relatedTutors: [],
+			wishStatus: "加入心愿单"
 		}
 	},
 	mounted() {
 		this.id = this.$route.query.id
-		console.log(this.id)
 		this.getOne()
 		this.selectByTutor()
-		this.getOnes()
+		this.getRelatedTutors()
 	},
 	methods: {
-		showOrder(data) {
-			console.log(data)
-			if(data == 'false'){
-				this.modal = false;
-			}else{
-				this.modal = true;
-			}
+		showOrder() {
+			this.$refs.order.showFrame();
 		},
 		//获取导师信息
 		getOne () {
@@ -141,14 +120,11 @@ export default {
 				console.log(err);
 			})
 		},
-		getOnes () {
+		getRelatedTutors () {
 			this.$ajax({
-				url: "/guide/selectByRandom",
-				data: {
-					id: this.id
-				}
+				url: "/tutor/selectByRandom",
 			}).then(res => {
-				this.tutors=res.data
+				this.relatedTutors=res.data
 			}).catch(err => {
 				console.log(err);
 			})
@@ -161,7 +137,29 @@ export default {
 					tutor_id: this.id
 				}
 			}).then(res => {
-				this.guide_info=res.data
+				this.guides=res.data
+			}).catch(err => {
+				console.log(err);
+			})
+		},
+		addWish() {
+			let userId = sessionStorage.getItem("userId")
+			if(!userId) {
+				this.$refs.login.showFrame();
+				return;
+			}
+			this.$ajax({
+				url: "/wish/add",
+				data: {
+					tutor_id: this.id,
+					user_id: userId
+				}
+			}).then(res => {
+				if(res.status == "success") {
+					this.wishStatus = "已加入心愿单"
+				}else {
+					console.log(res.msg)
+				}
 			}).catch(err => {
 				console.log(err);
 			})
@@ -208,7 +206,8 @@ export default {
 		height: 165px;
 		border-radius: 50%;
 		margin: -128px 25px 0 0;
-		background-color: #fff;
+		background-repeat: no-repeat;
+		background-size: cover;
 		box-shadow: 0 1px 1px #ccc;
 	}
 	.person {
@@ -368,8 +367,8 @@ export default {
 	.tutor_avator {
 		width: 50px;
 		height: 50px;
-		background: url("../../assets/img/cleanup.jpg") no-repeat;
-		background-size: contain;
+		background-repeat: no-repeat;
+		background-size: cover;
 		border-radius: 50%; 
 		float: left;
 	}
