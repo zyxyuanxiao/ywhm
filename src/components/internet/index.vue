@@ -6,7 +6,7 @@
         </div>
         <div class="page-content">
             <div class="gd" v-for="item in filter" @click="goDetail(item.tutor_id)" >
-                <div class="gd-avator">{{item.avator}}</div>
+               <div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
                 <div class="gd-info" >
                     <div class="info-top">
                         <div class="tutor-info">

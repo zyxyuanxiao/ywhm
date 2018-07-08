@@ -6,7 +6,7 @@
 		</div>
 		<div class="page-content">
 			<div class="gd" v-for="item in filter" @click="goDetail(item.tutor_id)" >
-				<div class="gd-avator">{{item.avator}}</div>
+				<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 				<div class="gd-info" >
 					<div class="info-top">
 						<div class="tutor-info">
@@ -115,11 +115,11 @@ export default {
 .gd:hover .gd-info .info-top .tutor-title {
   color: #23acf1;
 }
-.gd-avator {
+.gd-avatar {
   width: 110px;
   height: 110px;
-  background: url("../../assets/img/cleanup.jpg") no-repeat;
-  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
   float: left;
 }

@@ -80,17 +80,16 @@
 				</div>
 				<div class="heart" ref="heart">
 					<div class="gd" v-for="item in heartList">
-					<div class="gd-avator"></div>
+					<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 					<div class="gd-info" >
 						<div class="info-top">
 							<div class="tutor-info">
-								<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.job}}</span>
+								<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.slogan}}</span>
 							</div>
-								<div class="price">{{item.price}} <span>元/次</span></div>
 						</div>
 						<div class="info-middle">
 							<div class="info-major">{{item.job}}</div>
-							<Button type="ghost" class="delete" @click="remove(item.id)">删除</Button>
+							<Button type="ghost" class="delete" @click="remove(item)">删除</Button>
 						</div>
 						<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 					</div>
@@ -101,234 +100,242 @@
 	</div>
 </template>
 <script>
-    export default {
-    	data() {
-			return {
-				total: [
-                    {
-                        "id": "1",
-						"time": "2018-07-07",
-                        "avator": "",
-                        "title": "医学背景健身导师，解决你所有问题!",
-						"name": "原李峰",
-                        "job": "「原来健身工作室」创始人",
-                        "price": 499,
-						"question": "aaaaaaaaaaaaaaa",
-						"situation": "bbbbbbbbbbbbbbbbb"
-                    },
-					{
-                        "id": "2",
-						"time": "2018-07-07",
-                        "avator": "",
-                        "title": "医学背景健身导师，解决你所有问题!",
-						"name": "原李峰",
-                        "job": "「原来健身工作室」创始人",
-						"price": 499,
-						"question": "aaaaaaaaaaaaaaa",
-						"situation": "cccccccccccccc"
-                    }
-				],
-				heartList: [
-                    {
-                        "id": "1",
-						"time": "2018-07-07",
-                        "avator": "",
-                        "title": "医学背景健身导师，解决你所有问题!",
-						"name": "原李峰",
-                        "job": "「原来健身工作室」创始人",
-                        "price": 499,
-						"sub_num" :20,
-						 "score": 8
-                    },
-					{
-                        "id": "2",
-						"time": "2018-07-07",
-                        "avator": "",
-                        "title": "医学背景健身导师，解决你所有问题!",
-						"name": "原李峰",
-                        "job": "「原来健身工作室」创始人",
-						"price": 499,
-						"sub_num" :20,
-						 "score": 9
-                    }
-				],
-				filter: []
-			};
-		},
-		methods: {
-			goDetail(id) {
-				console.log(id)
-				this.$refs.details.style.display="block"
-				this.$refs.main1.style.display="none"
-				this.filter = this.total.filter(function(item,index,array){
-					console.log(item.id==id)
-					return (item.id==id);
-				})
-				console.log(this.filter)
-			},
-			orderTutor() {
-				this.$refs.details.style.display="none"
-				this.$refs.main1.style.display="block"
-			},
-			remove(id) {
-				console.log(id)
-				for (var i = this.heartList.length-1; i>=0; i--)
-					if (this.heartList[i].id==id)
-						this.heartList.splice(i,1);
-			},
-			switchPage (name) {
-				if(name=="tutor"){
-					this.$refs.details.style.display="none"
-					this.$refs.main1.style.display="block"
-					this.$refs.heart.style.display="none"
-				}
-				else {
-					this.$refs.details.style.display="none"
-					this.$refs.main1.style.display="none"
-					this.$refs.heart.style.display="block"
-				}
-			}
-    	}
-	}
+export default {
+  data() {
+    return {
+      total: [
+        {
+          id: "1",
+          time: "2018-07-07",
+          avator: "",
+          title: "医学背景健身导师，解决你所有问题!",
+          name: "原李峰",
+          job: "「原来健身工作室」创始人",
+          price: 499,
+          question: "aaaaaaaaaaaaaaa",
+          situation: "bbbbbbbbbbbbbbbbb"
+        },
+        {
+          id: "2",
+          time: "2018-07-07",
+          avator: "",
+          title: "医学背景健身导师，解决你所有问题!",
+          name: "原李峰",
+          job: "「原来健身工作室」创始人",
+          price: 499,
+          question: "aaaaaaaaaaaaaaa",
+          situation: "cccccccccccccc"
+        }
+      ],
+      heartList: [],
+      filter: []
+    };
+  },
+  mounted() {
+	  this.getWish()
+  },
+  methods: {
+    getWish() {
+		let userId = sessionStorage.getItem("userId")
+      this.$ajax({
+		url: "/wish/selectByUser",
+		data: {
+			id: userId
+		}
+      })
+        .then(res => {
+          this.heartList = res.data
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    goDetail(id) {
+      console.log(id);
+      this.$refs.details.style.display = "block";
+      this.$refs.main1.style.display = "none";
+      this.filter = this.total.filter(function(item, index, array) {
+        console.log(item.id == id);
+        return item.id == id;
+      });
+      console.log(this.filter);
+    },
+    orderTutor() {
+      this.$refs.details.style.display = "none";
+      this.$refs.main1.style.display = "block";
+    },
+    remove(item) {
+      this.$ajax({
+		url: "/wish/delete",
+		data: {
+			id: item.id,
+			tutor_id: item.tutor_id
+		}
+      })
+        .then(res => {
+          this.getWish()
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    switchPage(name) {
+      if (name == "tutor") {
+        this.$refs.details.style.display = "none";
+        this.$refs.main1.style.display = "block";
+        this.$refs.heart.style.display = "none";
+      } else {
+        this.$refs.details.style.display = "none";
+        this.$refs.main1.style.display = "none";
+        this.$refs.heart.style.display = "block";
+      }
+    }
+  }
+};
 </script>
 <style scoped>
 .heart {
-	width: 780px;
-	margin:0 auto;
-	display: none;
+  width: 780px;
+  margin: 0 auto;
+  display: none;
 }
 .delete {
-	float: right;
-	display: none;
-	margin-top: 15px;
-    width: 80px;
+  float: right;
+  display: none;
+  margin-top: 15px;
+  width: 80px;
 }
 .info-middle {
-	display: flex;
-	align-content: space-around;
-	justify-content: space-between;
-	height:44px;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-between;
+  height: 44px;
 }
-.gd:hover .delete  {
-	display: block;
+.gd:hover .delete {
+  display: block;
 }
 .container {
-	width:1080px;
-	margin:0 auto;
+  width: 1080px;
+  margin: 0 auto;
 }
-.ivu-layout-sider, .ivu-layout-content, .ivu-menu-light {
-	background: #fafafa !important;
+.ivu-layout-sider,
+.ivu-layout-content,
+.ivu-menu-light {
+  background: #fafafa !important;
 }
-.ivu-layout.ivu-layout-has-sider>.ivu-layout, .ivu-layout.ivu-layout-has-sider>.ivu-layout-content {
-    overflow-x: hidden;
-    overflow-y: hidden;
+.ivu-layout.ivu-layout-has-sider > .ivu-layout,
+.ivu-layout.ivu-layout-has-sider > .ivu-layout-content {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .ivu-layout-sider {
-	z-index: 0;
+  z-index: 0;
 }
 .user {
-	margin-top: 20px;
-	margin-bottom: 30px;
-	text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
-.detail:hover{
-	color:#23acf1;
+.detail:hover {
+  color: #23acf1;
 }
 .img {
-	width: 100px;
-	border: 4px solid #fff;
-	border-radius: 50%;
+  width: 100px;
+  border: 4px solid #fff;
+  border-radius: 50%;
 }
 .main0 {
-	border: 1px solid #e8e8e8;
-	margin: 0 auto;
-	width: 800px;
-	display: none;
+  border: 1px solid #e8e8e8;
+  margin: 0 auto;
+  width: 800px;
+  display: none;
 }
 .main0 .user-content h2 {
-   	font-size: 14px;
-    padding: 10px 15px 10px 30px;
-    border-bottom: 1px solid #e8e8e8;
-    overflow: hidden;
+  font-size: 14px;
+  padding: 10px 15px 10px 30px;
+  border-bottom: 1px solid #e8e8e8;
+  overflow: hidden;
 }
 .main0 .user-content {
-	height:250px; 
+  height: 250px;
 }
 .main0 .setting-content {
-	text-align: center;
-	line-height: 250px;
-
+  text-align: center;
+  line-height: 250px;
 }
 .main1 .user-content {
-	border: 1px solid #e8e8e8;
-	margin: 0 auto;
-	width: 780px;
-	margin-bottom: 20px;
-	background: #fff !important;
+  border: 1px solid #e8e8e8;
+  margin: 0 auto;
+  width: 780px;
+  margin-bottom: 20px;
+  background: #fff !important;
 }
 .main1 .setting-content {
-	border-top: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
 }
 .time {
-	height: 30px;
-	line-height: 30px;
-	padding-left: 20px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
 }
 table {
-	width:100%;
+  width: 100%;
 }
-table td:nth-child(3),td:nth-child(4) {
-	text-align: center;
-	width: 110px;
+table td:nth-child(3),
+td:nth-child(4) {
+  text-align: center;
+  width: 110px;
 }
-.main1 table td:nth-child(2),td:nth-child(3) {
-	border-right: 1px solid #e8e8e8;
+.main1 table td:nth-child(2),
+td:nth-child(3) {
+  border-right: 1px solid #e8e8e8;
 }
 .avatar {
-	padding-top: 10px;
-	padding-left: 20px;
+  padding-top: 10px;
+  padding-left: 20px;
 }
-.avatar img{
-	width: 80px;
+.avatar img {
+  width: 80px;
 }
 .title {
-	font-size: 16px;
-	margin-top: -6px;
-	margin-bottom: 6px;
-	
+  font-size: 16px;
+  margin-top: -6px;
+  margin-bottom: 6px;
 }
-.title>a  :hover {
-	color: #23acf1 !important;
+.title > a :hover {
+  color: #23acf1 !important;
 }
 .check-details .user-content {
-	margin: 0 auto;
-	width: 780px;
-	margin-bottom: 20px;
-	background: #fff !important;
+  margin: 0 auto;
+  width: 780px;
+  margin-bottom: 20px;
+  background: #fff !important;
 }
-.check-details .setting-content, .check-details .time  {
-	border-top: 1px solid #e8e8e8;
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
+.check-details .setting-content,
+.check-details .time {
+  border-top: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
 }
-.check-details .situation  {
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
-	border-bottom: 1px solid #e8e8e8;
+.check-details .situation {
+  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 .check-details .question {
-	border-top: 1px solid #e8e8e8;
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
-	border-bottom: 1px dotted #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+  border-bottom: 1px dotted #e8e8e8;
 }
-.check-details .question, .check-details .situation  {
-	padding-left: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+.check-details .question,
+.check-details .situation {
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .t {
-	font-weight: bold;
-	margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 </style>
