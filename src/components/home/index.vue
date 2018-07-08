@@ -22,7 +22,7 @@
 						<Menu-item name="/home/life">
 							生活服务
 						</Menu-item>
-            <Menu-item name="/home/userInfo" class="login" v-if="session">
+            <Menu-item name="/home/userInfo" v-if="session">
 							{{ userName }}
 						</Menu-item>
 						<Menu-item name="goLogin" v-else>
@@ -148,6 +148,7 @@ export default {
           sessionStorage.removeItem("userId");
           sessionStorage.removeItem("userName");
           this.session = false;
+          this.$router.go(0)
           break;
         default:
           this.$router.push(name);
