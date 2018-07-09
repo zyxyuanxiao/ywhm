@@ -4,6 +4,7 @@
 			<div class="person">
 				<div class="left"><div class="top">
 					<div :style="{backgroundImage:'url(' + tutor.avatar + ')'}" class="avator"></div>
+					
 						<h1 class="name">{{ tutor.name }}</h1>
 						<p class="intro1">{{ tutor.job }}</p>
 						<div class="detail">
@@ -13,7 +14,6 @@
 						</div>
 						<p class="b">北京 &nbsp; <span>复兴门 &nbsp; 崇文门</span></p>	
 					</div>
-					<!-- <div class="button">通话</div> -->
 					<ul v-for="item in guides">
 						<li class="item">
 							<div class="price">							
@@ -25,21 +25,27 @@
 								<div class="score">{{ item.score }}<span>分</span><Icon type="information-circled"  color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 							</div>
 							<h2 class="title">{{ item.title }}</h2>
-							<div class="content">
-								<p class="content">{{ item.describe }}</p>
-								<div class="fold"></div>
-							</div>
+							<p  :class="{  content: active,  hidden: hidden }" ref="stc" >{{ item.describe }}</p>
 							<div class="ft">
 								<div class="topic-info">
 									<span class="meet-time">约{{ item.duration }}小时</span>
 									<span class="meet-num">{{item.count}}人约过</span>
+								</div>
+								<div>
+									<img src="../../assets/img/fold.png" class="fold"  v-if="fold" @click="stretch('fold')">
+								 	<img src="../../assets/img/shrink.png" class="shrink" v-else @click="stretch('shrink')">
 								</div>
 							</div>
 						</li>
 					</ul> 
 					<h2>关于行家</h2>
 					<div class="about_tutor">
-						<div class="image"><img :src=tutor.avatar class="tutor-pic" alt=""></div>
+						<div class="image" >
+							<div class="tutor-pic">
+								<img :src=tutor.avatar class="tutor-pic" alt="">
+							</div>
+						</div>
+						<p>{{tutor.name}}, {{tutor.job}}</p>
 						<p>{{tutor.major}}</p>
 						<p>{{ tutor.descirbe }}</p>
 					</div>
@@ -60,7 +66,7 @@
 					</div>
 					
 					<h2>相关行家</h2>
-					<div  v-for="item in relatedTutors">
+					<div  v-for="item in relatedTutors" @click="goDetail(item.id)">
 					<div class="guide">
 						<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 						<div class="tutor_info">
@@ -71,13 +77,14 @@
 							<div class="title">{{item.major}}</div>
 							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
-					</div></div>
+					</div>
+					</div>
 				</div>
 			</div>
 			<!-- 预约 -->
 			<orders ref="order" :guide-list="guides"></orders>
 			<!-- 登录 -->
-       		<login ref="login"></login>
+	   		<login ref="login"></login>
 	 </div>
 </template>
 <script>
@@ -90,6 +97,9 @@ export default {
 	},
 	data () {
 		return {
+			active: true,
+			hidden: false,
+			fold: true,
 			id: null,
 			tutor: {},
 			guides: [],
@@ -106,6 +116,10 @@ export default {
 	methods: {
 		showOrder() {
 			this.$refs.order.showFrame();
+		},
+		goDetail(id) {
+			 this.$router.push("/home/detail?id=" + id);
+			 
 		},
 		//获取导师信息
 		getOne () {
@@ -142,6 +156,16 @@ export default {
 				console.log(err);
 			})
 		},
+		stretch (str){
+			if(str=="fold"){
+				this.hidden=true
+				this.fold=false
+			}
+			else {
+				this.hidden=false
+				this.fold=true
+			}
+		},
 		addWish() {
 			let userId = sessionStorage.getItem("userId")
 			if(!userId) {
@@ -169,21 +193,39 @@ export default {
 </script>
 
 <style scoped>
+    .hidden {
+		height: auto !important;
+		overflow: visible !important;
+	}
+	.fold,.shrink{
+		width: 18px;
+		margin-top: 16px;
+	}
+	.stretch{
+		width: 24px;
+		height: 24px;
+		/* line-height: 50px; */
+	 }
 	.ft {
 		border-top: 1px solid #ddd;
 		height: 50px;
 		line-height: 18px;
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
 	}
 	.topic-info {
 		display: inline-block;
 	}
 	.meet-time {
+		font-size: 14px;
 		border-right: 1px solid #ddd;
 		display: inline-block;
 		margin: 16px 6px 16px 0;
 		padding-right: 10px;
 	}
 	.meet-num {
+		font-size: 14px;
 		display: inline-block;
 		margin: 16px 6px 16px 0;
 		padding-right: 10px;
@@ -215,8 +257,8 @@ export default {
 		margin: 0 auto;
 		display: flex;
 	}
-	.left, .right {
-		width: 100%;
+	.left{
+		width: 560px;
 	}
 	.right {
 		width: 340px;
@@ -263,17 +305,6 @@ export default {
 	.highlight {
 		color:#23acf1;
 		padding-left:8px;
-	}
-	.button {
-		border: 1px solid #23acf1;
-		border-radius: 18px;
-		text-align: center;
-		color:#23acf1;
-		height: 36px;
-		width: 70px;
-		font-size: 14px;
-		line-height: 36px;
-		margin-top: 10px;
 	}
 	.price {
 		display: flex;
@@ -337,10 +368,10 @@ export default {
 		color: #23acf1;
 	}
 	.content {
-		line-height: 22px;
+		line-height: 28px;
 		font-size: 14px;
 		margin-bottom: 10px;
-		max-height: 50px;
+		height: 54px;
 		overflow: hidden;
 	}
 	h2 {
@@ -352,9 +383,7 @@ export default {
 	}
 	.item {
 		background: #fcfaf9;
-		/* height:265px; */
-		height: 210px;
-		overflow: hidden;
+		/* overflow: hidden; */
 		margin-top: 20px;
 		padding:30px 20px 10px;
 	}
@@ -396,39 +425,43 @@ export default {
 		overflow: hidden;
 		cursor: pointer;height: 100px;
 	}
-	.fold {
-		width: 540px;
-		height: 20px;
-	}
 	.guide:hover .title {
 		color: #23acf1;
 	}
 	.image {
 		margin: 10px auto 17px;
 		text-align: center;
+		height: 550px;
+		overflow: hidden;
+	}
+	.image img{
+		width: 450px;
+	}
+	.item .title {
+		font-size: 18px;
 	}
 	.vertical-center-modal{
-        display: flex;
-        align-items: center;
-        justify-content: center; 
+		display: flex;
+		align-items: center;
+		justify-content: center; 
 	} 
 	.vertical-center-modal .ivu-modal{
-        top: 0;
-    }
+		top: 0;
+	}
 	.vertical-center-modal .ivu-modal-footer{
 		display: none;
 	}
 	.ivu-form .ivu-form-item-label,p {
 		font-size: 14px;
 	}
-    .vertical-center-modal{
-        display: flex;
-        align-items: center;
-        justify-content: center; 
+	.vertical-center-modal{
+		display: flex;
+		align-items: center;
+		justify-content: center; 
 	} 
 	.vertical-center-modal .ivu-modal{
-        top: 0;
-    }
+		top: 0;
+	}
 	.vertical-center-modal .ivu-modal-footer{
 		display: none;
 	}
@@ -463,7 +496,7 @@ export default {
 	.gd_list:hover {
 		/* background-color: #6ed5d7; */
 		border: 1px solid #23acf1;
-    	color: #343434;
+		color: #343434;
 	}
 	.m_title {
 		float: left;
@@ -508,7 +541,7 @@ export default {
 	.submit{
 		 display: none;
 	}
-	@media (max-width: 768px) {
+	@media (max-width: 992px) {
 		.cover {
 			height: 250px;
 		}
@@ -516,7 +549,7 @@ export default {
 			width: 133px;
 			height: 133px;
 			float: none;
-			margin-top: -100px;
+			margin: -100px auto 0;
 		}
 		.image {
 			margin: 10px 15px 17px;
@@ -530,7 +563,7 @@ export default {
 		.person {
 			flex-direction: column;
 		}
-		.tutor-pic  {
+		.left {
 			width: 100%;
 		}
 		.right {
@@ -562,7 +595,7 @@ export default {
 		}
 		.tip {
 			line-height: 35px;
-    		font-size: 24px;
+			font-size: 24px;
 		}
 		.order {			
 			padding: 10px 0;

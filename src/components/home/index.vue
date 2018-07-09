@@ -65,7 +65,7 @@
               <Menu-item name="/home/userInfo" class="login" v-if="session">
 								{{ userName }}
 							</Menu-item>
-							<Menu-item name="" class="login" v-else>
+							<Menu-item name="goLogin" class="login" v-else>
 								登录
 							</Menu-item>							
 						</div>
