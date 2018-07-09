@@ -31,7 +31,7 @@
 export default {
   data() {
     return {
-      tags: ["全部", "市场", "人力", "销售", "金融"],
+      tags: ["全部", "设计", "人力", "销售", "金融"],
       total: [],
       filter: []
     };
