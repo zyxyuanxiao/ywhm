@@ -130,7 +130,6 @@ export default {
   margin-top: 50px;
   border: 1px solid #fff;
   border-radius: 5px;
-  /* text-shadow: 0 0 28px rgba(0,0,0, 0.1); */
   text-shadow: 0 0 28px rgba(1, 1, 1, 20);
 }
 .feat {
@@ -166,10 +165,8 @@ export default {
   margin-top: 40px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   background-color: rgba(255, 255, 255, 0.1);
-  /* box-shadow: 0 0 6px rgba(0,0,0,.14); */
   box-shadow: 0 0 6px rgba(1, 1, 1, 0.14);
   color: #fff;
-  /* text-shadow: 0 0 24px rgba(0,0,0,.64); */
   text-shadow: 0 0 28px rgba(1, 1, 1, 20);
   text-align: center;
 }
@@ -186,7 +183,6 @@ export default {
   height: 1000px;
 }
 .teacher {
-  /* background: url("../../../assets/img/teacher1.jpg") no-repeat; */
   width: 230px;
   height: 320px;
   background-size: cover;
@@ -217,13 +213,20 @@ export default {
   position: absolute;
   left: 20px;
   bottom: 80px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.64);
 }
 .teacher-job {
   color: #23acf1;
   font-size: 12px;
+  /* font-weight: bold; */
   position: absolute;
   left: 20px;
   bottom: 65px;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 90%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.64);
 }
 .teacher-intro {
   color: #fff;
@@ -231,6 +234,7 @@ export default {
   position: absolute;
   left: 20px;
   bottom: 34px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.64);
 }
 .teacher:before {
   content: "";
@@ -290,7 +294,6 @@ export default {
 .down {
   margin: 0 auto;
   padding-top: 40px;
-  /* width: 980px; */
   width: 100%;
   text-align: center;
 }
@@ -307,78 +310,15 @@ export default {
   background: #23acf1;
   color: #fff;
 }
+.btn {
+    background: #fafafa;
+}
 button {
   outline: none;
 }
 .swiper-box {
   margin-bottom: 40px;
 }
-/* .story {
-    width: 100%;
-    position: relative;
-    margin-bottom: 45px;
-}
-.story ul {
-	list-style: none;
-    width: 300%;
-	height: 450px;	
-	overflow: hidden;
-}
-.story li{
-    float: left;
-    width: 33%;
-    position: relative;
-}
-.bannerimg {
-    position: relative;
-    top:-200px;
-}
-.arrow_left>img, .arrow_right>img {
-	width: 20px;
-	height: 20px;;
-}
-.arrow_left {
-    padding: 28px 15px;
-    background: #d9d9d9;
-    background: rgba(0,0,0,0.1);
-    vertical-align: middle;
-    position: absolute;
-    top: 150px;
-    left: 8px;
-    border-radius: 5px; 
- } 
-.arrow_right {
-    padding: 28px 15px;
-    background: rgba(0,0,0,0.1);
-    vertical-align: middle;
-    position: absolute;
-    top: 150px;
-    right: 8px;
-    border-radius: 5px;
-}
-.arrow_left:hover, .arrow_right:hover {
-    background: rgba(0,0,0,0.2);
-} */
-/* .text1{
-    position: absolute;
-    top: 130px;
-    left: 230px;
-    font-family: "Microsoft YaHei";
-    color: white;
-    font-size: 36px;
-	font-weight: 300;
-	text-shadow: 0 0 28px rgba(0,0,0,10);
-}
-.text2{
-    position: absolute;
-    top: 230px;
-    left: 250px;
-    font-family: "Microsoft YaHei";
-    color: white;
-    font-size: 20px;
-	font-weight: 100;
-	text-shadow: 0 0 14px rgba(0,0,0,10);
-} */
 .top {
   padding: 10px;
   background: rgba(35, 172, 241, 0.6);
