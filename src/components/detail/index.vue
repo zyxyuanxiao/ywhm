@@ -107,6 +107,7 @@ export default {
 			wishStatus: "加入心愿单"
 		}
 	},
+	
 	mounted() {
 		this.id = this.$route.query.id
 		this.getOne()
@@ -118,8 +119,11 @@ export default {
 			this.$refs.order.showFrame();
 		},
 		goDetail(id) {
-			 this.$router.push("/home/detail?id=" + id);
-			 
+			 this.$router.push("/home/");
+			 var that =this
+			 setTimeout(function (){
+				that.$router.push("/home/detail?id=" + id);
+			}, 1);
 		},
 		//获取导师信息
 		getOne () {

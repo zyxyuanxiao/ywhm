@@ -1,17 +1,16 @@
 <template>
+<div style="background: #fafafa;">
 	<div class="container">
 		<Layout>
-					<Sider hide-trigger :style="{background: '#fff'}" >
-							<Menu theme="light" @on-select="switchPage">
+			<Sider hide-trigger :style="{background: '#fff'}" >
+				<Menu theme="light" @on-select="switchPage">
 					<div class="user" id="userInfo">
-						<a class="user-avatar" id="nickname">
-							<img src="../../assets/img/user-avatar.png" alt="" class="img">
-						</a>
+						<img src="../../assets/img/user-avatar.png" alt="" class="img">
 					</div>
 					<MenuItem name="tutor" @click="orderTutor">我约的行家</MenuItem>
 					<MenuItem name="wish_list">心愿单</MenuItem>
-								</Menu>
-						</Sider>
+				</Menu>
+			</Sider>
 			<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
 				<div class="main0"  v-if="status">
 					<div class="user-content">
@@ -19,7 +18,7 @@
 						<div class="setting-content">
 							<p class="none">
 								真忧伤，我还没有约过人诶。
-								<a href="">立即去约人！</a>
+								<<router-link to="/home/career">立即去约人！</router-link> 
 							</p>
 						</div>
 					</div>
@@ -30,13 +29,13 @@
 							<span>发起时间：{{item.time}}</span>
 						</div>
 						<div class="setting-content">
-							<table>
-								<tr>
-									<td>
-										<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
+							<table height="130px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
+								<tr align="center" valign="middle">
+									<td width="190px">
+										 <div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
 									</td>
-									<td  @click="showDetail(item.id)">	
-										<div class="title"><a href="">{{item.title}}</a></div>
+									<td  @click="goDetail(item.id)">	
+										<div class="title">{{item.title}}</div>
 										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
 									</td>
 									<td>
@@ -56,48 +55,53 @@
 							<span>发起时间：{{item.time}}</span>
 						</div>
 						<div class="setting-content">
-							<table>
-								<tr>
-									<td>
-										<div class="avatar"><img src="../../assets/img/user-avatar.png" alt=""></div>
+							<table height="360px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
+								<tr align="center" valign="middle">
+									<td width="190px" height="129px">
+										 <div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 									</td>
-									<td>	
-										<div class="title"><a href="">{{item.title}}</a></div>
+									<td @click="goDetail(item.id)">	
+										<div class="title">{{item.title}}</div>
 										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
 									</td>
 								</tr>
-							</table>
-						</div>
-						<div class="question">
-							<p class="t">您想请教的问题是：</p>
-							<p>{{item.question}}</p>
-						</div>
-						<div class="situation">
-							<p class="t">您的个人简介：</p>
-							<p>{{item.situation}}</p>
-						</div>
+								<tr  valign="middle" class="question" >
+									<td colspan="2">
+										<p class="t">您想请教的问题是：</p>
+										<p>{{item.question}}</p>
+									</td>
+								</tr>
+								<tr  valign="middle"  class="situation" colspan="2">
+									<td colspan="2">
+										<p class="t">您的个人简介：</p>
+										<p>{{item.situation}}</p>
+									</td>
+								</tr>
+						    </table>
+					    </div>
 					</div>
 				</div>
 				<div class="heart" ref="heart">
 					<div class="gd" v-for="item in heartList" @click="goDetail(item.id)">
-					<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
-					<div class="gd-info" >
-						<div class="info-top">
-							<div class="tutor-info">
-								<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.slogan}}</span>
+						<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
+						<div class="gd-info" >
+							<div class="info-top">
+								<div class="tutor-info">
+									<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.slogan}}</span>
+								</div>
 							</div>
+							<div class="info-middle">
+								<div style="font-size:14px;">{{item.job}}</div>
+								<Button type="ghost" class="delete" @click="remove(item)">删除</Button>
+							</div>
+							<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 						</div>
-						<div class="info-middle">
-							<div class="info-major">{{item.job}}</div>
-							<Button type="ghost" class="delete" @click="remove(item)">删除</Button>
-						</div>
-						<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
-					</div>
 					</div>
 				</div>
-						</Content>
+			</Content>
 		</Layout>
 	</div>
+</div>
 </template>
 <script>
 export default {
@@ -109,7 +113,7 @@ export default {
 				{
 					id: "1",
 					time: "2018-07-07",
-					avator: "",
+					avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
 					title: "医学背景健身导师，解决你所有问题!",
 					name: "原李峰",
 					job: "「原来健身工作室」创始人",
@@ -120,7 +124,7 @@ export default {
 				{
 					id: "2",
 					time: "2018-07-07",
-					avator: "",
+					avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
 					title: "医学背景健身导师，解决你所有问题!",
 					name: "原李峰",
 					job: "「原来健身工作室」创始人",
@@ -153,7 +157,7 @@ export default {
 				});
 		},
 		goDetail(id) {
-      this.$router.push("/home/detail?id=" + id);
+	  this.$router.push("/home/detail?id=" + id);
 		},
 		showDetail(id) {
 			console.log(id);
@@ -199,8 +203,28 @@ export default {
 };
 </script>
 <style scoped>
+.ivu-menu-vertical.ivu-menu-light:after {
+	display: none;
+}
+.ivu-menu-vertical .ivu-menu-item {
+	font-size: 20px;
+}
+.table {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+}
+.gd-avatar {
+	width: 85px;
+	height: 85px;
+	margin-left:30px;
+}
+.title:hover {
+	cursor: pointer;
+	color: #23acf1;
+}
 .heart {
-	width: 780px;
+	max-width: 780px;
 	margin: 0 auto;
 	display: none;
 }
@@ -216,11 +240,12 @@ export default {
 	justify-content: space-between;
 	height: 44px;
 }
+
 .gd:hover .delete {
 	display: block;
 }
 .container {
-	width: 1080px;
+	max-width: 1080px;
 	margin: 0 auto;
 }
 .ivu-layout-sider,
@@ -245,14 +270,14 @@ export default {
 	color: #23acf1;
 }
 .img {
-	width: 100px;
+	width: 155px;
 	border: 4px solid #fff;
 	border-radius: 50%;
 }
 .main0 {
 	border: 1px solid #e8e8e8;
 	margin: 0 auto;
-	width: 800px;
+	max-width: 800px;
 	display: none;
 }
 .main0 .user-content h2 {
@@ -263,25 +288,29 @@ export default {
 }
 .main0 .user-content {
 	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 .main0 .setting-content {
 	text-align: center;
 	line-height: 250px;
 }
 .main1 .user-content {
-	border: 1px solid #e8e8e8;
 	margin: 0 auto;
-	width: 780px;
+	max-width: 780px;
 	margin-bottom: 20px;
 	background: #fff !important;
 }
-.main1 .setting-content {
-	border-top: 1px solid #e8e8e8;
+td {
+	padding: 20px;
 }
 .time {
-	height: 30px;
-	line-height: 30px;
+	height: 42px;
+	line-height: 42px;
 	padding-left: 20px;
+	border: 1px solid #e8e8e8;
+	border-bottom: none;
 }
 table {
 	width: 100%;
@@ -291,10 +320,7 @@ td:nth-child(4) {
 	text-align: center;
 	width: 110px;
 }
-.main1 table td:nth-child(2),
-td:nth-child(3) {
-	border-right: 1px solid #e8e8e8;
-}
+
 .avatar {
 	padding-top: 10px;
 	padding-left: 20px;
@@ -304,11 +330,6 @@ td:nth-child(3) {
 }
 .title {
 	font-size: 16px;
-	margin-top: -6px;
-	margin-bottom: 6px;
-}
-.title > a :hover {
-	color: #23acf1 !important;
 }
 .check-details .user-content {
 	margin: 0 auto;
@@ -316,23 +337,7 @@ td:nth-child(3) {
 	margin-bottom: 20px;
 	background: #fff !important;
 }
-.check-details .setting-content,
-.check-details .time {
-	border-top: 1px solid #e8e8e8;
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
-}
-.check-details .situation {
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
-	border-bottom: 1px solid #e8e8e8;
-}
-.check-details .question {
-	border-top: 1px solid #e8e8e8;
-	border-right: 1px solid #e8e8e8;
-	border-left: 1px solid #e8e8e8;
-	border-bottom: 1px dotted #e8e8e8;
-}
+
 .check-details .question,
 .check-details .situation {
 	padding-left: 20px;
@@ -341,6 +346,10 @@ td:nth-child(3) {
 }
 .t {
 	font-weight: bold;
-	margin-bottom: 5px;
+	margin-bottom: 14px;
+	font-size: 14px;
+}
+p {
+	font-size: 14px;
 }
 </style>
