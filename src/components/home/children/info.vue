@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="list">
-            <div class="teacher" v-for="item in total" @click="goDetail(item.id)">
+            <div class="teacher" v-for="item in total" v-if='item.id<=12' @click="goDetail(item.id)">
 				<div class="teacher-img"><img v-bind:src="item.avatar" class="teacher-img"></div>
                 <div class="teacher-view"><p><span>{{item.sub_num}}</span>人见过</p></div>
                 <div class="teacher-tutor">{{item.name}}</div>
