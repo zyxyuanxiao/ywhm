@@ -234,6 +234,10 @@ export default {
     position: absolute;
     left: 20px;
     bottom: 34px;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 90%;
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.64);
   }
   .teacher:before {
