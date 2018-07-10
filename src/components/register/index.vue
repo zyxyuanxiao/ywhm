@@ -1,29 +1,29 @@
 <template>
-    <div class="reg">
-      <h3>欢迎加入「亿万毫米」</h3>
-      <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" >
-         <FormItem prop="user">
-            <Input type="text" v-model="formCustom.user" size="large" placeholder="用户名" />
-        </FormItem>
-        <FormItem prop="email">
-            <Input type="email" v-model="formCustom.email" size="large" placeholder="邮箱" />
-        </FormItem>
-        <FormItem prop="passwd">
-            <Input type="password" v-model="formCustom.passwd" size="large" placeholder="密码"/>
-        </FormItem>
-        <FormItem prop="passwdCheck">
-            <Input type="password" v-model="formCustom.passwdCheck" size="large" placeholder="确认密码" />
-        </FormItem>
-        <FormItem>
-           <Checkbox v-model="single">我已阅读并同意《服务条款》</Checkbox>
-        </FormItem>
-        <FormItem>
-            <Button type="primary" @click="handleSubmit('formCustom')" size="large">注册</Button>
-        </FormItem>
+  <div class="reg">
+    <h3>欢迎加入「亿万毫米」</h3>
+    <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" >
+      <FormItem prop="user">
+        <Input type="text" v-model="formCustom.user" size="large" placeholder="用户名" />
+      </FormItem>
+      <FormItem prop="email">
+        <Input type="email" v-model="formCustom.email" size="large" placeholder="邮箱" />
+      </FormItem>
+      <FormItem prop="passwd">
+        <Input type="password" v-model="formCustom.passwd" size="large" placeholder="密码"/>
+      </FormItem>
+      <FormItem prop="passwdCheck">
+        <Input type="password" v-model="formCustom.passwdCheck" size="large" placeholder="确认密码" />
+      </FormItem>
+      <FormItem>
+        <Checkbox v-model="single">我已阅读并同意《服务条款》</Checkbox>
+      </FormItem>
+      <FormItem>
+        <Button type="primary" @click="handleSubmit('formCustom')" size="large">注册</Button>
+      </FormItem>
     </Form>
-    </div>
- 
+  </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -66,7 +66,6 @@ export default {
         callback();
       }
     };
-
     return {
       single: true,
       formCustom: {
@@ -87,7 +86,7 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-            //注册
+          //注册
           this.$ajax({
             url: "/user/register",
             data: {
@@ -96,48 +95,50 @@ export default {
                 email: this.formCustom.email
             }
           }).then(res => {
-              this.$Message.success('注册成功，请您重新登录')
-              this.$router.push('/')
-            }).catch(err => {
-              this.$Message.error('注册失败')
-            });
+            this.$Message.success('注册成功，请您重新登录')
+            this.$router.push('/')
+          }).catch(err => {
+            this.$Message.error('注册失败')
+          });
         }
       });
     }
   }
 };
 </script>
+
 <style scoped>
-.reg {
-  max-width: 770px;
-  margin: 36px auto;
-  border: 1px solid #e8e8e8;
-  padding: 30px;
-  background: #fff;
-  text-align: center;
-}
-h3 {
-  margin-bottom: 36px;
-  font-size: 36px;
-  font-weight: 400;
-}
-.ivu-input {
-  width: 320px;
-}
-.ivu-btn-primary {
-  width: 100%;
-}
-.ivu-form-item {
-  width: 280px;
-  margin: 20px auto;
-}
-@media (max-width: 768px) {
-  h3 {
-    font-size: 30px;
-  }
   .reg {
-    margin: 20px 10px;
+    max-width: 770px;
+    margin: 36px auto;
+    border: 1px solid #e8e8e8;
+    padding: 30px;
+    background: #fff;
+    text-align: center;
   }
-}
+  h3 {
+    margin-bottom: 36px;
+    font-size: 36px;
+    font-weight: 400;
+  }
+  .ivu-input {
+    width: 320px;
+  }
+  .ivu-btn-primary {
+    width: 100%;
+  }
+  .ivu-form-item {
+    width: 280px;
+    margin: 20px auto;
+  }
+  
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 30px;
+    }
+    .reg {
+      margin: 20px 10px;
+    }
+  }
 </style>
 

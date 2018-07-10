@@ -27,47 +27,48 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-     data() {
-            return {
-                tags : ["全部","产品","研发","运营","市场"],
-                total: [],
-               filter: [],
-            }
-        },
-          mounted () {
-            this.getList()
-        },
-        methods: {
-            getList() {
-      this.$ajax({
-        url: "/guide/selectByType",
-        data: {
-          big_type: "互联网+"
+    data() {
+        return {
+            tags : ["全部","产品","研发","运营","市场"],
+            total: [],
+           filter: [],
         }
-      })
-        .then(res => {
-          this.total = res.data;
-          this.filter = res.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
     },
-         changeTag(small_type) {
-				var total=this.total
-				if(small_type=="全部")
-				this.filter=total
-				else{
-				this.filter = total.filter(function(item,index,array){
-					return (item.small_type==small_type);
-				});
-				}
-		},
+    mounted () {
+        this.getList()
+    },
+    methods: {
+        getList() {
+            this.$ajax({
+                url: "/guide/selectByType",
+                data: {
+                  big_type: "互联网+"
+                }
+            })
+            .then(res => {
+              this.total = res.data;
+              this.filter = res.data;
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        },
+        changeTag(small_type) {
+	    	var total=this.total
+	    	if(small_type=="全部")
+	    	    this.filter=total
+	    	else{
+	    	    this.filter = total.filter(function(item,index,array){
+	    		    return (item.small_type==small_type);
+	    	    });
+	        }
+        },
         goDetail(id) {
             this.$router.push("/home/detail?id="+id)
         }
     }
-    }
+}
 </script>
