@@ -106,262 +106,264 @@
 </template>
 <script>
 export default {
-	data() {
-		return {
-			// 判断是否存在订单
-			status: false,
-			total: [
-				{
-					id: "1",
-					time: "2018-07-07",
-					avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
-					title: "医学背景健身导师，解决你所有问题!",
-					name: "原李峰",
-					job: "「原来健身工作室」创始人",
-					price: 499,
-					question: "aaaaaaaaaaaaaaa",
-					situation: "bbbbbbbbbbbbbbbbb"
-				},
-				{
-					id: "2",
-					time: "2018-07-07",
-					avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
-					title: "医学背景健身导师，解决你所有问题!",
-					name: "原李峰",
-					job: "「原来健身工作室」创始人",
-					price: 499,
-					question: "aaaaaaaaaaaaaaa",
-					situation: "cccccccccccccc"
-				}
-			],
-			heartList: [],
-			filter: []
-		};
-	},
-	mounted() {
-		this.getWish()
-	},
-	methods: {
-		getWish() {
-		let userId = sessionStorage.getItem("userId")
-			this.$ajax({
-		url: "/wish/selectByUser",
-		data: {
-			id: userId
-		}
-			})
-				.then(res => {
-					this.heartList = res.data
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		},
-		goDetail(id) {
-	 		 this.$router.push("/home/detail?id=" + id);
-		},
-		showDetail(id) {
-			console.log(id);
-			this.$refs.details.style.display = "block";
-			this.$refs.main1.style.display = "none";
-			this.filter = this.total.filter(function(item, index, array) {
-				console.log(item.id == id);
-				return item.id == id;
-			});
-			console.log(this.filter);
-		},
-		orderTutor() {
-			this.$refs.details.style.display = "none";
-			this.$refs.main1.style.display = "block";
-		},
-		remove(item) {
-			this.$ajax({
-		url: "/wish/delete",
-		data: {
-			id: item.id,
-			tutor_id: item.tutor_id
-		}
-			})
-				.then(res => {
-					this.getWish()
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		},
-		switchPage(name) {
-			if (name == "tutor") {
-				this.$refs.details.style.display = "none";
-				this.$refs.main1.style.display = "block";
-				this.$refs.heart.style.display = "none";
-			} else {
-				this.$refs.details.style.display = "none";
-				this.$refs.main1.style.display = "none";
-				this.$refs.heart.style.display = "block";
-			}
-		}
-	}
+  data() {
+    return {
+      // 判断是否存在订单
+      status: false,
+      total: [
+        {
+          id: "1",
+          time: "2018-07-07",
+          avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
+          title: "医学背景健身导师，解决你所有问题!",
+          name: "原李峰",
+          job: "「原来健身工作室」创始人",
+          price: 499,
+          question: "aaaaaaaaaaaaaaa",
+          situation: "bbbbbbbbbbbbbbbbb"
+        },
+        {
+          id: "2",
+          time: "2018-07-07",
+          avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
+          title: "医学背景健身导师，解决你所有问题!",
+          name: "原李峰",
+          job: "「原来健身工作室」创始人",
+          price: 499,
+          question: "aaaaaaaaaaaaaaa",
+          situation: "cccccccccccccc"
+        }
+      ],
+      heartList: [],
+      filter: []
+    };
+  },
+  mounted() {
+    this.getWish();
+  },
+  methods: {
+	  //获取心愿单列表
+    getWish() {
+      let userId = sessionStorage.getItem("userId");
+      this.$ajax({
+        url: "/wish/selectByUser",
+        data: {
+          id: userId
+        }
+      })
+        .then(res => {
+          this.heartList = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    goDetail(id) {
+      this.$router.push("/home/detail?id=" + id);
+    },
+    showDetail(id) {
+      console.log(id);
+      this.$refs.details.style.display = "block";
+      this.$refs.main1.style.display = "none";
+      this.filter = this.total.filter(function(item, index, array) {
+        console.log(item.id == id);
+        return item.id == id;
+      });
+      console.log(this.filter);
+    },
+    orderTutor() {
+      this.$refs.details.style.display = "none";
+      this.$refs.main1.style.display = "block";
+    },
+    //删除心愿单
+    remove(item) {
+      this.$ajax({
+        url: "/wish/delete",
+        data: {
+          id: item.id,
+          tutor_id: item.tutor_id
+        }
+      })
+        .then(res => {
+          this.$Message.success("删除成功");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    switchPage(name) {
+      if (name == "tutor") {
+        this.$refs.details.style.display = "none";
+        this.$refs.main1.style.display = "block";
+        this.$refs.heart.style.display = "none";
+      } else {
+        this.$refs.details.style.display = "none";
+        this.$refs.main1.style.display = "none";
+        this.$refs.heart.style.display = "block";
+      }
+    }
+  }
 };
 </script>
 <style scoped>
 .td {
-	padding-right: 0px;
+  padding-right: 0px;
 }
 ul {
-	width: 160px !important;
+  width: 160px !important;
 }
 .ivu-menu-vertical.ivu-menu-light:after {
-	display: none;
+  display: none;
 }
 .ivu-menu-vertical .ivu-menu-item {
-	font-size: 20px;
+  font-size: 20px;
 }
 .ivu-layout-sider {
-	max-width: 165px !important;
-	min-width: 160px !important;
+  max-width: 165px !important;
+  min-width: 160px !important;
 }
 .table {
-	display: flex;
-	justify-content: space-around;
-	align-content: center;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
 }
 .gd-avatar {
-	width: 85px;
-	height: 85px;
+  width: 85px;
+  height: 85px;
 }
 .title:hover {
-	cursor: pointer;
-	color: #23acf1;
+  cursor: pointer;
+  color: #23acf1;
 }
 .heart {
-	/* max-width: 700px; */
-	margin: 0 auto;
-	display: none;
+  /* max-width: 700px; */
+  margin: 0 auto;
+  display: none;
 }
 .delete {
-	float: right;
-	display: none;
-	margin-top: 15px;
-	width: 80px;
+  float: right;
+  display: none;
+  margin-top: 15px;
+  width: 80px;
 }
 .info-middle {
-	display: flex;
-	align-content: space-around;
-	justify-content: space-between;
-	height: 44px;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-between;
+  height: 44px;
 }
 
 .gd:hover .delete {
-	display: block;
+  display: block;
 }
 .container {
-	max-width: 900px;
-	margin: 0 auto;
-	padding-bottom: 30px;
-	margin-top:20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  margin-top: 20px;
 }
 .ivu-layout-sider,
 .ivu-layout-content,
 .ivu-menu-light {
-	background: #fafafa !important;
+  background: #fafafa !important;
 }
 .ivu-layout.ivu-layout-has-sider > .ivu-layout,
 .ivu-layout.ivu-layout-has-sider > .ivu-layout-content {
-	overflow-x: hidden;
-	overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .ivu-layout-sider {
-	z-index: 0;
+  z-index: 0;
 }
 .user {
-	margin-top: 20px;
-	margin-bottom: 30px;
-	text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 .detail:hover {
-	color: #23acf1;
+  color: #23acf1;
 }
 .img {
-	width: 155px;
-	border: 5px solid #fff;
-	border-radius: 50%;
+  width: 155px;
+  border: 5px solid #fff;
+  border-radius: 50%;
 }
 .main0 {
-	/* border: 1px solid #e8e8e8; */
-	margin: 0 auto;
-	/* max-width: 700px; */
-	display: none;
+  /* border: 1px solid #e8e8e8; */
+  margin: 0 auto;
+  /* max-width: 700px; */
+  display: none;
 }
 .main0 .user-content h2 {
-	font-size: 14px;
-	padding: 10px 15px 10px 30px;
-	border-bottom: 1px solid #e8e8e8;
-	overflow: hidden;
+  font-size: 14px;
+  padding: 10px 15px 10px 30px;
+  border-bottom: 1px solid #e8e8e8;
+  overflow: hidden;
 }
 .main0 .user-content {
-	height: 250px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .main0 .setting-content {
-	text-align: center;
-	line-height: 250px;
+  text-align: center;
+  line-height: 250px;
 }
 .main1 .user-content {
-	margin: 0 auto;
-	/* max-width: 700px; */
-	margin-bottom: 20px;
-	background: #fff !important;
+  margin: 0 auto;
+  /* max-width: 700px; */
+  margin-bottom: 20px;
+  background: #fff !important;
 }
 td {
-	padding: 20px;
+  padding: 20px;
 }
 .time {
-	height: 42px;
-	line-height: 42px;
-	padding-left: 20px;
-	border: 1px solid #e8e8e8;
-	border-bottom: none;
+  height: 42px;
+  line-height: 42px;
+  padding-left: 20px;
+  border: 1px solid #e8e8e8;
+  border-bottom: none;
 }
 table {
-	width: 100%;
+  width: 100%;
 }
 table td:nth-child(3),
 td:nth-child(4) {
-	text-align: center;
-	width: 110px;
+  text-align: center;
+  width: 110px;
 }
 
 .avatar {
-	padding-top: 10px;
-	padding-left: 20px;
+  padding-top: 10px;
+  padding-left: 20px;
 }
 .avatar img {
-	width: 80px;
+  width: 80px;
 }
 .title {
-	font-size: 16px;
+  font-size: 16px;
 }
 .check-details .user-content {
-	margin: 0 auto;
-	/* max-width: 700px; */
-	margin-bottom: 20px;
-	background: #fff !important;
+  margin: 0 auto;
+  /* max-width: 700px; */
+  margin-bottom: 20px;
+  background: #fff !important;
 }
 
 .check-details .question,
 .check-details .situation {
-	padding-left: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .t {
-	font-weight: bold;
-	margin-bottom: 14px;
-	font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 14px;
+  font-size: 14px;
 }
 p {
-	font-size: 14px;
+  font-size: 14px;
 }
 </style>

@@ -138,6 +138,7 @@ export default {
 				console.log(err);
 			})
 		},
+		//获取相关行家
 		getRelatedTutors () {
 			this.$ajax({
 				url: "/tutor/selectByRandom",
@@ -170,6 +171,7 @@ export default {
 				this.fold=true
 			}
 		},
+		//加入心愿单
 		addWish() {
 			let userId = sessionStorage.getItem("userId")
 			if(!userId) {
@@ -185,6 +187,7 @@ export default {
 			}).then(res => {
 				if(res.status == "success") {
 					this.wishStatus = "已加入心愿单"
+					this.$Message.success("成功加入心愿单")
 				}else {
 					console.log(res.msg)
 				}
