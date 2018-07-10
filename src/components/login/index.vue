@@ -1,5 +1,5 @@
 <template>
-	<Modal :mask-closable="false" scrollable v-model="showLogin" width="420" class-name="vertical-center-modal" @on-cancel="hideFrame()">
+	<Modal :mask-closable="false" scrollable v-model="showLogin" width="420" class-name="vertical-center-modal" @on-cancel="hideFrame()" >
 		<div class="dialog">
 			<h3>欢迎来到「亿万毫米」</h3>
 			<Form ref="formInline" :model="formInline" :rules="ruleInline">
@@ -15,9 +15,10 @@
 				</FormItem>
 				<FormItem>
 					<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
-				</FormItem>
+          <p style="font-size: 14px;margin-top: 6px;" @click="hideReset('formInline')" >没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+				</FormItem>	
 			</Form>
-			<p style="font-size: 14px;" @click="hideFrame()" >没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+		
 		</div>
   </Modal>
 </template>
@@ -58,10 +59,15 @@ export default {
   },
   methods: {
 	  showFrame() {
-	  	this.showLogin = true
-	  },
-	  hideFrame() {
-	  	this.showLogin = false
+      this.showLogin = true
+    },
+	  hideFrame(name) {
+      this.showLogin = false
+      // this.$refs[name].resetFields();
+    },
+    hideReset(name) {
+      this.showLogin = false
+      this.$refs[name].resetFields();
 	  },
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
@@ -88,7 +94,7 @@ export default {
 			      	  }else {
 			      		  this.$Message.error("用户名或密码错误!");
 			      	  }
-			        }
+              }
           })
           .catch(err => {
             this.$Message.error("网络出现问题!");

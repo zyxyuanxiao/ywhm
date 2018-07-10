@@ -66,8 +66,8 @@
 				</div>
 				
 				<h2>相关行家</h2>
-				<div  @click="goDetail(item.id)" style="margin-bottom: 30px;">
-				<div class="guide" v-for="item in relatedTutors">
+				<div  style="margin-bottom: 30px;">
+				<div class="guide" v-for="item in relatedTutors" @click="goDetail(item.id)">
 					<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 					<div class="tutor_info">
 						<div class="tutor_top">

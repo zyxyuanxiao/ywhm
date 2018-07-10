@@ -287,13 +287,10 @@ export default {
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
-.ivu-layout-sider {
-	z-index: 0;
-}
+
 .user {
 	margin-top: 20px;
-	margin-bottom: 30px;
-	text-align: center;
+	margin-bottom: 20px;
 }
 .detail:hover {
 	color: #23acf1;
@@ -376,6 +373,9 @@ p {
 @media (max-width: 820px) {
    .title {
 	   font-size: 16px;
+   }
+   .ivu-layout-sider {
+	   max-width: 160px !important;
    }
 }
 @media (max-width: 768px) {

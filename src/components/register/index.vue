@@ -36,7 +36,11 @@ export default {
     const validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
-      } else {
+      } 
+      else if(value.length < 3) {
+        callback(new Error("密码不能少于3位"));
+      }
+      else {
         if (this.formCustom.passwdCheck !== "") {
           // 对第二个密码框单独验证
           this.$refs.formCustom.validateField("passwdCheck");
@@ -134,7 +138,7 @@ export default {
   
   @media (max-width: 768px) {
     h3 {
-      font-size: 30px;
+      font-size: 28px;
     }
     .reg {
       margin: 20px 10px;

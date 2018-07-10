@@ -94,6 +94,9 @@
 	.tag {
 		margin: 0 15px;
 	}
+	.tag:visited {
+		color: #23acf1 !important;
+	}
 	.tag:hover {
 		cursor: pointer;
 		color: #23acf1;
