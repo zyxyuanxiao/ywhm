@@ -1,80 +1,80 @@
 <template>
 	<div class="container">
-			<div class="cover"></div>
-			<div class="person">
-				<div class="left"><div class="top">
+		<div class="cover"></div>
+		<div class="person">
+			<div class="left">
+				<div class="top">
 					<div :style="{backgroundImage:'url(' + tutor.avatar + ')'}" class="avator"></div>
-					
-						<h1 class="name">{{ tutor.name }}</h1>
-						<p class="intro1">{{ tutor.job }}</p>
-						<div class="detail">
-							<span><Icon type="ios-clock" color="#23acf1"></Icon><span class="highlight">{{tutor.respond}}</span>内回应</span>
-							<span><Icon type="happy" color="#23acf1"></Icon><span class="highlight">{{ tutor.sub_num }}</span>人见过</span>
-							<span><Icon type="heart" color="#23acf1"></Icon> <span class="highlight">{{ tutor.wish_num }}</span>人想见</span>
-						</div>
-						<p class="b">北京 &nbsp; <span>复兴门 &nbsp; 崇文门</span></p>	
+					<h1 class="name">{{ tutor.name }}</h1>
+					<p class="intro1">{{ tutor.job }}</p>
+					<div class="detail">
+						<span><Icon type="ios-clock" color="#23acf1"></Icon><span class="highlight">{{tutor.respond}}</span>内回应</span>
+						<span><Icon type="happy" color="#23acf1"></Icon><span class="highlight">{{ tutor.sub_num }}</span>人见过</span>
+						<span><Icon type="heart" color="#23acf1"></Icon> <span class="highlight">{{ tutor.wish_num }}</span>人想见</span>
 					</div>
-					<ul v-for="item in guides">
-						<li class="item">
-							<div class="price">							
-								<div>
-									<span>￥</span>
-									<span>{{ item.price }}</span>
-									<span>/次</span>
-								</div>
-								<div class="score">{{ item.score }}<span>分</span><Icon type="information-circled"  color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
-							</div>
-							<h2 class="title">{{ item.title }}</h2>
-							<p  :class="{  content: active,  hidden: hidden }" ref="stc" >{{ item.describe }}</p>
-							<div class="ft">
-								<div class="topic-info">
-									<span class="meet-time">约{{ item.duration }}小时</span>
-									<span class="meet-num">{{item.count}}人约过</span>
-								</div>
-								<div>
-									<img src="../../assets/img/fold.png" class="fold"  v-if="fold" @click="stretch('fold')">
-								 	<img src="../../assets/img/shrink.png" class="shrink" v-else @click="stretch('shrink')">
-								</div>
-							</div>
-						</li>
-					</ul> 
-					<h2>关于行家</h2>
-					<div class="about_tutor">
-						<div class="image" >
-							<div class="tutor-pic">
-								<img :src=tutor.avatar class="tutor-pic" alt="">
-							</div>
-						</div>
-						<p>{{tutor.name}}, {{tutor.job}}</p>
-						<p>{{tutor.major}}</p>
-						<p>{{ tutor.descirbe }}</p>
-					</div>
+					<p class="b">北京 &nbsp; <span>复兴门 &nbsp; 崇文门</span></p>	
 				</div>
-				<div class="right">
-					<div class="promise">
-						<p class="tip">只需付<span>几百元，</span>就可以与行家</p>
-						<p class="tip"><span>一对一线下面谈</span></p>
-						<p class="occur">为您答疑解惑、出谋划策。不满意还能“无忧退款”。</p>
-						<p class="about-tips">为您答疑解惑、出谋划策。</p>
-						<p class="about-tips">不满意还能“无忧退款”。</p>
-						<img src="../../assets/img/logo1.png" alt="" class="before" >
-						<div style="clear:both"></div>
-					</div>
-					<div class="order">
-						<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
-						<Button type="ghost" shape="circle" @click="addWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{wishStatus}}</Button>
-					</div>
-					
-					<h2>相关行家</h2>
-					<div  v-for="item in relatedTutors" @click="goDetail(item.id)">
-					<div class="guide">
-						<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
-						<div class="tutor_info">
-							<div class="tutor_top">
-								<span class="tutor">{{item.name}}</span>
-								<em class="intro">{{item.job}}</em> 
+				<ul v-for="item in guides">
+					<li class="item">
+						<div class="price">							
+							<div>
+								<span>￥</span>
+								<span>{{ item.price }}</span>
+								<span>/次</span>
 							</div>
-							<div class="title">{{item.major}}</div>
+							<div class="score">{{ item.score }}<span>分</span><Icon type="information-circled"  color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
+						</div>
+						<h2 class="title">{{ item.title }}</h2>
+						<p :class="{content: active, hidden: hidden }" ref="stc" >{{item.describe}}</p>
+						<div class="ft">
+							<div class="topic-info">
+								<span class="meet-time">约{{ item.duration }}小时</span>
+								<span class="meet-num">{{item.count}}人约过</span>
+							</div>
+							<div>
+								<img src="../../assets/img/fold.png" class="fold"  v-if="fold" @click="stretch('fold')">
+							 	<img src="../../assets/img/shrink.png" class="shrink" v-else @click="stretch('shrink')">
+							</div>
+						</div>
+					</li>
+				</ul> 
+				<h2>关于行家</h2>
+				<div class="about_tutor">
+					<div class="image" >
+						<div class="tutor-pic">
+							<img :src=tutor.avatar class="tutor-pic" alt="">
+						</div>
+					</div>
+					<p>{{tutor.name}}, {{tutor.job}}</p>
+					<p>{{tutor.major}}</p>
+					<p>{{ tutor.descirbe }}</p>
+				</div>
+			</div>
+			<div class="right">
+				<div class="promise">
+					<p class="tip">只需付<span>几百元，</span>就可以与行家</p>
+					<p class="tip"><span>一对一线下面谈</span></p>
+					<p class="occur">为您答疑解惑、出谋划策。不满意还能“无忧退款”。</p>
+					<p class="about-tips">为您答疑解惑、出谋划策。</p>
+					<p class="about-tips">不满意还能“无忧退款”。</p>
+					<img src="../../assets/img/logo1.png" alt="" class="before" >
+					<div style="clear:both"></div>
+				</div>
+				<div class="order">
+					<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
+					<Button type="ghost" shape="circle" @click="addWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{wishStatus}}</Button>
+				</div>
+				
+				<h2>相关行家</h2>
+				<div  style="margin-bottom: 30px;">
+				<div class="guide" v-for="item in relatedTutors" @click="goDetail(item.id)">
+					<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
+					<div class="tutor_info">
+						<div class="tutor_top">
+							<span class="tutor">{{item.name}}</span>
+							<em class="intro">{{item.job}}</em> 
+						</div>
+						<div class="title">{{item.major}}</div>
 							<div class="bott"><span>{{item.sub_num}}</span>人见过</div>
 						</div>
 					</div>
@@ -106,8 +106,7 @@ export default {
 			relatedTutors: [],
 			wishStatus: "加入心愿单"
 		}
-	},
-	
+	},	
 	mounted() {
 		this.id = this.$route.query.id
 		this.getOne()
@@ -123,7 +122,7 @@ export default {
 			 var that =this
 			 setTimeout(function (){
 				that.$router.push("/home/detail?id=" + id);
-			}, 1);
+			}, 	0.01);
 		},
 		//获取导师信息
 		getOne () {
@@ -211,7 +210,6 @@ export default {
 	.stretch{
 		width: 24px;
 		height: 24px;
-		/* line-height: 50px; */
 	 }
 	.ft {
 		border-top: 1px solid #ddd;
@@ -420,8 +418,19 @@ export default {
 		font-size: 14px;
 		margin-right: 5px;
 	}
+	/*.intro {
+    	overflow: hidden; 
+		text-overflow:ellipsis;
+    	white-space: nowrap; 
+    	width: 95%; 
+	}*/
 	.title{
 		font-size: 14px;
+    	/* overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+ 7   	-webkit-line-clamp: 2;
+ 8   	-webkit-box-orient: vertical; */
 	}
 	.bott {
 		color: rgb(102, 102, 102);
@@ -430,7 +439,8 @@ export default {
 		padding: 15px 0 15px 10px;
 		border-bottom: 1px solid #ccc;
 		overflow: hidden;
-		cursor: pointer;height: 100px;
+		cursor: pointer;
+		height: 100px;
 	}
 	.guide:hover .title {
 		color: #23acf1;
@@ -438,7 +448,6 @@ export default {
 	.image {
 		margin: 10px auto 17px;
 		text-align: center;
-		height: 550px;
 		overflow: hidden;
 	}
 	.image img{
@@ -501,7 +510,6 @@ export default {
 		border-color: #23acf1;
 	}
 	.gd_list:hover {
-		/* background-color: #6ed5d7; */
 		border: 1px solid #23acf1;
 		color: #343434;
 	}
@@ -548,6 +556,7 @@ export default {
 	.submit{
 		 display: none;
 	}
+	
 	@media (max-width: 992px) {
 		.cover {
 			height: 250px;
@@ -560,6 +569,10 @@ export default {
 		}
 		.image {
 			margin: 10px 15px 17px;
+		}
+		.tutor-pic img{
+			width: 70%;
+			height: auto !important;
 		}
 		.name {
 			margin: 20px 0 5px;
