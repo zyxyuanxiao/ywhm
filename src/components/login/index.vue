@@ -22,7 +22,7 @@
 								<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
 							</FormItem>
 						</Form>
-						<p style="font-size: 14px;">没有账号？<router-link to="/home/register" class="register" >现在去注册</router-link></p>
+						<p style="font-size: 14px;" @click="hideFrame()" >没有账号？<router-link to="/home/register" class="register" >现在去注册</router-link> </p>
 					</div>
    	 </Modal>
 </template>

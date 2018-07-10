@@ -11,7 +11,7 @@
 					<MenuItem name="wish_list">心愿单</MenuItem>
 				</Menu>
 			</Sider>
-			<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+			<Content width="100%">
 				<div class="main0"  v-if="status">
 					<div class="user-content">
 						<h2>我约的人</h2>
@@ -31,7 +31,7 @@
 						<div class="setting-content">
 							<table height="130px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
 								<tr valign="middle">
-									<td style="display:flex;  border: none;" @click="goDetail(item.id)" >
+									<td style="display:flex;  border: none;"  @click="goDetail(item.id)" class="td">
 										<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
 										<div  style="margin-left: 30px; float: left; margin-top:18px;">	
 											<div class="title">{{item.title}}</div>
@@ -204,11 +204,21 @@ export default {
 };
 </script>
 <style scoped>
+.td {
+	padding-right: 0px;
+}
+ul {
+	width: 160px !important;
+}
 .ivu-menu-vertical.ivu-menu-light:after {
 	display: none;
 }
 .ivu-menu-vertical .ivu-menu-item {
 	font-size: 20px;
+}
+.ivu-layout-sider {
+	max-width: 165px !important;
+	min-width: 160px !important;
 }
 .table {
 	display: flex;
@@ -218,14 +228,13 @@ export default {
 .gd-avatar {
 	width: 85px;
 	height: 85px;
-	margin-left:30px;
 }
 .title:hover {
 	cursor: pointer;
 	color: #23acf1;
 }
 .heart {
-	max-width: 780px;
+	/* max-width: 700px; */
 	margin: 0 auto;
 	display: none;
 }
@@ -246,8 +255,10 @@ export default {
 	display: block;
 }
 .container {
-	max-width: 1080px;
+	max-width: 900px;
 	margin: 0 auto;
+	padding-bottom: 30px;
+	margin-top:20px;
 }
 .ivu-layout-sider,
 .ivu-layout-content,
@@ -278,7 +289,7 @@ export default {
 .main0 {
 	/* border: 1px solid #e8e8e8; */
 	margin: 0 auto;
-	max-width: 800px;
+	/* max-width: 700px; */
 	display: none;
 }
 .main0 .user-content h2 {
@@ -299,7 +310,7 @@ export default {
 }
 .main1 .user-content {
 	margin: 0 auto;
-	max-width: 780px;
+	/* max-width: 700px; */
 	margin-bottom: 20px;
 	background: #fff !important;
 }
@@ -334,7 +345,7 @@ td:nth-child(4) {
 }
 .check-details .user-content {
 	margin: 0 auto;
-	width: 780px;
+	/* max-width: 700px; */
 	margin-bottom: 20px;
 	background: #fff !important;
 }
