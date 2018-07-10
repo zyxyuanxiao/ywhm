@@ -30,18 +30,18 @@
 						</div>
 						<div class="setting-content">
 							<table height="130px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
-								<tr align="center" valign="middle">
-									<td width="190px">
-										 <div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
+								<tr valign="middle">
+									<td style="display:flex;  border: none;" @click="goDetail(item.id)" >
+										<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
+										<div  style="margin-left: 30px; float: left; margin-top:18px;">	
+											<div class="title">{{item.title}}</div>
+											<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+										</div>
 									</td>
-									<td  @click="goDetail(item.id)">	
-										<div class="title">{{item.title}}</div>
-										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
-									</td>
-									<td>
+									<td align="center">
 										<div class="price">{{item.price}}元</div>
 									</td>
-									<td>
+									<td align="center">
 										<div class="detail" @click="showDetail(item.id)">查看详情</div>	
 									</td>
 								</tr>
@@ -56,29 +56,30 @@
 						</div>
 						<div class="setting-content">
 							<table height="360px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
-								<tr align="center" valign="middle">
-									<td width="190px" height="129px">
+								<tr valign="middle" @click="goDetail(item.id)">
+									<td width="190px" height="129px" class="td">
 										 <div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
-									</td>
-									<td @click="goDetail(item.id)">	
+									<div style="margin-left: 30px; float: left; margin-top:18px;">	
 										<div class="title">{{item.title}}</div>
 										<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+									</div>
 									</td>
+									
 								</tr>
 								<tr  valign="middle" class="question" >
-									<td colspan="2">
+									<td >
 										<p class="t">您想请教的问题是：</p>
 										<p>{{item.question}}</p>
 									</td>
 								</tr>
-								<tr  valign="middle"  class="situation" colspan="2">
-									<td colspan="2">
+								<tr  valign="middle"  class="situation">
+									<td>
 										<p class="t">您的个人简介：</p>
 										<p>{{item.situation}}</p>
 									</td>
 								</tr>
-						    </table>
-					    </div>
+							</table>
+						</div>
 					</div>
 				</div>
 				<div class="heart" ref="heart">
@@ -157,7 +158,7 @@ export default {
 				});
 		},
 		goDetail(id) {
-	  this.$router.push("/home/detail?id=" + id);
+	 		 this.$router.push("/home/detail?id=" + id);
 		},
 		showDetail(id) {
 			console.log(id);
@@ -271,11 +272,11 @@ export default {
 }
 .img {
 	width: 155px;
-	border: 4px solid #fff;
+	border: 5px solid #fff;
 	border-radius: 50%;
 }
 .main0 {
-	border: 1px solid #e8e8e8;
+	/* border: 1px solid #e8e8e8; */
 	margin: 0 auto;
 	max-width: 800px;
 	display: none;
