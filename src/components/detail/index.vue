@@ -415,8 +415,19 @@ export default {
 		font-size: 14px;
 		margin-right: 5px;
 	}
+	/*.intro {
+    	overflow: hidden; 
+		text-overflow:ellipsis;
+    	white-space: nowrap; 
+    	width: 95%; 
+	}*/
 	.title{
 		font-size: 14px;
+    	/* overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+ 7   	-webkit-line-clamp: 2;
+ 8   	-webkit-box-orient: vertical; */
 	}
 	.bott {
 		color: rgb(102, 102, 102);
@@ -425,7 +436,8 @@ export default {
 		padding: 15px 0 15px 10px;
 		border-bottom: 1px solid #ccc;
 		overflow: hidden;
-		cursor: pointer;height: 100px;
+		cursor: pointer;
+		height: 100px;
 	}
 	.guide:hover .title {
 		color: #23acf1;
@@ -433,7 +445,6 @@ export default {
 	.image {
 		margin: 10px auto 17px;
 		text-align: center;
-		height: 550px;
 		overflow: hidden;
 	}
 	.image img{
@@ -496,7 +507,6 @@ export default {
 		border-color: #23acf1;
 	}
 	.gd_list:hover {
-		/* background-color: #6ed5d7; */
 		border: 1px solid #23acf1;
 		color: #343434;
 	}
@@ -556,6 +566,10 @@ export default {
 		}
 		.image {
 			margin: 10px 15px 17px;
+		}
+		.tutor-pic img{
+			width: 70%;
+			height: auto !important;
 		}
 		.name {
 			margin: 20px 0 5px;

@@ -234,6 +234,10 @@ export default {
     position: absolute;
     left: 20px;
     bottom: 34px;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 90%;
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.64);
   }
   .teacher:before {
@@ -408,6 +412,10 @@ export default {
     .teacher {
       width: 47%;
     }
+    .btn {
+      margin-top: -20px;
+      margin-bottom: -10px;
+    }
   }
   @media (max-width: 414px) {
     .teacher {
@@ -436,6 +444,25 @@ export default {
     .teacher-job {
       line-height: 14px;
       bottom: 52px;
+    }
+  }
+  @media (max-width: 320px) {
+    .teacher {
+      height: 230px;
+    }
+    .teacher-img {
+      margin-left: -20px;
+    }
+    .teacher-intro {
+      bottom: 12px;
+    }
+    .teacher-tutor {
+      bottom: 56px;
+      line-height: 28px;
+    }
+    .teacher-job {
+      line-height: 14px;
+      bottom: 40px;
     }
   }
 </style>
