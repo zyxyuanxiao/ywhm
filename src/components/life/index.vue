@@ -27,48 +27,49 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-     data() {
-            return {
-                tags : ["全部","个人形象","摄影","吃喝玩乐","健康营养","运动","家居", "旅行","医疗保健"],
-                total: [],
-                filter:[]
+    data() {
+        return {
+            tags : ["全部","个人形象","摄影","吃喝玩乐","健康营养","运动","家居", "旅行","医疗保健"],
+            total: [],
+            filter:[]
+        }
+    },
+    mounted:function() {
+		this.getList()
+	},
+    methods: {
+        getList() {
+            this.$ajax({
+                url: "/guide/selectByType",
+                data: {
+                    big_type: "生活服务"
+                }
+            })
+            .then(res => {
+              this.total = res.data;
+              this.filter = res.data;
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        },
+        changeTag(small_type) {
+            console.log(this.filter)
+            var total=this.total
+            if(small_type=="全部")
+                this.filter=total
+            else{
+                this.filter = total.filter(function(item,index,array){
+                    return (item.small_type==small_type);
+                });
             }
         },
-          mounted:function() {
-			this.getList()
-		},
-        methods: {
-            getList() {
-      this.$ajax({
-        url: "/guide/selectByType",
-        data: {
-          big_type: "生活服务"
-        }
-      })
-        .then(res => {
-          this.total = res.data;
-          this.filter = res.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-            changeTag(small_type) {
-                    console.log(this.filter)
-                    var total=this.total
-                    if(small_type=="全部")
-                    this.filter=total
-                    else{
-                    this.filter = total.filter(function(item,index,array){
-                        return (item.small_type==small_type);
-                    });
-                    }
-                },
-            goDetail(id) {
-                this.$router.push("/home/detail?id="+id)
-            }
+        goDetail(id) {
+            this.$router.push("/home/detail?id="+id)
         }
     }
+}
 </script>

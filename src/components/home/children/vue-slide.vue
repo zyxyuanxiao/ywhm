@@ -1,51 +1,52 @@
 <style>
-.rd-swipe {
-    width: 100%;
-    height: 450px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-}
-.rd-swipe-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    -webkit-transition-property: -webkit-transform;
-    transition-property: transform;
-    box-sizing: content-box;
-}
-.rd-swipe-item {
-    width: 100%;
-    flex-shrink: 0;
-    height: 100%;
-    background-size: cover;
-    background-position: 50%;
-}
-.rd-swipe-pagination {
-    position: absolute;
-    bottom: .5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.rd-swipe-pagination-item {
-    width: 8px;
-    height: 8px;
-    background: rgba(0, 0, 0, .5);
-    z-index: 1;
-    margin: 4px;
-    border-radius: 50%;
-}
-.rd-swipe-pagination-item.active {
-    background: rgba(0, 0, 0, .8);
-}
-.rd-swipe-pagination-item:hover {
-    background: rgba(0, 0, 0, .3);
-}
+    .rd-swipe {
+        width: 100%;
+        height: 450px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+    }
+    .rd-swipe-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: transform;
+        box-sizing: content-box;
+    }
+    .rd-swipe-item {
+        width: 100%;
+        flex-shrink: 0;
+        height: 100%;
+        background-size: cover;
+        background-position: 50%;
+    }
+    .rd-swipe-pagination {
+        position: absolute;
+        bottom: .5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .rd-swipe-pagination-item {
+        width: 8px;
+        height: 8px;
+        background: rgba(0, 0, 0, .5);
+        z-index: 1;
+        margin: 4px;
+        border-radius: 50%;
+    }
+    .rd-swipe-pagination-item.active {
+        background: rgba(0, 0, 0, .8);
+    }
+    .rd-swipe-pagination-item:hover {
+        background: rgba(0, 0, 0, .3);
+    }
 </style>
+
 <template>
     <div class="rd-swipe">
         <div class="rd-swipe-wrapper" :style="wrapperStyle">
@@ -59,7 +60,6 @@
 
 <script>
 import CovTouch from '../../../cov-touch'
-
 const _ = {
     on (el, type, handler) {
         el.addEventListener(type, handler, false)
@@ -68,7 +68,6 @@ const _ = {
         el.addEventListener(type, handler, false)
     }
 }
-
 export default {
     props: {
         swipe: {
