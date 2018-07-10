@@ -1,9 +1,9 @@
 <template>
 <div style="background: #fafafa;">
-	<div class="container">
+	<div class="container1">
 		<Layout>
-			<Sider hide-trigger :style="{background: '#fff'}" >
-				<Menu theme="light" @on-select="switchPage">
+			<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger v-model="isCollapsed" >
+				<Menu theme="light" @on-select="switchPage" width="auto" :class="menuitemClasses">
 					<div class="user" id="userInfo">
 						<img src="../../assets/img/user-avatar.png" alt="" class="img">
 					</div>
@@ -110,6 +110,7 @@ export default {
 		return {
 			// 判断是否存在订单
 			status: false,
+			isCollapsed: false,
 			total: [
 				{
 					id: "1",
@@ -140,6 +141,14 @@ export default {
 	},
 	mounted() {
 		this.getWish()
+	},
+	computed: {
+            menuitemClasses: function () {
+                return [
+                    'menu-item',
+                    this.isCollapsed ? 'collapsed-menu' : ''
+                ]
+            }
 	},
 	methods: {
 		getWish() {
@@ -204,22 +213,27 @@ export default {
 };
 </script>
 <style scoped>
+.intro {
+	font-size: 14px;
+}
 .td {
 	padding-right: 0px;
 }
-ul {
+/* ul {
 	width: 160px !important;
-}
+} */
+
 .ivu-menu-vertical.ivu-menu-light:after {
 	display: none;
+}
+.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
+	border-right: none;
+	border-left: 2px solid #2d8cf0;
 }
 .ivu-menu-vertical .ivu-menu-item {
 	font-size: 20px;
 }
-.ivu-layout-sider {
-	max-width: 165px !important;
-	min-width: 160px !important;
-}
+
 .table {
 	display: flex;
 	justify-content: space-around;
@@ -229,32 +243,60 @@ ul {
 	width: 85px;
 	height: 85px;
 }
+.menu-item span{
+        display: inline-block;
+        overflow: hidden;
+        width: 69px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: bottom;
+        transition: width .2s ease .2s;
+    }
+    .menu-item i{
+        transform: translateX(0px);
+        transition: font-size .2s ease, transform .2s ease;
+        vertical-align: middle;
+        font-size: 16px;
+    }
+    .collapsed-menu span{
+        width: 0px;
+        transition: width .2s ease;
+    }
+    .collapsed-menu i{
+        transform: translateX(5px);
+        transition: font-size .2s ease .2s, transform .2s ease .2s;
+        vertical-align: middle;
+        font-size: 22px;
+    }
+.title {
+	font-size: 20px;
+}
 .title:hover {
 	cursor: pointer;
 	color: #23acf1;
 }
 .heart {
-	/* max-width: 700px; */
+	max-width: 700px;
 	margin: 0 auto;
 	display: none;
 }
 .delete {
 	float: right;
 	display: none;
-	margin-top: 15px;
+	font-size: 14px;
 	width: 80px;
 }
 .info-middle {
 	display: flex;
 	align-content: space-around;
 	justify-content: space-between;
-	height: 44px;
+	height: 36px;
 }
 
 .gd:hover .delete {
 	display: block;
 }
-.container {
+.container1 {
 	max-width: 900px;
 	margin: 0 auto;
 	padding-bottom: 30px;
@@ -287,9 +329,8 @@ ul {
 	border-radius: 50%;
 }
 .main0 {
-	/* border: 1px solid #e8e8e8; */
 	margin: 0 auto;
-	/* max-width: 700px; */
+	max-width: 700px;
 	display: none;
 }
 .main0 .user-content h2 {
@@ -310,16 +351,17 @@ ul {
 }
 .main1 .user-content {
 	margin: 0 auto;
-	/* max-width: 700px; */
-	margin-bottom: 20px;
+	max-width: 700px;
 	background: #fff !important;
 }
 td {
 	padding: 20px;
+	font-size: 14px;
 }
 .time {
 	height: 42px;
 	line-height: 42px;
+	font-size: 14px;
 	padding-left: 20px;
 	border: 1px solid #e8e8e8;
 	border-bottom: none;
@@ -327,12 +369,6 @@ td {
 table {
 	width: 100%;
 }
-table td:nth-child(3),
-td:nth-child(4) {
-	text-align: center;
-	width: 110px;
-}
-
 .avatar {
 	padding-top: 10px;
 	padding-left: 20px;
@@ -340,12 +376,9 @@ td:nth-child(4) {
 .avatar img {
 	width: 80px;
 }
-.title {
-	font-size: 16px;
-}
 .check-details .user-content {
 	margin: 0 auto;
-	/* max-width: 700px; */
+	max-width: 700px;
 	margin-bottom: 20px;
 	background: #fff !important;
 }
@@ -363,5 +396,15 @@ td:nth-child(4) {
 }
 p {
 	font-size: 14px;
+}
+@media (max-width: 820px) {
+   .title {
+	   font-size: 16px;
+   }
+}
+@media (max-width: 768px) {
+	.delete {
+		display: block;
+	}
 }
 </style>

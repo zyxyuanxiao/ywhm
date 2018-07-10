@@ -3,7 +3,7 @@
 <div>
 		<Modal :mask-closable="false" scrollable @on-cancel="hideFrame()"
 				v-model="showOrder"
-		width="560"
+	    	width="560"
 				class-name="vertical-center-modal"
 		>
 		<Steps :current=current>

@@ -66,8 +66,8 @@
 					</div>
 					
 					<h2>相关行家</h2>
-					<div  v-for="item in relatedTutors" @click="goDetail(item.id)">
-					<div class="guide">
+					<div  @click="goDetail(item.id)" style="margin-bottom: 30px;">
+					<div class="guide" v-for="item in relatedTutors">
 						<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 						<div class="tutor_info">
 							<div class="tutor_top">
@@ -123,7 +123,7 @@ export default {
 			 var that =this
 			 setTimeout(function (){
 				that.$router.push("/home/detail?id=" + id);
-			}, 1);
+			}, 	0.01);
 		},
 		//获取导师信息
 		getOne () {
