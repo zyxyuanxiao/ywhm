@@ -412,6 +412,10 @@ export default {
     .teacher {
       width: 47%;
     }
+    .btn {
+      margin-top: -20px;
+      margin-bottom: -10px;
+    }
   }
   @media (max-width: 414px) {
     .teacher {
@@ -440,6 +444,25 @@ export default {
     .teacher-job {
       line-height: 14px;
       bottom: 52px;
+    }
+  }
+  @media (max-width: 320px) {
+    .teacher {
+      height: 230px;
+    }
+    .teacher-img {
+      margin-left: -20px;
+    }
+    .teacher-intro {
+      bottom: 12px;
+    }
+    .teacher-tutor {
+      bottom: 56px;
+      line-height: 28px;
+    }
+    .teacher-job {
+      line-height: 14px;
+      bottom: 40px;
     }
   }
 </style>
