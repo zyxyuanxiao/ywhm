@@ -152,7 +152,7 @@ export default {
           break;
         default:
           this.$router.push(name);
-          if (this.width <= 768 && name != "/home/index") {
+          if (this.width <= 768 && name != "/home/index" && name != "/home/userInfo") {
             this.hidden = this.$refs.mid.style.display;
             this.$refs.mid.style.display =
             this.hidden == "none" ? "block" : "none";

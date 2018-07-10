@@ -1,24 +1,24 @@
 <template>
-<div style="background: #fafafa;">
+<div style="background: #fafafa; margin-top:0;">
 	<div class="container1">
 		<Layout>
 			<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger v-model="isCollapsed" >
-				<Menu theme="light" @on-select="switchPage" width="auto" :class="menuitemClasses">
+				<Menu theme="light"  width="auto" :class="menuitemClasses">
 					<div class="user" id="userInfo">
 						<img src="../../assets/img/user-avatar.png" alt="" class="img">
 					</div>
 					<MenuItem name="tutor" @click="orderTutor">我约的行家</MenuItem>
 					<MenuItem name="wish_list">心愿单</MenuItem>
 				</Menu>
+				<div slot="trigger"></div>
 			</Sider>
-			<Content width="100%">
+			<Content style="background-color: #fafafa;">
 				<div class="main0"  v-if="status">
 					<div class="user-content">
-						<h2>我约的人</h2>
 						<div class="setting-content">
 							<p class="none">
 								真忧伤，我还没有约过人诶。
-								<<router-link to="/home/career">立即去约人！</router-link> 
+								<router-link to="/home/career">立即去约人！</router-link> 
 							</p>
 						</div>
 					</div>
@@ -219,10 +219,6 @@ export default {
 .td {
 	padding-right: 0px;
 }
-/* ul {
-	width: 160px !important;
-} */
-
 .ivu-menu-vertical.ivu-menu-light:after {
 	display: none;
 }
@@ -243,40 +239,19 @@ export default {
 	width: 85px;
 	height: 85px;
 }
-.menu-item span{
-        display: inline-block;
-        overflow: hidden;
-        width: 69px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        vertical-align: bottom;
-        transition: width .2s ease .2s;
-    }
-    .menu-item i{
-        transform: translateX(0px);
-        transition: font-size .2s ease, transform .2s ease;
-        vertical-align: middle;
-        font-size: 16px;
-    }
-    .collapsed-menu span{
-        width: 0px;
-        transition: width .2s ease;
-    }
-    .collapsed-menu i{
-        transform: translateX(5px);
-        transition: font-size .2s ease .2s, transform .2s ease .2s;
-        vertical-align: middle;
-        font-size: 22px;
-    }
 .title {
 	font-size: 20px;
+}
+.user-content {
+	margin-right:10px;
+	margin-left: 10px;
 }
 .title:hover {
 	cursor: pointer;
 	color: #23acf1;
 }
 .heart {
-	max-width: 700px;
+	/* max-width: 700px; */
 	margin: 0 auto;
 	display: none;
 }
@@ -300,7 +275,7 @@ export default {
 	max-width: 900px;
 	margin: 0 auto;
 	padding-bottom: 30px;
-	margin-top:20px;
+	padding-top:20px;
 }
 .ivu-layout-sider,
 .ivu-layout-content,
@@ -330,8 +305,7 @@ export default {
 }
 .main0 {
 	margin: 0 auto;
-	max-width: 700px;
-	display: none;
+	/* max-width: 700px; */
 }
 .main0 .user-content h2 {
 	font-size: 14px;
@@ -340,18 +314,20 @@ export default {
 	overflow: hidden;
 }
 .main0 .user-content {
-	height: 250px;
+	height: 120px;
+	background-color: #fff;
+    border: 1px solid #e8e8e8;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 }
 .main0 .setting-content {
 	text-align: center;
-	line-height: 250px;
+	line-height: 120px;
 }
 .main1 .user-content {
 	margin: 0 auto;
-	max-width: 700px;
+	/* max-width: 700px; */
 	background: #fff !important;
 }
 td {
@@ -378,7 +354,7 @@ table {
 }
 .check-details .user-content {
 	margin: 0 auto;
-	max-width: 700px;
+	/* max-width: 700px; */
 	margin-bottom: 20px;
 	background: #fff !important;
 }

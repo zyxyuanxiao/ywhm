@@ -40,20 +40,20 @@ export default {
         user: [
           {
             required: true,
-            message: "Please fill in the user name",
+            message: "请输入用户名",
             trigger: "blur"
           }
         ],
         password: [
           {
             required: true,
-            message: "Please fill in the password.",
+            message: "请输入密码",
             trigger: "blur"
           },
           {
             type: "string",
             min: 3,
-            message: "The password length cannot be less than 3 bits",
+            message: "密码不能少于3位",
             trigger: "blur"
           }
         ]
