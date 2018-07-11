@@ -10,8 +10,8 @@
 		<hr />
 		<div v-if="first">
 			<p style="margin-top: 10px;">预约</p>
-			<div>
-				<div class="gd_list" ref="btn" v-for="(item,index) in guideList" :class="{gd_list: active, bg: hover}"  @click="select(item.id)">
+			<div class="lists">
+				<div class="gd_list" ref="btn" v-for="(item,index) in guideList" :class="{bg: hover == index} " @click="select(index,item.id)">
 					<span class="title">{{item.title}}</span>
 					<span class="price"> 
 						{{ item.price }}元一次<br>
@@ -21,12 +21,12 @@
 			</div>
 		</div>
 		<div class="form" v-else >
-			<Form :model="sub_list" :rules="ruleValidate" label-position="top" >
-				<FormItem label="告诉行家你要请教的问题：（20-300字）">
-					<Input v-model="sub_list.qusetion" type="textarea" placeholder="Enter something..."></Input>
+			<Form ref="sub_list" :model="sub_list" :rules="ruleValidate" label-position="top" >
+				<FormItem label="告诉行家你要请教的问题：（20-300字）" prop="qusetion">
+					<Input v-model="sub_list.qusetion" type="textarea" :rows="4" placeholder="例如：回国半年，准备创业，想做一个健身O2O项目；之前在美国做律师，转变，想快速了解和适应国内的创业环境，向行家请教初始团队组建和运营的经验，以及帮忙分析产品模式..."></Input>
 				</FormItem>
-				<FormItem label="介绍自己当前的情况：（20-300字）">
-					<Input v-model="sub_list.situation" type="textarea" :rows="4" placeholder="Enter something..."></Input>
+				<FormItem label="介绍自己当前的情况：（20-300字）" prop="situation">
+					<Input v-model="sub_list.situation" type="textarea" :rows="4" placeholder="例如：我目前在一家科技媒体做运营，工作3年，传媒大学毕业，业余运营一个微信公众号，平时喜欢写文章，希望职业上有更好突破..."></Input>
 				</FormItem>
 			</Form>        
 		</div>
@@ -56,8 +56,7 @@ export default {
 	},
 	data() {
 		return {
-			active: true,
-			hover: false,
+			hover: 0,
 			showOrder: false,
 			first:true,
 			button:true,
@@ -70,16 +69,16 @@ export default {
 			},   //保存订单
 			selectGuide: {},  //保存选中的指导详情
 			ruleValidate: {
-				value1: [
+				qusetion: [
 					{
 						required: true,
-						message: "*请填写打算向行家请教的问题",
+						message: "请填写打算向行家请教的问题",
 						trigger: "blur"
 					},
 					{ type: "string", min: 20, message: "最少20个字哦", trigger: "blur" }
 				],
-				value2: [
-					{ required: true, message: "*请填写一些自己的情况", trigger: "blur" },
+				situation: [
+					{ required: true, message: "请填写一些自己的情况", trigger: "blur" },
 					{ type: "string", min: 20, message: "最少20个字哦", trigger: "blur" }
 				]
 			}
@@ -111,17 +110,12 @@ export default {
 				}
 			});
 		},
-		select(id) {
+		select(index,id) {
 			console.log(id)
-     		var that= this
+			var that= this
+			this.hover=index
 			var guide = this.guideList.filter(function(item,index,array){
-				if(item.id==id) {
-				    that.hover=true
-		    	}
-				else {
-					that.hover=false
-				}
-				return (item.id==id);
+			      return item.id = id;
 			});
 			this.selectGuide=guide[0]
 			console.log(this.selectGuide)
@@ -133,6 +127,7 @@ export default {
 		},
 		finish() {
 			this.hideFrame();
+			console.log(this.selectGuide)
 			this.modal2 = true;
 		},
 		process() {
@@ -184,10 +179,10 @@ export default {
 		text-align: left;
 	}
 	.bg {
-			background-color: #23acf1;
-			color:#fff;
-			border-color: #23acf1;
-		}                                                          
+		background-color: #23acf1;
+		color:#fff;
+		border-color: #23acf1;
+	}                                                          
 	.gd_list:hover {
 		border: 1px solid #23acf1;
 	}

@@ -2,12 +2,12 @@
 	<div style="background: #fafafa; margin-top:0;">
 		<div class="container1">
 			<Layout>
-				<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger v-model="isCollapsed" >
-					<Menu theme="light"  width="auto" :class="menuitemClasses">
+				<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger >
+					<Menu theme="light"  width="auto" @on-select="switchPage">
 						<div class="user" id="userInfo">
 							<img src="../../assets/img/user-avatar.png" alt="" class="img">
 						</div>
-						<MenuItem name="tutor" @click="orderTutor">我约的行家</MenuItem>
+						<MenuItem name="tutor">我约的行家</MenuItem>
 						<MenuItem name="wish_list">心愿单</MenuItem>
 					</Menu>
 					<div slot="trigger"></div>
@@ -171,10 +171,6 @@ export default {
       });
       console.log(this.filter);
     },
-    orderTutor() {
-      this.$refs.details.style.display = "none";
-      this.$refs.main1.style.display = "block";
-    },
     //删除心愿单
     remove(item) {
       this.$ajax({
@@ -206,6 +202,9 @@ export default {
 };
 </script>
 <style scoped>
+.ivu-layout.ivu-layout-has-sider {
+	transform: translateZ(0);
+}
 .td {
   padding-right: 0px;
 }
@@ -528,7 +527,7 @@ p {
 	p {
 		font-size: 14px;
 	}
-	
+}
 	@media (max-width: 820px) {
 	.title {
 		font-size: 16px;
@@ -539,4 +538,5 @@ p {
 			display: block;
 		}
 	}
+
 </style>

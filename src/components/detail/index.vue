@@ -14,8 +14,8 @@
 					</div>
 					<p class="b">北京 &nbsp; <span>复兴门 &nbsp; 崇文门</span></p>	
 				</div>
-				<ul v-for="item in guides">
-					<li class="item">
+				<ul>
+					<li class="item" v-for="(item,index) in guides">
 						<div class="price">							
 							<div>
 								<span>￥</span>
@@ -25,15 +25,15 @@
 							<div class="score">{{ item.score }}<span>分</span><Icon type="information-circled"  color="#b3b3b3" title="此分数有亿万毫米系统根据学员匿名评分等因素算出,每增加三次约见更新一次"></Icon></div>
 						</div>
 						<h2 class="title">{{ item.title }}</h2>
-						<p :class="{content: active, hidden: hidden }" ref="stc" >{{item.describe}}</p>
+						<p :class="{content: active, hidden: hidden[index]==index+1 }" ref="stc" >{{item.describe}}</p>
 						<div class="ft">
 							<div class="topic-info">
 								<span class="meet-time">约{{ item.duration }}小时</span>
 								<span class="meet-num">{{item.count}}人约过</span>
 							</div>
 							<div>
-								<img src="../../assets/img/fold.png" class="fold"  v-if="fold" @click="stretch('fold')">
-							 	<img src="../../assets/img/shrink.png" class="shrink" v-else @click="stretch('shrink')">
+								<img src="../../assets/img/fold.png" class="fold"  v-if="fold && hidden[index]!=index+1" @click="stretch('fold',index)">
+							 	<img src="../../assets/img/shrink.png" class="shrink" v-else @click="stretch('shrink',index)">
 							</div>
 						</div>
 					</li>
@@ -98,7 +98,7 @@ export default {
 	data () {
 		return {
 			active: true,
-			hidden: false,
+			hidden: [],
 			fold: true,
 			id: null,
 			tutor: {},
@@ -160,15 +160,41 @@ export default {
 				console.log(err);
 			})
 		},
-		stretch (str){
+		stretch (str,index){				
 			if(str=="fold"){
-				this.hidden=true
+				this.hidden[index]=index+1 
 				this.fold=false
+				console.log(this.hidden[index])
 			}
 			else {
-				this.hidden=false
+				this.hidden[index]=-1
 				this.fold=true
+				console.log(this.hidden[index])
 			}
+		},
+		//预约
+		addOrder() {
+			let userId = sessionStorage.getItem("userId")
+			if(!userId) {
+				this.$refs.login.showFrame();
+				return;
+			}
+			this.$ajax({
+				url: "/order/add",
+				data: {
+					tutor_id: this.id,
+					user_id: userId
+				}
+			}).then(res => {
+				if(res.status == "success") {
+					this.wishStatus = "已加入心愿单"
+					this.$Message.success("成功加入心愿单")
+				}else {
+					console.log(res.msg)
+				}
+			}).catch(err => {
+				console.log(err);
+			})
 		},
 		//加入心愿单
 		addWish() {
@@ -176,7 +202,7 @@ export default {
 			if(!userId) {
 				this.$refs.login.showFrame();
 				return;
-			}
+		    }
 			this.$ajax({
 				url: "/wish/add",
 				data: {
