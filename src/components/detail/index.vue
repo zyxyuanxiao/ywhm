@@ -114,6 +114,11 @@ export default {
 	},
 	methods: {
 		showOrder() {
+			let userId = sessionStorage.getItem("userId")
+			if(!userId) {
+				this.$refs.login.showFrame();
+				return;
+			}
 			this.$refs.order.showFrame();
 		},
 		goDetail(id) {
@@ -167,45 +172,19 @@ export default {
 				this.flag=-1
 			}
 		},
-		// //预约
-		// addOrder() {
-		// 	let userId = sessionStorage.getItem("userId")
-		// 	if(!userId) {
-		// 		this.$refs.login.showFrame();
-		// 		return;
-		// 	}
-		// 	this.$ajax({
-		// 		url: "/order/add",
-		// 		data: {
-		// 			tutor_id: this.id,
-		// 			user_id: userId,
-		// 			guide_id:,
-		// 			situation:,
-		// 			qusetion:,
-		// 			time:
-		// 		}
-		// 	}).then(res => {
-		// 		if(res.status == "success") {
-		// 			this.$refs.order.showFrame()
-		// 		}else {
-		// 			console.log(res.msg)
-		// 		}
-		// 	}).catch(err => {
-		// 		console.log(err);
-		// 	})
-		// },
 		//加入心愿单
 		addWish() {
 			let userId = sessionStorage.getItem("userId")
+			console.log(userId)
 			if(!userId) {
 				this.$refs.login.showFrame();
 				return;
-		    }
+			}
 			this.$ajax({
 				url: "/wish/add",
 				data: {
+					user_id: userId,
 					tutor_id: this.id,
-					user_id: userId
 				}
 			}).then(res => {
 				if(res.status == "success") {
