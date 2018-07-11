@@ -2,15 +2,15 @@
 	<div style="background: #fafafa; margin-top:0;">
 		<div class="container1">
 			<Layout>
-				<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger >
-					<Menu theme="light"  width="auto" @on-select="switchPage">
+				<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger v-model="isCollapsed">
+					<Menu active-name="tutor" theme="light"  width="auto" @on-select="switchPage" :class="menuitemClasses">
 						<div class="user" id="userInfo">
 							<img src="../../assets/img/user-avatar.png" alt="" class="img">
 						</div>
 						<MenuItem name="tutor">我约的行家</MenuItem>
 						<MenuItem name="wish_list">心愿单</MenuItem>
 					</Menu>
-					<div slot="trigger"></div>
+					<div slot="trigger" hide-trigger="true"></div>
 				</Sider>
 				<Content style="background-color: #fafafa;">
 					<div class="main0"  v-if="status">
@@ -64,7 +64,6 @@
 											<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
 										</div>
 										</td>
-										
 									</tr>
 									<tr  valign="middle" class="question" >
 										<td >
@@ -104,10 +103,13 @@
 		</div>
 	</div>
 </template>
+
 <script>
 export default {
   data() {
     return {
+			isCollapsed: false,
+			collapsible: true,
       // 判断是否存在订单
       status: false,
       total: [
@@ -137,6 +139,14 @@ export default {
       heartList: [],
       filter: []
     };
+  },
+	computed: {
+    menuitemClasses: function () {
+      return [
+      	'menu-item',
+         this.isCollapsed ? 'collapsed-menu' : ''
+      ]
+    }
   },
   mounted() {
     this.getWish();
@@ -201,192 +211,23 @@ export default {
   }
 };
 </script>
+
 <style scoped>
-.ivu-layout.ivu-layout-has-sider {
-	transform: translateZ(0);
-}
-.td {
-  padding-right: 0px;
-}
-ul {
-  width: 160px !important;
-}
-.ivu-menu-vertical.ivu-menu-light:after {
-  display: none;
-}
-.ivu-menu-vertical .ivu-menu-item {
-  font-size: 20px;
-}
-.ivu-layout-sider {
-  max-width: 165px !important;
-  min-width: 160px !important;
-}
-.table {
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-}
-.gd-avatar {
-  width: 85px;
-  height: 85px;
-}
-.title {
-	font-size: 20px;
-}
-.user-content {
-	margin-right:10px;
-	margin-left: 10px;
-}
-.title:hover {
-  cursor: pointer;
-  color: #23acf1;
-}
-.heart {
-  /* max-width: 700px; */
-  margin: 0 auto;
-  display: none;
-}
-.delete {
-	float: right;
-	display: none;
-	font-size: 14px;
-	width: 80px;
-}
-.info-middle {
-	display: flex;
-	align-content: space-around;
-	justify-content: space-between;
-	height: 36px;
-}
-
-.gd:hover .delete {
-  display: block;
-}
-.container1 {
-	max-width: 900px;
-	margin: 0 auto;
-	padding-bottom: 30px;
-	padding-top:20px;
-}
-.ivu-layout-sider,
-.ivu-layout-content,
-.ivu-menu-light {
-  background: #fafafa !important;
-}
-.ivu-layout.ivu-layout-has-sider > .ivu-layout,
-.ivu-layout.ivu-layout-has-sider > .ivu-layout-content {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.user {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-.detail:hover {
-  color: #23acf1;
-}
-.img {
-  width: 155px;
-  border: 5px solid #fff;
-  border-radius: 50%;
-}
-.main0 {
-	margin: 0 auto;
-	/* max-width: 700px; */
-}
-.main0 .user-content h2 {
-  font-size: 14px;
-  padding: 10px 15px 10px 30px;
-  border-bottom: 1px solid #e8e8e8;
-  overflow: hidden;
-}
-.main0 .user-content {
-	height: 120px;
-	background-color: #fff;
-    border: 1px solid #e8e8e8;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-.main0 .setting-content {
-	text-align: center;
-	line-height: 120px;
-}
-.main1 .user-content {
-	margin: 0 auto;
-	/* max-width: 700px; */
-	background: #fff !important;
-}
-td {
-	padding: 20px;
-	font-size: 14px;
-}
-.time {
-	height: 42px;
-	line-height: 42px;
-	font-size: 14px;
-	padding-left: 20px;
-	border: 1px solid #e8e8e8;
-	border-bottom: none;
-}
-table {
-  width: 100%;
-}
-.avatar {
-  padding-top: 10px;
-  padding-left: 20px;
-}
-.avatar img {
-  width: 80px;
-}
-.check-details .user-content {
-  margin: 0 auto;
-  /* max-width: 700px; */
-  margin-bottom: 20px;
-  background: #fff !important;
-}
-
-.check-details .question,
-.check-details .situation {
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.t {
-  font-weight: bold;
-  margin-bottom: 14px;
-  font-size: 14px;
-}
-p {
-  font-size: 14px;
-}
-@media (max-width: 820px) {
-   .title {
-	   font-size: 16px;
-   }
-   .ivu-layout-sider {
-	   max-width: 160px !important;
-   }
-}
-@media (max-width: 768px) {
-	.intro {
-		font-size: 14px;
+	.ivu-layout.ivu-layout-has-sider {
+		transform: translateZ(0);
 	}
 	.td {
 		padding-right: 0px;
 	}
+	ul {
+		width: 160px !important;
+	}
 	.ivu-menu-vertical.ivu-menu-light:after {
 		display: none;
-	}
-	.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
-		border-right: none;
-		border-left: 2px solid #2d8cf0;
 	}
 	.ivu-menu-vertical .ivu-menu-item {
 		font-size: 20px;
 	}
-
 	.table {
 		display: flex;
 		justify-content: space-around;
@@ -443,13 +284,13 @@ p {
 		overflow-x: hidden;
 		overflow-y: hidden;
 	}
-	.ivu-layout-sider {
-		z-index: 0;
+	.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
+		border-right: none;
+		border-left: 2px solid #2d8cf0;
 	}
 	.user {
 		margin-top: 20px;
-		margin-bottom: 30px;
-		text-align: center;
+		margin-bottom: 20px;
 	}
 	.detail:hover {
 		color: #23acf1;
@@ -471,7 +312,7 @@ p {
 	.main0 .user-content {
 		height: 120px;
 		background-color: #fff;
-		border: 1px solid #e8e8e8;
+			border: 1px solid #e8e8e8;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -508,11 +349,9 @@ p {
 	}
 	.check-details .user-content {
 		margin: 0 auto;
-		/* max-width: 700px; */
 		margin-bottom: 20px;
 		background: #fff !important;
 	}
-
 	.check-details .question,
 	.check-details .situation {
 		padding-left: 20px;
@@ -527,16 +366,65 @@ p {
 	p {
 		font-size: 14px;
 	}
-}
-	@media (max-width: 820px) {
-	.title {
-		font-size: 16px;
+	.ivu-layout-sider {
+		z-index: 0;
 	}
+
+	@media (max-width: 1000px) {
+		.img {
+			margin-left: 20px;
+		}
+	}
+	@media (max-width: 820px) {
+		.title {
+			font-size: 16px;
+		}
 	}
 	@media (max-width: 768px) {
+		Sider {
+			width: 80px !important;
+		}
+		.intro {
+			font-size: 14px;
+		}
+		/* .ivu-layout-sider {
+			max-width: 25% !important;
+			min-width: 25% !important;
+		} */
+		.td {
+			padding-right: 0px;
+			padding-left: 0px;
+		}
+		.ivu-menu-vertical .ivu-menu-item {
+			font-size: 12px;
+		}
+		.table {
+			display: flex;
+			justify-content: space-around;
+			align-content: center;
+		}
+		.gd-avatar {
+			display: none;
+		} 
+		.title {
+			font-size: 16px;
+			padding-right: 10px;
+			font-weight: bold;
+		}
+		.intro {
+			padding-right: 10px;
+			margin-top: 10px;
+		}			
+		.user {
+			margin-top: 20px;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+		.img {
+			display: none;
+		}
 		.delete {
 			display: block;
 		}
 	}
-
 </style>
