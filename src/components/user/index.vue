@@ -13,10 +13,6 @@
 					<div slot="trigger" class="trigger"></div>
 				</Sider>
 				<Content style="background-color: #fafafa;">
-					<div class="lead">
-						<input type="button" name="tutor" value="我约的行家" @on-click="switchPage">
-						<input type="button" name="wish_list" value="心愿单" @on-click="switchPage">
-					</div>
 					<div class="main0"  v-if="status">
 						<div class="user-content">
 							<div class="setting-content">
@@ -37,7 +33,7 @@
 									<tr valign="middle">
 										<td style="display:flex;  border: none;"  @click="goDetail(item.id)" class="td">
 											<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
-											<div  style="margin-left: 30px; float: left; margin-top:18px;">	
+											<div  style="margin-left: 16px; float: left; margin-top:10px;">	
 												<div class="title">{{item.title}}</div>
 												<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
 											</div>
@@ -115,8 +111,7 @@ export default {
 			isCollapsed: false,
       // 判断是否存在订单
 			status: false,
-      total: [
-        {
+      total: [ {
           id: "1",
           time: "2018-07-07",
           avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
@@ -137,8 +132,7 @@ export default {
           price: 499,
           question: "aaaaaaaaaaaaaaa",
           situation: "cccccccccccccc"
-        }
-      ],
+        }     ],
       heartList: [],
       filter: []
     };
@@ -152,10 +146,11 @@ export default {
     }
   },
   mounted() {
-    this.getWish();
+		this.getWish();
+		this.getOrder();
   },
   methods: {
-	  //获取心愿单列表
+	  //获取订单列表
     getWish() {
       let userId = sessionStorage.getItem("userId");
       this.$ajax({
@@ -169,6 +164,24 @@ export default {
         })
         .catch(err => {
           console.log(err);
+        });
+		},
+		 //获取订单列表
+    getOrder() {
+      let userId = sessionStorage.getItem("userId");
+      this.$ajax({
+        url: "/order/selectByUser",
+        data: {
+          user_id: userId
+        }
+      })
+        .then(res => {
+					this.total = res.data;
+					console.log(this.total)
+        })
+        .catch(err => {
+					console.log(err);
+					console.log("查询用户预约订单成功")
         });
     },
     goDetail(id) {
@@ -194,13 +207,15 @@ export default {
         }
       })
         .then(res => {
-          this.$Message.success("删除成功");
+					this.$Message.success("删除成功");
+					console.log(this.total)
         })
         .catch(err => {
           console.log(err);
         });
     },
     switchPage(name) {
+			
       if (name == "tutor") {
         this.$refs.details.style.display = "none";
         this.$refs.main1.style.display = "block";
@@ -218,6 +233,11 @@ export default {
 <style scoped>
 	.ivu-layout.ivu-layout-has-sider {
 		transform: translateZ(0);
+	}
+	.ivu-layout-sider {
+		width: 160px;
+		max-width: 160px !important;
+		min-width: 160px !important;
 	}
 	.lead ul {
 		height: 10px;
@@ -263,7 +283,7 @@ export default {
 		color: #23acf1;
 	}
 	.heart {
-		margin: 0 auto;
+		margin: 0 auto 20px;
 		display: none;
 	}
 	.delete {
@@ -285,9 +305,6 @@ export default {
 	.container1 {
 		max-width: 900px;
 		margin: 0 auto;
-		padding-bottom: 30px;
-		padding-top:20px;
-		padding-right: 5%;
 	}
 	.ivu-layout-sider,
 	.ivu-layout-content,
@@ -335,6 +352,9 @@ export default {
 	.main0 .setting-content {
 		text-align: center;
 		line-height: 120px;
+	}
+	.main1 {
+		margin-bottom: 20px;
 	}
 	.main1 .user-content {
 		margin: 0 auto;
@@ -386,22 +406,20 @@ export default {
 		z-index: 0;
 	}
 
-	@media (max-width: 1000px) {
-		.img {
-			margin-left: 20px;
-		}
-	}
 	@media (max-width: 820px) {
 		.title {
 			font-size: 16px;
 		}
 	}
 	@media (max-width: 768px) {
-		.ivu-layout-sider-zero-width-trigger {
-			top : -15px !important;
+		.ivu-layout-sider {
+			display: none
+		}
+		.main1 {
+			margin-right: 10px; 
 		}
 		.container1 {
-			padding-left: 5%;
+			padding-left: 10px;
 		}
 		.intro {
 			font-size: 14px;
