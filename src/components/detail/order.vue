@@ -107,7 +107,7 @@ export default {
 			this.time = year + seperator + month + seperator + day
 			let userId = sessionStorage.getItem("userId")
 			console.log(this.selectGuide.id)
-
+			console.log(this.selectGuide)
 			this.$ajax({
 				url: "/order/add",
 				data: {
@@ -163,6 +163,10 @@ export default {
 			this.selectGuide=guide[0]
 		},
 		nextStep() {
+			if(this.selectGuide==undefined) {
+				this.selectGuide=this.guideList[0]
+			    console.log(this.selectGuide)
+			}
 			this.first=false
 			this.button=false
 			this.current=1
