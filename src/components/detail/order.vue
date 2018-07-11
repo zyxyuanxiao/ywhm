@@ -33,7 +33,7 @@
 		<hr />
 		<div class="next">
 			<Button type="primary" @click="nextStep()" v-if="button">下一步</Button>
-			<Button type="primary" @click="finish()" v-else >提交</Button>
+			<Button type="primary" @click="addOrder()" v-else >提交</Button>
 		</div>
 	</Modal>
 	<Modal :mask-closable="false" scrollable v-model="modal2" width="420" class-name="vertical-center-modal">
@@ -57,6 +57,7 @@ export default {
 	data() {
 		return {
 			hover: 0,
+			id: null,
 			showOrder: false,
 			first:true,
 			button:true,
@@ -85,9 +86,54 @@ export default {
 		};
 	},
 	mounted(){
+		this.id = this.$route.query.id
 		this.getSelectGuide()
 	},
 	methods: {
+		//预约
+		addOrder() {
+			var date = new Date()
+			console.log(this.date)
+			// var seperator = "-"
+			// var year = date.getFullYear()
+			// var month = date.getMonth() + 1
+			// var day = date.getDate()
+			// if(month >= 1 && month <= 9) {
+			// 	month = '0' + getMonth
+			// }
+			// if(day >= 1 && day <= 9) {
+			// 	day = '0' + day			
+			// }
+			// this.time = year + seperator + month + seperator + day
+			console.log(this.time)
+			let userId = sessionStorage.getItem("userId")
+			if(!userId) {
+				this.$refs.login.showFrame();
+				return;
+			}
+			this.$ajax({
+				url: "/order/add",
+				data: {
+					tutor_id: this.selectGuide.tutor_id,
+					user_id: userId,
+					guide_id: this.id,
+					situation: this.sub_list.situation,
+					qusetion:this.sub_list.qusetion,
+					time: this.time
+				}
+			}).then(res => {
+				if(res.status == "success") {
+					this.hideFrame();
+					console.log(this.selectGuide)
+					this.modal2 = true;
+					// this.$refs.order.showFrame()
+				}else {
+					console.log(res.msg)
+				}
+			}).catch(err => {
+				console.log(err);
+			})
+		},
 		getSelectGuide() {
 			this.selectGuide=this.guideList[0]
 			console.log(this.selectGuide)

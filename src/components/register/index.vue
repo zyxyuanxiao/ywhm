@@ -11,8 +11,8 @@
       <FormItem prop="passwd">
         <Input type="password" v-model="formCustom.passwd" size="large" placeholder="密码"/>
       </FormItem>
-      <FormItem prop="passwdCheck">
-        <Input type="password" v-model="formCustom.passwdCheck" size="large" placeholder="确认密码" />
+      <FormItem prop="passwdCheck" >
+        <Input type="password" v-model="formCustom.passwdCheck" size="large" placeholder="确认密码" @on-enter="handleSubmit('formCustom')" />
       </FormItem>
       <FormItem>
         <Checkbox v-model="single">我已阅读并同意《服务条款》</Checkbox>

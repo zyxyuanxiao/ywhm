@@ -62,12 +62,15 @@
 							</div>
 						</div>
 						<div class="top_right">
-              <Menu-item name="/home/userInfo" class="login" v-if="session">
+              <Menu-item name="/home/userInfo" class="login" style="padding-right: 0" v-if="session">
 								{{userName}}
 							</Menu-item>
 							<Menu-item name="goLogin" class="login" v-else>
 								登录
-							</Menu-item>							
+							</Menu-item>              
+              <Menu-item name="goLogout"  v-if="session">
+						  	退出
+						  </Menu-item>							
 						</div>
 					</div>
 				</Menu>
