@@ -2,7 +2,7 @@
 	<div style="background: #fafafa; margin-top:0;">
 		<div class="container1">
 			<Layout>
-				<Sider breakpoint="sm" collapsible :collapsed-width="78"  hide-trigger v-model="isCollapsed">
+				<Sider breakpoint="sm" collapsible :collapsed-width="10" v-model="isCollapsed" hide-trigger>
 					<Menu active-name="tutor" theme="light"  width="auto" @on-select="switchPage" :class="menuitemClasses">
 						<div class="user" id="userInfo">
 							<img src="../../assets/img/user-avatar.png" alt="" class="img">
@@ -10,9 +10,13 @@
 						<MenuItem name="tutor">我约的行家</MenuItem>
 						<MenuItem name="wish_list">心愿单</MenuItem>
 					</Menu>
-					<div slot="trigger" hide-trigger="true"></div>
+					<div slot="trigger" class="trigger"></div>
 				</Sider>
 				<Content style="background-color: #fafafa;">
+					<div class="lead">
+						<input type="button" name="tutor" value="我约的行家" @on-click="switchPage">
+						<input type="button" name="wish_list" value="心愿单" @on-click="switchPage">
+					</div>
 					<div class="main0"  v-if="status">
 						<div class="user-content">
 							<div class="setting-content">
@@ -109,9 +113,8 @@ export default {
   data() {
     return {
 			isCollapsed: false,
-			collapsible: true,
       // 判断是否存在订单
-      status: false,
+			status: false,
       total: [
         {
           id: "1",
@@ -216,6 +219,17 @@ export default {
 	.ivu-layout.ivu-layout-has-sider {
 		transform: translateZ(0);
 	}
+	.lead ul {
+		height: 10px;
+		margin-left: 10px;
+	}
+	.lead li {
+		float: left;
+		width: 80px;
+	}
+	/* a:hover {
+		color: #23acf1;
+	} */
 	.td {
 		padding-right: 0px;
 	}
@@ -273,6 +287,7 @@ export default {
 		margin: 0 auto;
 		padding-bottom: 30px;
 		padding-top:20px;
+		padding-right: 5%;
 	}
 	.ivu-layout-sider,
 	.ivu-layout-content,
@@ -336,6 +351,7 @@ export default {
 		padding-left: 20px;
 		border: 1px solid #e8e8e8;
 		border-bottom: none;
+		margin-top: 20px;
 	}
 	table {
 		width: 100%;
@@ -381,16 +397,15 @@ export default {
 		}
 	}
 	@media (max-width: 768px) {
-		Sider {
-			width: 80px !important;
+		.ivu-layout-sider-zero-width-trigger {
+			top : -15px !important;
+		}
+		.container1 {
+			padding-left: 5%;
 		}
 		.intro {
 			font-size: 14px;
 		}
-		/* .ivu-layout-sider {
-			max-width: 25% !important;
-			min-width: 25% !important;
-		} */
 		.td {
 			padding-right: 0px;
 			padding-left: 0px;
