@@ -273,6 +273,7 @@ export default {
 		margin: 0 auto;
 		padding-bottom: 30px;
 		padding-top:20px;
+		padding-right: 5%;
 	}
 	.ivu-layout-sider,
 	.ivu-layout-content,
@@ -336,6 +337,7 @@ export default {
 		padding-left: 20px;
 		border: 1px solid #e8e8e8;
 		border-bottom: none;
+		margin-top: 20px;
 	}
 	table {
 		width: 100%;
@@ -381,16 +383,12 @@ export default {
 		}
 	}
 	@media (max-width: 768px) {
-		Sider {
-			width: 80px !important;
+		.container1 {
+			padding-left: 5%;
 		}
 		.intro {
 			font-size: 14px;
 		}
-		/* .ivu-layout-sider {
-			max-width: 25% !important;
-			min-width: 25% !important;
-		} */
 		.td {
 			padding-right: 0px;
 			padding-left: 0px;
