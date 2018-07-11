@@ -42,7 +42,7 @@
 				<div class="about_tutor">
 					<div class="image" >
 						<div class="tutor-pic">
-							<img :src=tutor.avatar class="tutor-pic" alt="">
+							<img :src=tutor.avatar alt="">
 						</div>
 					</div>
 					<p>{{tutor.name}}, {{tutor.job}}</p>
@@ -582,7 +582,10 @@ export default {
 	.submit{
 		 display: none;
 	}
-	
+	.tutor-pic {
+		height: 500px;
+		overflow: hidden;
+	}
 	@media (max-width: 992px) {
 		.cover {
 			height: 250px;
@@ -595,6 +598,9 @@ export default {
 		}
 		.image {
 			margin: 10px 15px 17px;
+		}
+		.tutor-pic{
+			height: auto;
 		}
 		.tutor-pic img{
 			width: 70%;

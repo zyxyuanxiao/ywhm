@@ -2,7 +2,7 @@
     <div class="page">
         <div class="page-tag">
             <div class="type">创业投资&nbsp;&gt;</div>
-            <div v-for="item in tags" class="tag" @click="changeTag(item)">{{item}}</div>
+             <div v-for="(item,index) in tags" class="tag" :class="{bold: index==flag}" @click="changeTag(item,index)">{{item}}</div>
         </div>
         <div class="page-content">
             <div class="gd" v-for="item in filter" @click="goDetail(item.tutor_id)" >
@@ -34,7 +34,8 @@ export default {
         return {
             tags : ["全部","创业经验","商业模式","融资","商业计划"],
             total: [],
-            filter:[]
+            filter:[],
+            flag: 0
         }
     },
     mounted:function() {
@@ -56,8 +57,9 @@ export default {
               console.log(err);
             });
         },
-        changeTag(small_type) {
-			console.log(this.filter)
+        changeTag(small_type,index) {
+            console.log(this.filter)
+            this.flag=index
 			var total=this.total
 			if(small_type=="全部")
 			    this.filter=total

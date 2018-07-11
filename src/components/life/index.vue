@@ -2,7 +2,7 @@
     <div class="page">
         <div class="page-tag">
             <div class="type">生活服务&nbsp;&gt;</div>
-            <div v-for="item in tags" class="tag" @click="changeTag(item)">{{item}}</div>
+             <div v-for="(item,index) in tags" class="tag" :class="{bold: index==flag}" @click="changeTag(item,index)">{{item}}</div>
         </div>
         <div class="page-content">
             <div class="gd" v-for="item in filter" @click="goDetail(item.tutor_id)" >
@@ -34,7 +34,8 @@ export default {
         return {
             tags : ["全部","个人形象","摄影","吃喝玩乐","健康营养","运动","家居", "旅行","医疗保健"],
             total: [],
-            filter:[]
+            filter:[],
+            flag: 0
         }
     },
     mounted:function() {
@@ -56,9 +57,10 @@ export default {
               console.log(err);
             });
         },
-        changeTag(small_type) {
+        changeTag(small_type,index) {
             console.log(this.filter)
             var total=this.total
+            this.flag=index
             if(small_type=="全部")
                 this.filter=total
             else{
