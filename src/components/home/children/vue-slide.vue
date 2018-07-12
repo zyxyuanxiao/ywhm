@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import CovTouch from '../../../cov-touch'
+import CovTouch from '../../../assets/js/cov-touch'
 const _ = {
     on (el, type, handler) {
         el.addEventListener(type, handler, false)
