@@ -65,7 +65,7 @@
 					<Button type="ghost" shape="circle" @click="addWish" :disabled="isWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{isWish ? '已加入心愿单':'加入心愿单'}}</Button>
 				</div>
 				
-				<h2>相关行家</h2>
+				<h2>热门行家</h2>
 				<div  style="margin-bottom: 30px;">
 				<div class="guide" v-for="item in relatedTutors" @click="goDetail(item.id)">
 					<div class="tutor_avator" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
@@ -110,7 +110,7 @@ export default {
     this.id = this.$route.query.id;
     this.getOne();
     this.selectByTutor();
-    this.getRelatedTutors();
+    this.getTop3();
     this.checkWish();
   },
   methods: {
@@ -144,10 +144,10 @@ export default {
           console.log(err);
         });
     },
-    //获取相关行家
-    getRelatedTutors() {
+    //获取前3热门行家
+    getTop3() {
       this.$ajax({
-        url: "/tutor/selectByRandom"
+        url: "/tutor/getTop3"
       })
         .then(res => {
           this.relatedTutors = res.data;
