@@ -13,6 +13,10 @@
 					<div slot="trigger" class="trigger"></div>
 				</Sider>
 				<Content style="background-color: #fafafa;">
+					<div class="lead">
+						<Button @click="switchPage1()">我约的行家</Button>
+						<Button @click="switchPage2()">我的心愿单</Button>
+					</div>
 					<div ref="tutor">
 						<div class="main0" ref="main0"  v-if="status">
 							<div class="user-content">
@@ -194,7 +198,7 @@ export default {
         return item.id == id;
       });
       console.log(this.filter);
-    },
+		},
     //删除心愿单
     remove(item) {
       this.$ajax({
@@ -223,6 +227,17 @@ export default {
 				this.$refs.wish.style.display = "block";
         this.$refs.details.style.display = "none";
       }
+		},
+		switchPage1() {			
+			this.$refs.main1.style.display = "block";
+      this.$refs.details.style.display = "none";
+			this.$refs.tutor.style.display = "block";
+			this.$refs.wish.style.display = "none";
+		},
+		switchPage2() {
+      this.$refs.tutor.style.display = "none";
+			this.$refs.wish.style.display = "block";
+      this.$refs.details.style.display = "none";
     }
   }
 };
@@ -238,13 +253,11 @@ export default {
 		max-width: 160px !important;
 		min-width: 160px !important;
 	}
-	.lead ul {
-		height: 10px;
-		margin-left: 10px;
+	.ivu-layout-content {
+		padding-left: 20px;
 	}
-	.lead li {
-		float: left;
-		width: 80px;
+	.lead {
+		display: none;
 	}
 	.td {
 		padding-right: 0px;
@@ -361,7 +374,7 @@ export default {
 	.main00 .user-content {
 		height: 120px;
 		background-color: #fff;
-			border: 1px solid #e8e8e8;
+		border: 1px solid #e8e8e8;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -424,6 +437,11 @@ export default {
 		z-index: 0;
 	}
 
+	@media (max-width: 1024px) {
+		.img {
+			margin-left: 15px;
+		}
+	}
 	@media (max-width: 820px) {
 		.title {
 			font-size: 16px;
@@ -432,6 +450,28 @@ export default {
 	@media (max-width: 768px) {
 		.ivu-layout-sider {
 			display: none
+		}
+		.lead {
+			display: flex;
+			margin-top: 20px;
+			margin-bottom: -10px;
+			justify-content: space-around;
+		}
+		.lead > Button {
+			border: none;
+			font-size: 14px;
+			background: #fafafa !important;
+		}
+		.ivu-btn:focus {
+			box-shadow: none !important;
+			background: #fafafa !important;
+		}
+		.gd {
+			border: 1px solid #e8e8e8;
+		}
+		.heart {
+			margin-top: 20px;
+			margin-right: 3%;
 		}
 		.main1 {
 			margin-right: 10px; 
@@ -476,6 +516,8 @@ export default {
 		}
 		.delete {
 			display: block;
+			width: 60px;
+			height: 35px;
 		}
 	}
 </style>
