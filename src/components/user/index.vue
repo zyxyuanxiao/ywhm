@@ -241,7 +241,10 @@ export default {
 		switchPage2() {
       this.$refs.tutor.style.display = "none";
 			this.$refs.wish.style.display = "block";
-      this.$refs.details.style.display = "none";
+			this.$refs.details.style.display = "none";
+			if(this.heartList.length==0) {
+				this.heartstatus=true
+			}
     }
   }
 };
@@ -274,6 +277,9 @@ export default {
 	}
 	.ivu-menu-vertical .ivu-menu-item {
 		font-size: 20px;
+	}
+	.check-details > .user-content {
+		margin-right: 10px !important;
 	}
 	.table {
 		display: flex;
@@ -454,6 +460,12 @@ export default {
 	@media (max-width: 768px) {
 		.ivu-layout-sider {
 			display: none
+		}
+		.ivu-layout-content {
+			margin-left: -20px !important;
+		}
+		.user-content  {
+			margin-left: 0px;
 		}
 		.lead {
 			display: flex;
