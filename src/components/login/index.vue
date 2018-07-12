@@ -1,5 +1,5 @@
 <template>
-	<Modal :mask-closable="false" scrollable v-model="showLogin" width="420" class-name="vertical-center-modal" @on-cancel="hideFrame()" >
+	<Modal :mask-closable="false" scrollable v-model="showLogin" width="420" class-name="vertical-center-modal" @on-cancel="hideFrame('formInline')" >
 		<div class="dialog">
 			<h3>欢迎来到「亿万毫米」</h3>
 			<Form ref="formInline" :model="formInline" :rules="ruleInline">
@@ -15,7 +15,7 @@
 				</FormItem>
 				<FormItem>
 					<Button type="primary" @click="handleSubmit('formInline')" size="large">登录</Button>
-          <p style="font-size: 14px;margin-top: 6px;" @click="hideReset('formInline')" >没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
+          <p style="font-size: 14px;margin-top: 6px;" @click="hideFrame('formInline')" >没有账号？<router-link to="/home/register" class="register">现在去注册</router-link></p>
 				</FormItem>	
 			</Form>
 		
@@ -63,12 +63,7 @@ export default {
     },
 	  hideFrame(name) {
       this.showLogin = false
-      // this.$refs[name].resetFields();
     },
-    hideReset(name) {
-      this.showLogin = false
-      this.$refs[name].resetFields();
-	  },
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {

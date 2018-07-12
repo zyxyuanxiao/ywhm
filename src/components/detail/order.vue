@@ -33,7 +33,7 @@
 		<hr />
 		<div class="next">
 			<Button type="primary" @click="nextStep()" v-if="button">下一步</Button>
-			<Button type="primary" @click="addOrder()" v-else >支付</Button>
+			<Button type="primary" @click="addOrder('sub_list')" v-else >支付</Button>
 		</div>
 	</Modal>
 	<Modal :mask-closable="false" scrollable v-model="modal2" width="420" class-name="vertical-center-modal">
@@ -91,7 +91,7 @@ export default {
 	},
 	methods: {
 		//预约
-		addOrder() {
+		addOrder(name) {
 			var date = new Date()
 			console.log(date)
 			var seperator = "-"
@@ -121,7 +121,6 @@ export default {
 			}).then(res => {
 				if(res.status == "success") {
 					this.hideFrame();
-					console.log(this.selectGuide)
 					this.modal2 = true;
 					this.$Message.success("支付成功")
 				}else {

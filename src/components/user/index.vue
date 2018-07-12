@@ -62,7 +62,7 @@
 							</div>
 							<div class="setting-content">
 								<table height="360px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
-									<tr valign="middle" @click="goDetail(item.id)">
+									<tr valign="middle" @click="goDetail(item.tutor_id)">
 										<td width="190px" height="129px" class="td">
 											<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 										<div style="margin-left: 30px; float: left; margin-top:18px;">	
@@ -126,13 +126,13 @@
 export default {
   data() {
     return {
-      // 判断是否存在订单
-			status: false,
-			// 判断是否存在心愿单
-			heartstatus: false,
-      total: [],
-      heartList: [],
-      filter: []
+      	// 判断是否存在订单
+		status: false,
+		// 判断是否存在心愿单
+		heartstatus: false,
+      	total: [],
+      	heartList: [],
+      	filter: []
     };
   },
 
@@ -176,14 +176,14 @@ export default {
         }
       })
         .then(res => {
-					this.total = res.data;
-					if(this.total.length==0) {
-						this.status=true;
-					}
-					console.log(this.total)
+			this.total = res.data;
+			if(this.total.length==0) {
+				this.status=true;
+			}
+			console.log(this.total)
         })
         .catch(err => {
-					console.log(err);
+			console.log(err);
         });
     },
     goDetail(id) {
@@ -209,9 +209,9 @@ export default {
         }
       })
         .then(res => {
-					this.heartList.splice(index,1);
-					this.$Message.success("删除成功");
-					console.log(this.total)
+			this.heartList.splice(index,1);
+			this.$Message.success("删除成功");
+			console.log(this.total)
         })
         .catch(err => {
           console.log(err);
@@ -219,11 +219,11 @@ export default {
     },
     switchPage(name) {
       if (name == "tutor") {
-				if (this.total.length!=0) 
-					this.$refs.main1.style.display = "block";
-        this.$refs.details.style.display = "none";
-				this.$refs.tutor.style.display = "block";
-				this.$refs.wish.style.display = "none";
+			if (this.total.length!=0) 
+				this.$refs.main1.style.display = "block";
+        	this.$refs.details.style.display = "none";
+			this.$refs.tutor.style.display = "block";
+			this.$refs.wish.style.display = "none";
       } else {
 				this.$refs.tutor.style.display = "none";
 				this.$refs.wish.style.display = "block";
@@ -231,22 +231,22 @@ export default {
 				if(this.heartList.length==0) {
 					this.heartstatus=true
 				}
-      }
-		},
-		switchPage1() {
-			if (this.total.length!=0)			
-				this.$refs.main1.style.display = "block";
-      this.$refs.details.style.display = "none";
-			this.$refs.tutor.style.display = "block";
-			this.$refs.wish.style.display = "none";
-		},
-		switchPage2() {
-      this.$refs.tutor.style.display = "none";
-			this.$refs.wish.style.display = "block";
-			this.$refs.details.style.display = "none";
-			if(this.heartList.length==0) {
-				this.heartstatus=true
-			}
+        }
+	},
+	switchPage1() {
+		if (this.total.length!=0)			
+			this.$refs.main1.style.display = "block";
+      	this.$refs.details.style.display = "none";
+		this.$refs.tutor.style.display = "block";
+		this.$refs.wish.style.display = "none";
+	},
+	switchPage2() {
+      	this.$refs.tutor.style.display = "none";
+		this.$refs.wish.style.display = "block";
+		this.$refs.details.style.display = "none";
+		if(this.heartList.length==0) {
+			this.heartstatus=true
+		}
     }
   }
 };

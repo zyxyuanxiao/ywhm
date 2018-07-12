@@ -103,7 +103,7 @@ export default {
       tutor: {},
       guides: [],
       relatedTutors: [],
-      isWish: false
+      isWish: false,
     };
   },
   mounted() {
@@ -211,7 +211,6 @@ export default {
       let userId = sessionStorage.getItem("userId");
       console.log(userId);
       if (!userId) {
-        this.$refs.login.showFrame();
         return;
       }
       this.$ajax({
