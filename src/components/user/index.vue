@@ -219,7 +219,8 @@ export default {
     },
     switchPage(name) {
       if (name == "tutor") {
-				this.$refs.main1.style.display = "block";
+				if (this.total.length!=0) 
+					this.$refs.main1.style.display = "block";
         this.$refs.details.style.display = "none";
 				this.$refs.tutor.style.display = "block";
 				this.$refs.wish.style.display = "none";
@@ -232,8 +233,9 @@ export default {
 				}
       }
 		},
-		switchPage1() {			
-			this.$refs.main1.style.display = "block";
+		switchPage1() {
+			if (this.total.length!=0)			
+				this.$refs.main1.style.display = "block";
       this.$refs.details.style.display = "none";
 			this.$refs.tutor.style.display = "block";
 			this.$refs.wish.style.display = "none";
