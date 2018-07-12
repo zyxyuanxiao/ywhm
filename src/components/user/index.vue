@@ -99,7 +99,7 @@
 							</div>
 						</div>
 						<div class="heart" ref="heart" v-else>
-							<div class="gd" v-for="item in heartList" @click="goDetail(item.tutor_id)">
+							<div class="gd" v-for="(item,index) in heartList" @click="goDetail(item.tutor_id)">
 								<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
 								<div class="gd-info" >
 									<div class="info-top">
@@ -109,7 +109,7 @@
 									</div>
 									<div class="info-middle">
 										<div style="font-size:14px;">{{item.job}}</div>
-										<Button type="ghost" class="delete"  @click.stop="remove(item)">删除</Button>
+										<Button type="ghost" class="delete"  @click.stop="remove(item,index)">删除</Button>
 									</div>
 									<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 								</div>
@@ -200,7 +200,7 @@ export default {
       console.log(this.filter);
 		},
     //删除心愿单
-    remove(item) {
+    remove(item,index) {
       this.$ajax({
         url: "/wish/delete",
         data: {
@@ -209,6 +209,7 @@ export default {
         }
       })
         .then(res => {
+					this.heartList.splice(index,1);
 					this.$Message.success("删除成功");
 					console.log(this.total)
         })
@@ -225,7 +226,10 @@ export default {
       } else {
 				this.$refs.tutor.style.display = "none";
 				this.$refs.wish.style.display = "block";
-        this.$refs.details.style.display = "none";
+				this.$refs.details.style.display = "none";
+				if(this.heartList.length==0) {
+					this.heartstatus=true
+				}
       }
 		},
 		switchPage1() {			
