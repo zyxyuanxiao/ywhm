@@ -62,7 +62,7 @@
 				</div>
 				<div class="order">
 					<Button type="primary" shape="circle" @click="showOrder">立即预约</Button>
-					<Button type="ghost" shape="circle" @click="addWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{wishStatus}}</Button>
+					<Button type="ghost" shape="circle" @click="addWish" :disabled="isWish"> <Icon type="heart" size="16" style="padding-right:5px"></Icon>{{isWish ? '已加入心愿单':'加入心愿单'}}</Button>
 				</div>
 				
 				<h2>相关行家</h2>
@@ -88,566 +88,604 @@
 	 </div>
 </template>
 <script>
-import orders from './order.vue'
-import login from '../login'
+import orders from "./order.vue";
+import login from "../login";
 export default {
-	components:{
-		orders,
-		login
-	},
-	data () {
-		return {
-			flag: 0,
-			active: true,
-			id: null,
-			tutor: {},
-			guides: [],
-			relatedTutors: [],
-			wishStatus: "加入心愿单"
-		}
-	},	
-	mounted() {
-		this.id = this.$route.query.id
-		this.getOne()
-		this.selectByTutor()
-		this.getRelatedTutors()
-	},
-	methods: {
-		showOrder() {
-			let userId = sessionStorage.getItem("userId")
-			if(!userId) {
-				this.$refs.login.showFrame();
-				return;
-			}
-			this.$refs.order.showFrame();
-		},
-		goDetail(id) {
-			 this.$router.push("/home/");
-			 var that =this
-			 setTimeout(function (){
-				that.$router.push("/home/detail?id=" + id);
-			}, 	0.01);
-		},
-		//获取导师信息
-		getOne () {
-			this.$ajax({
-				url: "/tutor/getOne",
-				data: {
-					id: this.id
-				}
-			}).then(res => {
-				this.tutor=res.data
-			}).catch(err => {
-				console.log(err);
-			})
-		},
-		//获取相关行家
-		getRelatedTutors () {
-			this.$ajax({
-				url: "/tutor/selectByRandom",
-			}).then(res => {
-				this.relatedTutors=res.data
-			}).catch(err => {
-				console.log(err);
-			})
-		},
-		//获取导师所有指导课
-		selectByTutor () {
-			this.$ajax({
-				url: "/guide/selectByTutor",
-				data: {
-					tutor_id: this.id
-				}
-			}).then(res => {
-				this.guides=res.data
-			}).catch(err => {
-				console.log(err);
-			})
-		},
-		stretch (str,index){	
-			if(str=="fold"){
-				this.flag=index
-			}
-			else {
-				this.flag=-1
-			}
-		},
-		//加入心愿单
-		addWish() {
-			let userId = sessionStorage.getItem("userId")
-			console.log(userId)
-			if(!userId) {
-				this.$refs.login.showFrame();
-				return;
-			}
-			this.$ajax({
-				url: "/wish/add",
-				data: {
-					user_id: userId,
-					tutor_id: this.id,
-				}
-			}).then(res => {
-				if(res.status == "success") {
-					this.wishStatus = "已加入心愿单"
-					this.$Message.success("成功加入心愿单")
-				}else {
-					console.log(res.msg)
-				}
-			}).catch(err => {
-				console.log(err);
-			})
-		}		
-	}
-}
+  components: {
+    orders,
+    login
+  },
+  data() {
+    return {
+      flag: 0,
+      active: true,
+      id: null,
+      tutor: {},
+      guides: [],
+      relatedTutors: [],
+      isWish: false
+    };
+  },
+  mounted() {
+    this.id = this.$route.query.id;
+    this.getOne();
+    this.selectByTutor();
+    this.getRelatedTutors();
+    this.checkWish();
+  },
+  methods: {
+    showOrder() {
+      let userId = sessionStorage.getItem("userId");
+      if (!userId) {
+        this.$refs.login.showFrame();
+        return;
+      }
+      this.$refs.order.showFrame();
+    },
+    goDetail(id) {
+      this.$router.push("/home/");
+      var that = this;
+      setTimeout(function() {
+        that.$router.push("/home/detail?id=" + id);
+      }, 0.01);
+    },
+    //获取导师信息
+    getOne() {
+      this.$ajax({
+        url: "/tutor/getOne",
+        data: {
+          id: this.id
+        }
+      })
+        .then(res => {
+          this.tutor = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    //获取相关行家
+    getRelatedTutors() {
+      this.$ajax({
+        url: "/tutor/selectByRandom"
+      })
+        .then(res => {
+          this.relatedTutors = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    //获取导师所有指导课
+    selectByTutor() {
+      this.$ajax({
+        url: "/guide/selectByTutor",
+        data: {
+          tutor_id: this.id
+        }
+      })
+        .then(res => {
+          this.guides = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    stretch(str, index) {
+      if (str == "fold") {
+        this.flag = index;
+      } else {
+        this.flag = -1;
+      }
+    },
+    //加入心愿单
+    addWish() {
+      let userId = sessionStorage.getItem("userId");
+      console.log(userId);
+      if (!userId) {
+        this.$refs.login.showFrame();
+        return;
+      }
+      this.$ajax({
+        url: "/wish/add",
+        data: {
+          user_id: userId,
+          tutor_id: this.id
+        }
+      })
+        .then(res => {
+          if (res.status == "success") {
+            this.isWish = true;
+            this.$Message.success("成功加入心愿单");
+          } else {
+            console.log(res.msg);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+
+    //验证用户是否已将导师加入心愿单
+    checkWish() {
+      let userId = sessionStorage.getItem("userId");
+      console.log(userId);
+      if (!userId) {
+        this.$refs.login.showFrame();
+        return;
+      }
+      this.$ajax({
+        url: "/wish/check",
+        data: {
+          user_id: userId,
+          tutor_id: this.id
+        }
+      })
+        .then(res => {
+          this.isWish = res.data.wish;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
+};
 </script>
 
 <style scoped>
-    .hidden {
-		height: auto !important;
-		overflow: visible !important;
-	}
-	.fold,.shrink{
-		width: 18px;
-		margin-top: 16px;
-	}
-	.stretch{
-		width: 24px;
-		height: 24px;
-	 }
-	.ft {
-		border-top: 1px solid #ddd;
-		height: 50px;
-		line-height: 18px;
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-	}
-	.topic-info {
-		display: inline-block;
-	}
-	.meet-time {
-		font-size: 14px;
-		border-right: 1px solid #ddd;
-		display: inline-block;
-		margin: 16px 6px 16px 0;
-		padding-right: 10px;
-	}
-	.meet-num {
-		font-size: 14px;
-		display: inline-block;
-		margin: 16px 6px 16px 0;
-		padding-right: 10px;
-	}
-	.container {
-		width: 100%;
-		background-color: #fff;
-	}
-	.cover {
-		background: url('../../assets/img/info_bg.jpg') no-repeat;
-		background-size: cover;
-		height: 500px;
-		background-position: center;
-		margin-top: -64px;
-	}
-	.avator {
-		float: left;
-		padding: 5px;
-		width: 165px;
-		height: 165px;
-		border-radius: 50%;
-		margin: -128px 25px 0 0;
-		background-repeat: no-repeat;
-		background-size: cover;
-		box-shadow: 0 1px 1px #ccc;
-	}
-	.person {
-		max-width: 900px;
-		margin: 0 auto;
-		display: flex;
-	}
-	.left{
-		width: 560px;
-	}
-	.right {
-		width: 340px;
-		padding-left: 40px;
-		margin-top: 70px;
-	}
-	.top {
-		text-align: center;
-	}
-	.name {
-		font-size: 38px;
-		line-height: 38px;
-		font-weight: 400;
-		clear: both;
-	}
-	.occur {
-		margin:5px 0 10px;
-	}
-	.detail {
-		margin: 10px 77px 4px;
-		display: flex;
-		justify-content: space-around;
-		align-content: center;
-		border-top: 1px solid #e5e5e5;
-		border-bottom: 1px solid #e5e5e5;
-	}
-	.detail > span {
-		width: 33%;
-		position: relative;
-	}
-	.detail > span:after{
-		content: "|";
-		position: absolute;
-		height: 14px;
-		width: 1px;
-		right: 0px;
-	}
-	.top span, .intro1 {
-		color: #b0b0b0;
-	}
-	.b {
-		font-weight: bold;
-	}
-	.highlight {
-		color:#23acf1;
-		padding-left:8px;
-	}
-	.price {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 10px;
-	}
-	.score span{
-		font-size:12px;
-		padding-right: 5px;
-	}
-	.price span:nth-child(2),.score{
-		font-size: 20px;
-	}
-	.tip {
-		font-size: 20px;
-	}
-	.promise {
-		margin-top:25px;
-		padding: 25px 0 20px 20px;
-		width: 320px;
-		background: #f1efee;
-		border-radius: 8px;
-		overflow: hidden;
-	}
-	.about-tips {
-		display: none;
-	}
-	.promise p span {
-		font-weight: bold;
-	}
-	.promise span {
-		font-size: 20px;
-		font-weight: bold;
-	}
-	.before {
-		width:90px; 
-		float:right; 
-		margin-top:8px; 
-		margin-right:22px;
-	}
-	.order {
-		padding: 20px;
-		width: 320px;
-		font-size:14px;
-	}
-	.ivu-btn-primary {
-		width: 100%;
-		height: 40px;
-		color:#fff;
-		font-size:14px;
-		margin-bottom: 12px;
-	}
-	.ivu-btn-ghost {
-		width: 100%;
-		height: 40px;
-		color: #000;
-		font-size:14px;
-		border-color: #ccc;
-	}
-	.ivu-btn-ghost:hover {
-		color: #23acf1;
-	}
-	.content {
-		line-height: 28px;
-		font-size: 14px;
-		margin-bottom: 10px;
-		height: 54px;
-		overflow: hidden;
-	}
-	h2 {
-		margin-bottom: 10px;
-		margin-top: 15px;
-		color: rgb(52, 52, 52);
-		font-weight: 700;
-		padding-left: 5px;
-	}
-	.item {
-		background: #fcfaf9;
-		/* overflow: hidden; */
-		margin-top: 20px;
-		padding:30px 20px 10px;
-	}
-	.about_tutor p {
-		margin: 0 10px;
-		margin-bottom: 10px;
-		line-height: 22px;
-		font-size: 14px;
-	}
-	.about_tutor p:last-child {
-		margin-bottom: 40px;
-	}
-	.tutor_avator {
-		width: 50px;
-		height: 50px;
-		background-repeat: no-repeat;
-		background-size: cover;
-		border-radius: 50%; 
-		float: left;
-	}
-	.tutor_info {
-		padding-left: 10px;
-		overflow: hidden;
-	}
-	em {
-		color: #23acf1;
-	}
-	.tutor {
-		color: #939393;
-		font-size: 14px;
-		margin-right: 5px;
-	}
-	/*.intro {
+.hidden {
+  height: auto !important;
+  overflow: visible !important;
+}
+.fold,
+.shrink {
+  width: 18px;
+  margin-top: 16px;
+}
+.stretch {
+  width: 24px;
+  height: 24px;
+}
+.ft {
+  border-top: 1px solid #ddd;
+  height: 50px;
+  line-height: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.topic-info {
+  display: inline-block;
+}
+.meet-time {
+  font-size: 14px;
+  border-right: 1px solid #ddd;
+  display: inline-block;
+  margin: 16px 6px 16px 0;
+  padding-right: 10px;
+}
+.meet-num {
+  font-size: 14px;
+  display: inline-block;
+  margin: 16px 6px 16px 0;
+  padding-right: 10px;
+}
+.container {
+  width: 100%;
+  background-color: #fff;
+}
+.cover {
+  background: url("../../assets/img/info_bg.jpg") no-repeat;
+  background-size: cover;
+  height: 500px;
+  background-position: center;
+  margin-top: -64px;
+}
+.avator {
+  float: left;
+  padding: 5px;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  margin: -128px 25px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 1px 1px #ccc;
+}
+.person {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+}
+.left {
+  width: 560px;
+}
+.right {
+  width: 340px;
+  padding-left: 40px;
+  margin-top: 70px;
+}
+.top {
+  text-align: center;
+}
+.name {
+  font-size: 38px;
+  line-height: 38px;
+  font-weight: 400;
+  clear: both;
+}
+.occur {
+  margin: 5px 0 10px;
+}
+.detail {
+  margin: 10px 77px 4px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.detail > span {
+  width: 33%;
+  position: relative;
+}
+.detail > span:after {
+  content: "|";
+  position: absolute;
+  height: 14px;
+  width: 1px;
+  right: 0px;
+}
+.top span,
+.intro1 {
+  color: #b0b0b0;
+}
+.b {
+  font-weight: bold;
+}
+.highlight {
+  color: #23acf1;
+  padding-left: 8px;
+}
+.price {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.score span {
+  font-size: 12px;
+  padding-right: 5px;
+}
+.price span:nth-child(2),
+.score {
+  font-size: 20px;
+}
+.tip {
+  font-size: 20px;
+}
+.promise {
+  margin-top: 25px;
+  padding: 25px 0 20px 20px;
+  width: 320px;
+  background: #f1efee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.about-tips {
+  display: none;
+}
+.promise p span {
+  font-weight: bold;
+}
+.promise span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.before {
+  width: 90px;
+  float: right;
+  margin-top: 8px;
+  margin-right: 22px;
+}
+.order {
+  padding: 20px;
+  width: 320px;
+  font-size: 14px;
+}
+.ivu-btn-primary {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.ivu-btn-ghost {
+  width: 100%;
+  height: 40px;
+  color: #000;
+  font-size: 14px;
+  border-color: #ccc;
+}
+.ivu-btn-ghost:hover {
+  color: #23acf1;
+}
+.content {
+  line-height: 28px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  height: 54px;
+  overflow: hidden;
+}
+h2 {
+  margin-bottom: 10px;
+  margin-top: 15px;
+  color: rgb(52, 52, 52);
+  font-weight: 700;
+  padding-left: 5px;
+}
+.item {
+  background: #fcfaf9;
+  /* overflow: hidden; */
+  margin-top: 20px;
+  padding: 30px 20px 10px;
+}
+.about_tutor p {
+  margin: 0 10px;
+  margin-bottom: 10px;
+  line-height: 22px;
+  font-size: 14px;
+}
+.about_tutor p:last-child {
+  margin-bottom: 40px;
+}
+.tutor_avator {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  float: left;
+}
+.tutor_info {
+  padding-left: 10px;
+  overflow: hidden;
+}
+em {
+  color: #23acf1;
+}
+.tutor {
+  color: #939393;
+  font-size: 14px;
+  margin-right: 5px;
+}
+/*.intro {
     	overflow: hidden; 
 		text-overflow:ellipsis;
     	white-space: nowrap; 
     	width: 95%; 
 	}*/
-	.title{
-		font-size: 14px;
-    	/* overflow: hidden;
+.title {
+  font-size: 14px;
+  /* overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
  7   	-webkit-line-clamp: 2;
  8   	-webkit-box-orient: vertical; */
-	}
-	.bott {
-		color: rgb(102, 102, 102);
-	}
-	.guide {
-		padding: 15px 0 15px 10px;
-		border-bottom: 1px solid #ccc;
-		overflow: hidden;
-		cursor: pointer;
-		height: 100px;
-	}
-	.guide:hover .title {
-		color: #23acf1;
-	}
-	.image {
-		margin: 10px auto 17px;
-		text-align: center;
-		overflow: hidden;
-	}
-	.image img{
-		width: 450px;
-	}
-	.item .title {
-		font-size: 18px;
-	}
-	.vertical-center-modal{
-		display: flex;
-		align-items: center;
-		justify-content: center; 
-	} 
-	.vertical-center-modal .ivu-modal{
-		top: 0;
-	}
-	.vertical-center-modal .ivu-modal-footer{
-		display: none;
-	}
-	.ivu-form .ivu-form-item-label,p {
-		font-size: 14px;
-	}
-	.vertical-center-modal{
-		display: flex;
-		align-items: center;
-		justify-content: center; 
-	} 
-	.vertical-center-modal .ivu-modal{
-		top: 0;
-	}
-	.vertical-center-modal .ivu-modal-footer{
-		display: none;
-	}
-	.ivu-modal-body:first-child {
-		width: 500px;
-		margin: auto;
-	}
-	.gd_list {
-		width: 100%;
-		font-size: 14px;
-   		margin-bottom: 20px;
-		height: 40px;
-		border: 1px solid rgb(52, 52, 52);
-		border-radius: 20px; 
-		cursor: pointer;
-		line-height: 40px;
-		display: block;
-		margin-top: 10px;
-		padding: 0 20px;
-		text-align: left;
-	}	
-	.gd_list:first-child {
-		background-color: #23acf1;
-		color:#fff;
-		border-color: #23acf1;
-	}
-	.gd_list:visited {
-		background-color: #23acf1;
-		color:#fff;
-		border-color: #23acf1;
-	}
-	.gd_list:hover {
-		border: 1px solid #23acf1;
-		color: #343434;
-	}
-	.m_title {
-		float: left;
-	}
-	.ivu-steps {
-		height: 40px;
-		margin-top: 20px;
-	}
-	.m_price {
-		float: right;
-		font-size: 12px;
-		line-height: 1.4;
-		margin-top: 3px;
-		text-align: right;
-	}
-	.ivu-btn-primary:last-child,.sbm{
-		padding: 10px;
-		width: 140px;
-		height: 34px;
-		line-height: 34px;
-		text-align: center;
-	}
-	.sub,.next1 {
-		margin: 0px 6px;
-	}
-	.next {
-		text-align: right;
-   		width: 100%;
-		margin-top: 10px;
-	}
-	.sub {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		font-size: 32px;
-		color: rgb(52,52,52);
-		font-weight: 500;
-	}
-	.form {
-		margin-top:20px;
-		display: none;
-	}
-	.submit{
-		 display: none;
-	}
-	.tutor-pic {
-		height: 500px;
-		overflow: hidden;
-	}
-	@media (max-width: 992px) {
-		.cover {
-			height: 250px;
-		}
-		.avator {
-			width: 133px;
-			height: 133px;
-			float: none;
-			margin: -100px auto 0;
-		}
-		.image {
-			margin: 10px 15px 17px;
-		}
-		.tutor-pic{
-			height: auto;
-		}
-		.tutor-pic img{
-			width: 70%;
-			height: auto !important;
-		}
-		.name {
-			margin: 20px 0 5px;
-			font-weight: 700;
-			line-height: 20px;
-			font-size: 20px;
-		}
-		.person {
-			flex-direction: column;
-		}
-		.left {
-			width: 100%;
-		}
-		.right {
-			width: 100%;
-			margin-top: 20px;
-			padding-left: 0;
-			width: 100%;
-		}
-		.promise {
-			width: 100%;
-			margin-top: 0;
-			border-radius: 0;
-		}
-		.promise span{
-			font-size: 24px
-		}
-		.detail {
-			margin-left: 0;
-			margin-right: 0;
-		}
-		.occur,.before {
-			display: none;
-		}
-		.about-tips {
-			color: #666;
-			font-size: 14px;
-			margin: 5px 0 0;
-			display: block;
-		}
-		.tip {
-			line-height: 35px;
-			font-size: 24px;
-		}
-		.order {			
-			padding: 10px 0;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			background-color: #fff;
-			align-content: space-around;
-			z-index: 10;
-			display: flex;
-		}
-		.ivu-btn-primary {
-			margin-bottom: 0;
-			margin: 0 2%;
-			width: 96%;
-		}
-		.ivu-btn-ghost {
-			width: 96%;
-			margin: 0 2%;
-		}
-	}
+}
+.bott {
+  color: rgb(102, 102, 102);
+}
+.guide {
+  padding: 15px 0 15px 10px;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100px;
+}
+.guide:hover .title {
+  color: #23acf1;
+}
+.image {
+  margin: 10px auto 17px;
+  text-align: center;
+  overflow: hidden;
+}
+.image img {
+  width: 450px;
+}
+.item .title {
+  font-size: 18px;
+}
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-center-modal .ivu-modal {
+  top: 0;
+}
+.vertical-center-modal .ivu-modal-footer {
+  display: none;
+}
+.ivu-form .ivu-form-item-label,
+p {
+  font-size: 14px;
+}
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-center-modal .ivu-modal {
+  top: 0;
+}
+.vertical-center-modal .ivu-modal-footer {
+  display: none;
+}
+.ivu-modal-body:first-child {
+  width: 500px;
+  margin: auto;
+}
+.gd_list {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 20px;
+  height: 40px;
+  border: 1px solid rgb(52, 52, 52);
+  border-radius: 20px;
+  cursor: pointer;
+  line-height: 40px;
+  display: block;
+  margin-top: 10px;
+  padding: 0 20px;
+  text-align: left;
+}
+.gd_list:first-child {
+  background-color: #23acf1;
+  color: #fff;
+  border-color: #23acf1;
+}
+.gd_list:visited {
+  background-color: #23acf1;
+  color: #fff;
+  border-color: #23acf1;
+}
+.gd_list:hover {
+  border: 1px solid #23acf1;
+  color: #343434;
+}
+.m_title {
+  float: left;
+}
+.ivu-steps {
+  height: 40px;
+  margin-top: 20px;
+}
+.m_price {
+  float: right;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 3px;
+  text-align: right;
+}
+.ivu-btn-primary:last-child,
+.sbm {
+  padding: 10px;
+  width: 140px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+.sub,
+.next1 {
+  margin: 0px 6px;
+}
+.next {
+  text-align: right;
+  width: 100%;
+  margin-top: 10px;
+}
+.sub {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  color: rgb(52, 52, 52);
+  font-weight: 500;
+}
+.form {
+  margin-top: 20px;
+  display: none;
+}
+.submit {
+  display: none;
+}
+.tutor-pic {
+  height: 500px;
+  overflow: hidden;
+}
+@media (max-width: 992px) {
+  .cover {
+    height: 250px;
+  }
+  .avator {
+    width: 133px;
+    height: 133px;
+    float: none;
+    margin: -100px auto 0;
+  }
+  .image {
+    margin: 10px 15px 17px;
+  }
+  .tutor-pic {
+    height: auto;
+  }
+  .tutor-pic img {
+    width: 70%;
+    height: auto !important;
+  }
+  .name {
+    margin: 20px 0 5px;
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 20px;
+  }
+  .person {
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 0;
+    width: 100%;
+  }
+  .promise {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .promise span {
+    font-size: 24px;
+  }
+  .detail {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .occur,
+  .before {
+    display: none;
+  }
+  .about-tips {
+    color: #666;
+    font-size: 14px;
+    margin: 5px 0 0;
+    display: block;
+  }
+  .tip {
+    line-height: 35px;
+    font-size: 24px;
+  }
+  .order {
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    align-content: space-around;
+    z-index: 10;
+    display: flex;
+  }
+  .ivu-btn-primary {
+    margin-bottom: 0;
+    margin: 0 2%;
+    width: 96%;
+  }
+  .ivu-btn-ghost {
+    width: 96%;
+    margin: 0 2%;
+  }
+}
 </style>

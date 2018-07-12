@@ -111,28 +111,7 @@ export default {
 			isCollapsed: false,
       // 判断是否存在订单
 			status: false,
-      total: [ {
-          id: "1",
-          time: "2018-07-07",
-          avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
-          title: "医学背景健身导师，解决你所有问题!",
-          name: "原李峰",
-          job: "「原来健身工作室」创始人",
-          price: 499,
-          question: "aaaaaaaaaaaaaaa",
-          situation: "bbbbbbbbbbbbbbbbb"
-        },
-        {
-          id: "2",
-          time: "2018-07-07",
-          avatar: "http://medias.zaih.com/Fh36I3XxXcYWjK_jkOtlfGa2G_WA",
-          title: "医学背景健身导师，解决你所有问题!",
-          name: "原李峰",
-          job: "「原来健身工作室」创始人",
-          price: 499,
-          question: "aaaaaaaaaaaaaaa",
-          situation: "cccccccccccccc"
-        }     ],
+      total: [],
       heartList: [],
       filter: []
     };
@@ -150,7 +129,7 @@ export default {
 		this.getOrder();
   },
   methods: {
-	  //获取订单列表
+	  //获取心愿单列表
     getWish() {
       let userId = sessionStorage.getItem("userId");
       this.$ajax({
@@ -172,7 +151,7 @@ export default {
       this.$ajax({
         url: "/order/selectByUser",
         data: {
-          user_id: userId
+          id: userId
         }
       })
         .then(res => {
@@ -181,7 +160,6 @@ export default {
         })
         .catch(err => {
 					console.log(err);
-					console.log("查询用户预约订单成功")
         });
     },
     goDetail(id) {
@@ -326,6 +304,7 @@ export default {
 	}
 	.detail:hover {
 		color: #23acf1;
+		cursor: pointer;
 	}
 	.img {
 		width: 155px;
