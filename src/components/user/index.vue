@@ -2,8 +2,8 @@
 	<div style="background: #fafafa; margin-top:0;">
 		<div class="container1">
 			<Layout>
-				<Sider breakpoint="sm" collapsible :collapsed-width="10" v-model="isCollapsed" hide-trigger>
-					<Menu active-name="tutor" theme="light"  width="auto" @on-select="switchPage" :class="menuitemClasses">
+				<Sider>
+					<Menu active-name="tutor" theme="light"  width="auto" @on-select="switchPage">
 						<div class="user" id="userInfo">
 							<img src="../../assets/img/user-avatar.png" alt="" class="img">
 						</div>
@@ -13,39 +13,41 @@
 					<div slot="trigger" class="trigger"></div>
 				</Sider>
 				<Content style="background-color: #fafafa;">
-					<div class="main0"  v-if="status">
-						<div class="user-content">
-							<div class="setting-content">
-								<p class="none">
-									真忧伤，我还没有约过人诶。
-									<router-link to="/home/career">立即去约人！</router-link> 
-								</p>
+					<div ref="tutor">
+						<div class="main0" ref="main0"  v-if="status">
+							<div class="user-content">
+								<div class="setting-content">
+									<p class="none">
+										真忧伤，我还没有约过人诶。
+										<router-link to="/home/career">立即去约人！</router-link> 
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="main1" ref="main1" v-else>
-						<div class="user-content" v-for="item in total"  >
-							<div class="time">
-								<span>发起时间：{{item.time}}</span>
-							</div>
-							<div class="setting-content">
-								<table height="130px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
-									<tr valign="middle">
-										<td style="display:flex;  border: none;"  @click="goDetail(item.id)" class="td">
-											<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
-											<div  style="margin-left: 16px; float: left; margin-top:10px;">	
-												<div class="title">{{item.title}}</div>
-												<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
-											</div>
-										</td>
-										<td align="center">
-											<div class="price">{{item.price}}元</div>
-										</td>
-										<td align="center">
-											<div class="detail" @click="showDetail(item.id)">查看详情</div>	
-										</td>
-									</tr>
-								</table>
+						<div class="main1" ref="main1" v-else>
+							<div class="user-content" v-for="item in total"  >
+								<div class="time">
+									<span>发起时间：{{item.time}}</span>
+								</div>
+								<div class="setting-content">
+									<table height="130px" border="1" bordercolor="#e8e8e8" align="center"　style="border-collapse:collapse; horizontal-align: center">
+										<tr valign="middle">
+											<td style="display:flex;  border: none;"  @click="goDetail(item.tutor_id)" class="td">
+												<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div> 
+												<div  style="margin-left: 16px; float: left; margin-top:10px;">	
+													<div class="title">{{item.title}}</div>
+													<div class="intro"><span>{{item.name}}</span><span>{{item.job}}</span></div>
+												</div>
+											</td>
+											<td align="center">
+												<div class="price">{{item.price}}元</div>
+											</td>
+											<td align="center">
+												<div class="detail" @click="showDetail(item.id)">查看详情</div>	
+											</td>
+										</tr>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -81,20 +83,32 @@
 							</div>
 						</div>
 					</div>
-					<div class="heart" ref="heart">
-						<div class="gd" v-for="item in heartList" @click="goDetail(item.id)">
-							<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
-							<div class="gd-info" >
-								<div class="info-top">
-									<div class="tutor-info">
-										<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.slogan}}</span>
+					<div ref="wish">
+						<div class="main00"  ref="main00" v-if="heartstatus">
+							<div class="user-content">
+								<div class="setting-content">
+									<p class="none">
+										真忧伤，我的心愿单还没有行家。
+										<router-link to="/home/career">立即去加人！</router-link> 
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="heart" ref="heart" v-else>
+							<div class="gd" v-for="item in heartList" @click="goDetail(item.tutor_id)">
+								<div class="gd-avatar" :style="{backgroundImage:'url(' + item.avatar + ')'}"></div>
+								<div class="gd-info" >
+									<div class="info-top">
+										<div class="tutor-info">
+											<span class="tutor-title">{{item.name}}&nbsp;&nbsp;&nbsp;{{item.slogan}}</span>
+										</div>
 									</div>
+									<div class="info-middle">
+										<div style="font-size:14px;">{{item.job}}</div>
+										<Button type="ghost" class="delete"  @click.stop="remove(item)">删除</Button>
+									</div>
+									<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 								</div>
-								<div class="info-middle">
-									<div style="font-size:14px;">{{item.job}}</div>
-									<Button type="ghost" class="delete" @click="remove(item)">删除</Button>
-								</div>
-								<div class="info-bot"><span>{{item.sub_num}}</span>人已预约成功</div>
 							</div>
 						</div>
 					</div>
@@ -108,27 +122,27 @@
 export default {
   data() {
     return {
-			isCollapsed: false,
       // 判断是否存在订单
 			status: false,
+			// 判断是否存在心愿单
+			heartstatus: false,
       total: [],
       heartList: [],
       filter: []
     };
   },
-	computed: {
-    menuitemClasses: function () {
-      return [
-      	'menu-item',
-         this.isCollapsed ? 'collapsed-menu' : ''
-      ]
-    }
-  },
+
   mounted() {
 		this.getWish();
 		this.getOrder();
-  },
+		this.getStatus();
+	},
   methods: {
+		getStatus() {
+			this.$refs.details.style.display = "none";
+			this.$refs.tutor.style.display = "block";
+			this.$refs.wish.style.display = "none";
+		},
 	  //获取心愿单列表
     getWish() {
       let userId = sessionStorage.getItem("userId");
@@ -139,7 +153,10 @@ export default {
         }
       })
         .then(res => {
-          this.heartList = res.data;
+					this.heartList = res.data;
+					if(this.heartList.length==0) {
+							this.heartstatus=true;
+					}
         })
         .catch(err => {
           console.log(err);
@@ -156,6 +173,9 @@ export default {
       })
         .then(res => {
 					this.total = res.data;
+					if(this.total.length==0) {
+						this.status=true;
+					}
 					console.log(this.total)
         })
         .catch(err => {
@@ -193,15 +213,15 @@ export default {
         });
     },
     switchPage(name) {
-			
       if (name == "tutor") {
+				this.$refs.main1.style.display = "block";
         this.$refs.details.style.display = "none";
-        this.$refs.main1.style.display = "block";
-        this.$refs.heart.style.display = "none";
+				this.$refs.tutor.style.display = "block";
+				this.$refs.wish.style.display = "none";
       } else {
+				this.$refs.tutor.style.display = "none";
+				this.$refs.wish.style.display = "block";
         this.$refs.details.style.display = "none";
-        this.$refs.main1.style.display = "none";
-        this.$refs.heart.style.display = "block";
       }
     }
   }
@@ -214,6 +234,7 @@ export default {
 	}
 	.ivu-layout-sider {
 		width: 160px;
+		padding: 20px 0;
 		max-width: 160px !important;
 		min-width: 160px !important;
 	}
@@ -225,9 +246,6 @@ export default {
 		float: left;
 		width: 80px;
 	}
-	/* a:hover {
-		color: #23acf1;
-	} */
 	.td {
 		padding-right: 0px;
 	}
@@ -262,7 +280,6 @@ export default {
 	}
 	.heart {
 		margin: 0 auto 20px;
-		display: none;
 	}
 	.delete {
 		float: right;
@@ -312,7 +329,7 @@ export default {
 		border-radius: 50%;
 	}
 	.main0 {
-		margin: 0 auto;
+		margin: 20px auto;
 	}
 	.main0 .user-content h2 {
 		font-size: 14px;
@@ -332,8 +349,30 @@ export default {
 		text-align: center;
 		line-height: 120px;
 	}
+	.main00 {
+		margin:20px auto;
+	}
+	.main00 .user-content h2 {
+		font-size: 14px;
+		padding: 10px 15px 10px 30px;
+		border-bottom: 1px solid #e8e8e8;
+		overflow: hidden;
+	}
+	.main00 .user-content {
+		height: 120px;
+		background-color: #fff;
+			border: 1px solid #e8e8e8;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+	.main00 .setting-content {
+		text-align: center;
+		line-height: 120px;
+	}
 	.main1 {
 		margin-bottom: 20px;
+		margin-right: 10px;
 	}
 	.main1 .user-content {
 		margin: 0 auto;
