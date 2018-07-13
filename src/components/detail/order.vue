@@ -38,7 +38,7 @@
 	</Modal>
 	<Modal :mask-closable="false" scrollable v-model="modal2" width="420" class-name="vertical-center-modal">
 		<div style="text-align: center; margin-bottom: 20px;">
-			<h1 class="sub">提交成功！</h1>
+			<h1 class="sub">支付成功！</h1>
 			<p> 请等待行家反馈</p>
 		</div>
 		<div style="text-align: center; margin-bottom: 20px;">
@@ -153,7 +153,7 @@ export default {
 			});
 		},
 		select(index,id) {
-			console.log(id)
+			// console.log(id)
 			var that= this
 			this.hover=index
 			var guide = this.guideList.filter(function(item,index,array){
